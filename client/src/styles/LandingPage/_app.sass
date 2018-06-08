@@ -1,0 +1,90 @@
+$font1: 'Roboto', sans-serif !important
+$font2: 'Source Sans Pro', sans-serif
+
+.app
+  width: 100vw
+  background: linear-gradient(#323232, #383737)
+  overflow: hidden
+
+  .header 
+    position: fixed
+    width: 100vw
+    height: 50px
+
+  &.app-content
+    display: flex
+    top: 50px
+    position: relative
+
+#title 
+  color: white
+  font-family: $font1
+  margin: 40px
+  font-weight: 100
+  font-size: 50px
+  position: relative 
+  left: 170px
+  z-index: 1
+  top: 70px
+
+  #word
+    color: #00b496
+    text-shadow: #00b496 0px 0px 10px
+    opacity: 1
+    animation: fade 4s infinite
+    font-size: 50px !important
+
+.info 
+  height: 400px 
+  +flex(center, center)
+  flex-direction: column
+  padding: 0 200px
+  margin-top: 100px
+  #info-span 
+    color: rgba(255, 255, 255, 0.9)
+    font-family: $font1
+    font-weight: 100
+    font-size: 35px
+    text-align: center
+
+  #info-btn 
+    width: 200px
+    background-color: #00b496
+    padding: 10px 0px
+    border: none
+    margin: 30px
+    border-radius: 5px
+    font-family: $font2
+    font-weight: 900
+    box-shadow: #00b496 0px 0px 10px
+
+.cubic-particles 
+  height: 200px
+
+.footer 
+  height: 300px 
+  display: flex 
+  background-color: #2a2a2a
+  border-top: 2px solid #262626  
+  padding: 50px 0px
+  .footer-col 
+    display: flex
+    flex-direction: column
+    width: 400px
+    margin: 0 70px
+    h3, a 
+      color: white 
+
+    h3 
+      font-family: $font1
+      color: #00b496
+    a
+       font-family: $font2
+       font-size: 14px 
+       letter-spacing: 1px
+       margin: 6px 0px
+
+
+@keyframes fade 
+  0%,100% { opacity: 0 }
+  50% { opacity: 1 }

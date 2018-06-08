@@ -1,0 +1,129 @@
+.content 
+  height: 80vh
+  +flex-align(center)
+  
+  .form-wrapper
+    padding-left: 150px
+    width: 700px
+    position: relative
+    top: 90px
+    .wrap-swipe 
+      +flex-justify(center)
+
+      .background 
+        width: 91px 
+        height: 27px 
+        background-color: #00b496
+        position: absolute
+        transition: .3s cubic-bezier(.75,.2,.39,1.02)
+        transform: skew(-38deg)
+        box-shadow: #00b496 0px 0px 25px
+
+        &.active-login 
+          transform: translateX(-44px)
+          border-top-left-radius: 4px
+
+        &.active-signup
+          transform: translateX(44px)
+          border-top-right-radius: 4px
+
+      .btn-swipe 
+        padding: 3px 18px 
+        width: 90px
+        text-align: center
+        color: white
+        font-family: 'Source Sans Pro', sans-serif
+        text-decoration: none
+        z-index: 1
+        border: 1px solid #00b496
+        cursor: pointer
+
+        &.log 
+          border-top-left-radius: 6px 
+
+        &.sign 
+          border-top-right-radius: 6px 
+
+.form-content-wrapper 
+  height: 500px
+  form 
+    flex-direction: column
+    +flex(center, center)
+    box-shadow: #211d1d 0px 0px 10px
+    padding: 40px
+
+    input 
+      width: 400px
+      padding: 23px 20px
+      background-color: rgba(255, 255, 255, 0.1)
+      border: none
+      border-top: 1px solid #262626
+      border-bottom: 1px solid #262626
+      margin: 30px 0
+      font-family: 'Source Sans Pro', sans-serif
+      font-size: 17px
+      color: rgba(255, 255, 255, 0.3)
+      opacity: 0
+      border-radius: 0
+
+      &:focus
+        outline: none !important
+        background: rgba(0, 0, 0, 0.01)
+        box-shadow: none
+        transition: .5s
+        color: rgba(255, 255, 255, 0.6)
+
+    button
+      padding: 0.75em 3em
+      border-radius: 4px
+      outline: none 
+      border: .5px solid rgba(255, 255, 255, 0.2)
+      font-size: 17px
+      font-family: 'Source Sans Pro', sans-serif
+      color: #00b496
+      width: 200px
+      margin: 0 20px
+      cursor: pointer
+      box-shadow: #00b496 0px 0px 10px
+      text-decoration: none
+      background: none
+
+      &:hover 
+        background-color: rgba(0, 0, 0, 0.3);
+        transition: .6s
+
+  
+  &.expanded-login
+    @for $i from 1 through 3
+      .input-lg-#{$i}.animate-true
+        animation: fadeIn .3s linear forwards
+        animation-delay: $i * 0.08s
+
+      .input-lg-#{$i}.animate-false
+        opacity: 1
+
+  &.expanded-signup
+    @for $i from 1 through 4
+      .input-su-#{$i}.animate-true 
+        animation: fadeIn .3s linear forwards
+        animation-delay: $i * 0.08s
+
+      .input-su-#{$i}.animate-false 
+        opacity: 1
+
+
+.particles 
+  height: 100vh
+  width: 100vw
+  position: relative 
+  left: 200px
+
+canvas 
+  position: relative
+  height: 800px
+ 
+@keyframes fadeIn
+  to
+    opacity: 1
+  
+        

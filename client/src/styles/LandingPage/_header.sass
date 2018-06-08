@@ -1,0 +1,36 @@
+$font1: 'Oxygen', sans-serif
+
+
+.header
+  +flex(space-between, center)
+  height: 5em
+  padding: 1em
+  background-color: #2a2a2a
+  border-bottom: 2px solid #262626
+
+  h1 
+    font-size: 25px
+    font-family: $font1
+    margin: 0 40px
+    color: white
+    text-shadow: 1px 1px 18px rgba(150, 150, 150, 1);
+
+  ul 
+    display: flex
+    list-style: none
+
+    li 
+      padding: 10px 40px
+
+      a 
+        color: white 
+        text-decoration: none 
+        font-family: $font1
+
+        &:hover 
+          border: 1px solid #00b496
+          background: none
+
+@media screen and (max-width: 700px) 
+  ul 
+    padding: 10px 

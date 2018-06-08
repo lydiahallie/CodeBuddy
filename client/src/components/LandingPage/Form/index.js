@@ -14,7 +14,7 @@ class AuthForm extends Component {
     this.setState({ activeBtn: value });
   }
 
-//   handleSubmit = values => axios.post('/api/userauth', values)
+  // handleSubmit = values => axios.post('/api/userauth', values)
 
   render() {
     const { activeBtn } = this.state;
