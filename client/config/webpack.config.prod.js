@@ -214,7 +214,7 @@ module.exports = {
           },
           {
             test: /\.sass$/,
-            loaders: ['style', 'css', 'sass']
+            loaders: ['style-loader', 'css-loader', 'sass-loader']
           },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
