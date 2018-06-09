@@ -3,7 +3,7 @@ import { MessagesIcon, EventsIcon } from '../../../../assets/icons.js';
 import { connect } from 'react-redux';
 
 export const DashHeaderContent = ({currentUser}) => (
-  currentUser.profile !== undefined &&
+  currentUser !== undefined &&
   <div className='dash-header'>
     <h1 id='dash-header-title'>CodeBuddy</h1>
     <div className='dash-header-content'>
@@ -20,7 +20,7 @@ export const DashHeaderContent = ({currentUser}) => (
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.user
+    currentUser: state.user[0]
   }
 }
 

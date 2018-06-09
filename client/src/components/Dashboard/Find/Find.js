@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { USERS } from '../../../data/mockdata.js';
 import { Spinner } from '../../../assets/spinners';
 import { InfoBox } from '../DashboardView/InfoBoxes';
 import { ProgressBar } from '../DashboardView/InfoBoxes';
 import { fetchMessages } from '../../../actions';
 import { CardContact } from './CardContact';
+import { ALL_USERS } from '../../../fake_backend/users'; 
 
 // import { FILTER_OPTS } from '../../../data/options.js';
 
@@ -137,26 +137,25 @@ class Find extends Component {
   }
 
   getUsers = async () => {
-    const res = await axios.get('/api/all_users');
     setTimeout(() => 
       this.setState({ 
         loaded: true,
-        activeUsers: res.data 
+        activeUsers: ALL_USERS
       }), 2000);
   }
   
   updateResults = name => {
-    const { filterOptions } = this.state;
+    const { filterOptions, activeUsers } = this.state;
     if (!filterOptions.includes(name)) {
       filterOptions.push(name)
     } else {
       let deleteIndex = filterOptions.indexOf(name);
       filterOptions.splice(deleteIndex, 1)
     }
-    let updatedUsers = USERS.filter(user => 
+    let updatedUsers = activeUsers.filter(user => 
       filterOptions.every(opt => user.skills.includes(opt))
     );
-    this.setState({ activeUsers: filterOptions.length ? updatedUsers : USERS })
+    this.setState({ activeUsers: filterOptions.length ? updatedUsers : activeUsers })
   }
 
   componentDidMount() {

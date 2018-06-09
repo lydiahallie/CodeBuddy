@@ -48,7 +48,7 @@ const ProfileInputFields = ({currentUser, profile = false}) => {
 }
 
 const ProfileInfoForm = ({info, handleSubmit, reqData, ...props}) => {
-  return info.profile !== undefined &&
+  return info !== undefined &&
   <form onSubmit={ handleSubmit } className='profile-user-info-wrapper'>
     <div className='profile-user-info-input'>
       <div className='profile-user-img'>

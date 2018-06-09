@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { MENU_CONTENTS } from './menuBtns.js';
 import { LogOutIcon } from '../../../../assets/icons.js';
 
-
 export const Menu = ({changeView}) => (
   <div className='menu'>
     { MENU_CONTENTS.map(btn => (

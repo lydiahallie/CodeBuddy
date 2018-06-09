@@ -20,7 +20,7 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path='/' component={App} />
-        <Route path='/:name' component={Dashboard} />
+        <Route path='/dashboard/:name' component={Dashboard} />
       </Switch>
     </Router>  
   </Provider>

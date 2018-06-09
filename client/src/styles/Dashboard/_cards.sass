@@ -5,7 +5,6 @@
   height: calc(100vh - 70px)
   overflow: scroll
   top: 70px
-  padding: 40px
   right: 0px
   width: calc(100vw - 170px)
 
@@ -54,7 +53,6 @@ span
   font-size: 25px
 
 .find-cards
-  width: 100vw
   padding: 0px 20px
   display: flex
   flex-wrap: wrap
@@ -122,7 +120,7 @@ span
     font-size: 13px
     font-weight: 100
     letter-spacing: .3px
-    font-family: 'Lato', sans-serif
+    font-family: 'Roboto', sans-serif
     color: rgba(255, 255, 255, 0.4)
     text-align: center
 
@@ -277,7 +275,7 @@ span
   .user-find-card 
     opacity: 0
 
-  @for $i from 0 through 6
+  @for $i from 0 through 20
     [data-style='#{$i}'] 
       animation: fadeIn .3s linear forwards
       animation-delay: $i * .08s

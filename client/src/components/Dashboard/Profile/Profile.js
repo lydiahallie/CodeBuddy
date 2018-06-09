@@ -29,7 +29,7 @@ class UserProfile extends React.Component {
       <div className='overview'>
         <div className='profile-card'>
           <ProfileInfo
-            info={ this.props.currentUser }
+            info={ this.props.currentUser[0] }
             onSubmit={ this.handleSubmit } 
             handleImage={ this.handleImage }
             updateProfile={ this.updateProfile } 

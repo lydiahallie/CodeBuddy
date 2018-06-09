@@ -14,7 +14,7 @@ const StatsInfo = ({val, name, line}) => (
 );
 
 export const DashUserProfile = ({currentUser, messages}) => (
-  currentUser.profile !== undefined &&
+  currentUser!== undefined &&
     <InfoBox none margin odd size={400} height={700}>
       <div className='dash-profile'>
         <div className='dash-user-info'>
@@ -38,7 +38,7 @@ export const DashUserProfile = ({currentUser, messages}) => (
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.user,
+    currentUser: state.user[0],
     messages: state.messages,
   }
 }
