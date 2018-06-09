@@ -1,0 +1,216 @@
+.dash-app-content
+  display: flex
+  
+.dashboard-view 
+  .info-boxes 
+    display: flex
+    align-items: space-between
+    .progressbar 
+      margin-top: 20px
+      background-color: rgba(0, 0, 0, 0.3)
+      height: 5px 
+      width: 120px
+      div 
+        animation: grow 1s ease-in-out forwards
+
+  .stats-boxes
+    display: flex
+    margin-top: 40px
+
+    .dash-messages 
+      height: 240px 
+      overflow: scroll 
+      z-index: 1
+
+      position: absolute
+
+      .dash-message 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2)
+        padding-bottom: 10px
+        .dash-message-info
+          display: flex
+          align-items: center
+          height: 40px
+          img 
+            height: 30px 
+            border-radius: 20px 
+            margin-right: 15px
+
+          h3 
+            font-size: 14px
+            margin: 0
+            font-family: 'Source Sans Pro', sans-serif
+
+          #dot 
+            font-size: 8px 
+            margin: 0 3px
+
+          span 
+            font-size: 9px 
+            font-family: 'Roboto', sans-serif
+
+          #unfollow 
+            background-color: rgba(0, 0, 0, 0)
+            border: 1px solid #00b496
+            color: #00b496
+            border-radius: 2px
+            font-size: 10px
+            margin: 0 10px
+
+        .dash-message-msg 
+          font-size: 12px
+          font-family: 'Roboto', sans-serif
+          margin: 0
+
+    .dash-profile 
+      flex: none
+      .dash-user-info 
+        display: flex
+        img 
+          border-radius: 10px
+          height: 150px
+          width: 150px
+
+        div 
+          margin: 0 20px
+          h3 
+            font-family: 'Roboto', sans-serif
+
+          h5 
+            font-family: 'Montserrat', sans-serif
+
+
+          button 
+            background-color: rgba(0, 0, 0, 0)
+            border: 1px solid #00b496
+            color: #00b496
+            border-radius: 2px
+            width: 100px
+            font-size: 12px
+            padding: 5px 10px
+            margin: 10px 0px
+
+      .dash-user-row
+        display: flex 
+        justify-content: space-around
+        align-items: center
+        margin: 20px 0px
+        #horiz-line 
+          height: 30px 
+          width: 1px 
+          background-color: rgba(255, 255, 255, 0.5)
+        .dash-user-col
+          display: flex 
+          width: 33%
+          align-items: center
+          flex-direction: column 
+          font-family: 'Montserrat', sans-serif
+          .proj-num 
+            font-size: 20px
+            font-family: 'Roboto', sans-serif
+      
+#box-icon
+  svg 
+    height:  30px
+    fill: rgba(0 ,0, 0, 0.7)
+    drop-shadow: #00b496 0px 0px 10px
+
+
+.progressbar 
+  margin-top: 20px
+  background-color: rgba(0, 0, 0, 0.3)
+  height: 5px
+  width: 120px
+
+#dash-col-title 
+  font-family: 'Roboto', sans-serif
+  color: rgba(255, 255, 255, 0.8)
+
+.card-col-info 
+  .card-col-skills
+    display: flex
+    position: relative 
+    left: -21px
+    width: 300px
+    flex-wrap: wrap
+    padding-top: 20px
+
+    .skill 
+      padding: 7px 29px
+      margin: 5px 10px
+      border-radius: 5px
+      display: flex
+      justify-content: space-between 
+      align-items: center 
+      width: 300px 
+
+      #skill-name 
+        width: 30%
+        font-family: 'Source Sans Pro', sans-serif
+        font-weight: 100
+        font-size: 12px
+        text-transform: uppercase
+        text-align: left
+
+      .progressbar 
+        margin-top: 0
+
+
+.dash-msg-input 
+  positioN: relative
+  top: -100px
+  height: 80px
+  z-index: 5
+  right: -7px 
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: flex-end
+
+  input, textarea 
+    z-index: 6
+    border: none
+    color: black
+    background: none
+
+  textarea 
+    height: 60px 
+
+  button 
+    background: rgba(255, 255, 255, 0.5);
+    width: 80px 
+   
+.dash-msg-button
+  padding: 5px 10px
+  font-size: 11px
+  text-transform: uppercase
+  font-weight: lighter
+  letter-spacing: 2px
+  height: 28px
+  width: 40px
+  background-color: rgba(0, 0, 0, 0.8)
+  text-align: right
+  transition: .4s cubic-bezier(.75,.2,.39,1.02)
+  border-radius: 10px
+
+  svg 
+    height: 18px
+    transition: .4s cubic-bezier(.75,.2,.39,1.02)
+    fill: rgba(255, 255, 255, 0.6)
+    transform: rotate(45deg)
+
+  &.expanded-true 
+    transition: .4s cubic-bezier(.75,.2,.39,1.02)
+    width: 376px
+    height: 80px
+    flex-direction: column
+    display: flex
+    align-items: flex-end
+
+    svg 
+      transition: .4s cubic-bezier(.75,.2,.39,1.02)
+      transform: rotate(0deg)
+
+@keyframes grow
+  0%
+    width: 0px

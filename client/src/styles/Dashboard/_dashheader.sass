@@ -1,0 +1,60 @@
+.dash-header 
+  position: fixed
+  width: 100vw
+  height: 70px
+  background-color: #2a2a2a
+  border-bottom: 2px solid #262626
+  display: flex 
+  justify-content: space-between
+  align-items: center
+  z-index: 3
+  padding-right: 30px
+
+  #dash-header-title
+    font-size: 20px
+    letter-spacing: 1px
+    font-family: 'Oxygen', sans-serif;
+    padding: 0 29px
+    margin: 0
+    color: white
+    text-shadow: 1px 1px 18px rgba(150, 150, 150, 1)
+    border-right: 2px solid #262626
+    height: 70px
+    display: flex 
+    align-items: center
+
+  .dash-header-content 
+    display: flex 
+    justify-content: flex-end 
+    align-items: center
+
+  .search-bar 
+    input
+      background-color: rgba(255, 255, 255, 0.05)
+      border: 1px solid #00b496
+      border-radius: 20px
+      padding: 5px 10px
+      transition: .5s
+      color: rgba(255, 255, 255, 0.5)
+      font-family: 'Oxygen', sans-serif
+      font-weight: 100 !important
+      width: 140px
+
+      &:focus 
+        width: 180px
+        color: white
+        outline: none
+        background-color: rgba(255, 255, 255, 0.12)
+        box-shadow: #00b496 0px 0px 10px
+
+  svg 
+    height: 20px
+    margin: 0 30px
+    stroke: white
+    stroke-width: 30px
+    fill: none
+
+  #header-img 
+    height: 40px
+    width: 40px
+    border-radius: 20px 

@@ -1,0 +1,66 @@
+.sidepane 
+  background: #2a2a2a
+  width: 173px
+  height: calc(100vh - 70px)
+  bottom: 0px
+  margin-top: 70px
+  border-right: 2px solid #262626  
+  transition: .4s cubic-bezier(.75,.2,.39,1.02)
+  
+  .profile 
+    display: flex
+    padding: .5em
+    padding-bottom: 3em
+
+    .user-img 
+      height: 150px
+      display: flex
+      justify-content: center
+      align-items: center
+
+      img 
+        height: 120px
+        width: 120px
+
+    .user-info
+      padding: 1em
+      h3, h5
+        color: white
+        font-family: 'Open Sans', sans-serif
+        font-weight: lighter
+
+      
+  .menu 
+    .btn-menu 
+      height: 100px
+      padding: 1em
+      display: flex
+      align-items: center
+      justify-content: center
+      flex-direction: column
+      color: white
+      font-family: 
+      font-family: 'Montserrat', sans-serif
+      font-weight: lighter
+      transition: .3s
+      cursor: pointer
+      text-decoration: none
+      border-left: 3px solid rgba(0, 0, 0, 0)
+
+      &.active 
+        border-color: #00b496
+        transition: .5s
+
+      &:hover, &.active
+        transition: .3s
+        background-color: rgba(0, 0, 0, 0.3)
+
+      .icon 
+        width: 70px
+        padding-left: 1em
+        text-align: center
+        color: rgba(255, 255, 255, 0.8)
+        svg 
+          height: 22px 
+          fill: rgba(255, 255, 255, 0.8)
+          padding-right: 20px

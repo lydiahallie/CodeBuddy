@@ -1,0 +1,180 @@
+.messages-wrapper 
+  display: flex
+  
+.messages 
+  height: 100vh
+  display: flex 
+  flex-direction: column
+  width: calc(100vw - 800px) !important
+  z-index: -1
+  position: relative
+  justify-content: unset !important
+
+  .msg-content 
+    display: flex
+    flex-direction: column
+
+    #msg-desc
+      height: 80px 
+      background-color: rgba(255, 255, 255, 0.2)
+      padding: 10px
+      color: white 
+      font-size: 14px
+      font-weight: lighter
+      font-family: 'Oxygen', sans-serif
+      width: 300px
+
+      &:focus 
+        outline: white
+        box-shadow: white 0px 0px 10px
+
+    button 
+      height: 20px 
+      background-color: rgba(255, 255, 255, 0.1)
+      color: white 
+      font-size: 13px 
+      text-transform: uppercase 
+      letter-spacing: 1px
+      border: none 
+      font-weight: lighter
+      margin: 5px
+      width: 100px
+
+  .message 
+    padding: 15px
+    width: 560px
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+    display: flex
+    font-family: 'Oxygen', sans-serif
+    color: white 
+    height: 85px 
+    overflow: hidden
+
+    &.active-true
+      background: rgba(255, 255, 255, 0.2)
+
+    &.active-false 
+      background: rgba(255, 255, 255, 0.05)
+
+    .message-info 
+      margin-right: 30px
+      img 
+        height: 50px 
+        border-radius: 50px
+
+    .post-content 
+      display: flex 
+      flex-direction: column
+      position: relative
+      top: 10px
+      width: 350px
+
+      .post-info 
+        display: flex
+        height: 20px
+        align-items: center
+        #user-msg 
+          color: white
+          font-family: 'Source Sans Pro', sans-serif
+          letter-spacing: 1px
+          font-size: 13px
+
+        #user-msg-time 
+          color: lightgrey
+          font-size: 11px
+          margin: 0
+          position: relative
+          right: -300px
+
+      #msg
+        font-family: 'Lato', sans-serif
+        font-weight: lighter
+        font-size: 12px
+
+
+    .actions 
+      display: flex 
+      flex-direction: column
+      justify-content: space-between
+      height: 60px
+      svg
+        height: 11px 
+        fill: white 
+
+.message-reply 
+  form
+    background-color: rgba(0, 0, 0, 0.3)
+    border: none
+    height: 600px
+    width: 400px
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 10px
+
+    textarea
+      background: none
+      border: none
+      height: 400px
+      width: 400px
+      padding: 30px
+      color: rgba(255, 255, 255, 0.8)
+      font-family: 'Lato', sans-serif;
+      font-weight: 100
+
+      &:focus 
+        outline: none 
+
+    button 
+      width: 80px
+      margin: 0px 20px
+      background-color: rgba(255, 255, 255, 0.2)
+      border: 1px solid rgba(255, 255, 255, 0.6)
+      color: white
+
+.message-reply-author 
+  width: 400px 
+  +flex-align(center)
+  .message-reply-name 
+    width: 300px
+    border: 1px solid #00b496
+    border-radius: 50px
+    margin: 20px
+    height: 40px
+    padding: 0 10px
+    display: flex
+    align-items: center
+
+    span 
+      font-size: 12px
+      font-family: 'Source Sans Pro', sans-serif
+      background-color: rgba(255, 255, 255, 0.2)
+      padding: 5px
+      border-radius: 25px
+      width: 120px
+
+  img 
+    height: 40px
+    width: 40px
+    border-radius: 50%
+
+.message-reply-msg 
+  width: 400px
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+  background-color: rgba(255, 255, 255, 0.05)
+  color: rgba(255, 255, 255, 0.5)
+  height: 70px
+  overflow: scroll
+  padding: 20px
+  font-family: 'Lato', sans-serif
+  font-weight: 100
+
+
+.message-reply-span 
+  position: relative
+  bottom: -27px
+  font-size: 11px
+  letter-spacing: 1px
+  text-transform: uppercase
+  color: rgba(255, 255, 255, 0.2)
+  font-family: 'source sans pro', sans-serif

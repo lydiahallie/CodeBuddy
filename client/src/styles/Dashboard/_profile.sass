@@ -1,0 +1,216 @@
+.profile-card 
+  background-color: rgba(255, 255, 255, 0.1)
+  width: 700px
+  border: 1px solid rgba(255, 255, 255, 0.1)
+
+  button 
+    background-color: rgba(0, 0, 0, 0.2)
+    border: 1px solid rgba(0, 0, 0, 0.2)
+    font-size: 12px
+    padding: .5em 2em
+    color: white 
+    font-family: 'Source Sans Pro', sans-serif
+    transition: .5s
+    width: 110px 
+    border-radius: 4px
+
+
+  h1 
+    font-family: 'Source Sans Pro', sans-serif
+    color: white 
+    font-weight: lighter 
+    font-size: 30px 
+    text-align: center 
+    text-transform: uppercase 
+    letter-spacing: 2px 
+
+  .profile-user-info-wrapper 
+    display: flex
+    flex-direction: column
+
+    .profile-user-img 
+      display: flex 
+      flex-direction: column 
+      align-items: center
+      width: 30%
+      padding: 40px
+
+      img 
+        width: 60%
+        margin-bottom: 30px
+        border-radius: 5px
+        height: 150px
+        width: 150px
+
+      input
+        background-color: rgba(0, 0, 0, 0.2)
+        border: 1px solid rgba(0, 0, 0, 0.2)
+        font-size: 16px
+        width: 160px
+        padding: .5em 2em
+        font-family: 'Lato', sans-serif 
+        font-weight: 100
+        color: rgba(255, 255, 255, 0.8)
+        transition: .5s
+
+        &:focus 
+          outline: none 
+          box-shadow: none
+
+      span 
+        font-family: 'Source Sans Pro', sans-serif
+        font-size: 10px 
+        width: 150px
+        text-transform: uppercase
+        letter-spacing: 2px 
+        color: rgba(255, 255, 255, 0.8)
+
+
+    .profile-user-info 
+      display: flex 
+      flex-direction: column
+      align-items: center
+      margin-top: 50px
+
+      table
+        border-collapse: separate 
+        border-spacing: 10px
+
+
+      span 
+        color: white 
+        font-family: 'Open Sans', sans-serif
+        font-size: 13px
+        text-transform: uppercase
+        font-weight: lighter
+        letter-spacing: 1px
+        display: flex 
+        flex-direction: column
+        margin: 20px 0
+
+      input, textarea, select
+        background-color: rgba(0, 0, 0, 0.2)
+        border: 1px solid rgba(0, 0, 0, 0.2)
+        font-size: 16px
+        padding: .5em 2em
+        font-family: 'Lato', sans-serif 
+        font-weight: 100
+        color: rgba(255, 255, 255, 0.8)
+        transition: .5s
+
+        &:focus, &:checked
+          outline: none
+          background-color: rgba(0, 0, 0, 0.6) !important
+
+      textarea 
+        margin-top: 8px 
+        width: 215px
+
+      select 
+        width: 215px 
+        height: 40px 
+        color: rgba(255, 255, 255, 0.8)
+
+
+.skills-profile 
+  display: flex
+
+.profile-span 
+  display: flex
+  align-items: center 
+
+#profile-span-text 
+  font-family: 'Source Sans Pro', sans-serif
+  font-size: 10px 
+  width: 150px
+  letter-spacing: 2px 
+  color: rgba(255, 255, 255, 0.8)
+  text-transform: uppercase
+
+  input
+    font-family: 'Lato', sans-serif 
+    font-weight: 100
+    color: rgba(255, 255, 255, 0.8)
+
+.profile-user-info-input 
+  display: flex
+
+.save-btn 
+  display: flex 
+  justify-content: center
+  margin: 50px 0px
+  button 
+    width: 150px
+    padding: 10px 20px
+
+.user-profile-skills 
+  display: flex 
+  flex-direction: column 
+  align-items: center
+  margin-top: 50px
+  .user-profile-skill 
+    display: flex
+    margin-top: 10px
+    input, select 
+      background-color: rgba(0, 0, 0, 0.2)
+      border: 1px solid rgba(0, 0, 0, 0.2)
+      font-size: 16px
+      padding: .5em 2em
+      font-family: 'Lato', sans-serif 
+      font-weight: 100
+      color: rgba(255, 255, 255, 0.8)
+      transition: .5s
+      margin: 0 30px
+
+#save-btn-span 
+  font-size: 12px
+  font-family: 'Source Sans Pro', sans-serif
+  letter-spacing: 1px
+  display: flex 
+  justify-content: center
+  align-items: center
+  .loader 
+    margin: 0 
+    padding: 0 
+    height: 23px
+    margin-right: 10px
+
+  svg 
+    margin-right: 10px
+
+.svg-success
+  stroke-width: 2px
+  stroke: #8EC343
+  fill: none
+  & path 
+    stroke-dasharray: 17px, 17px 
+    stroke-dashoffset: 0px
+    -webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards
+    animation: checkmark 0.25s ease-in-out 0.7s backwards
+  
+  & circle 
+    stroke-dasharray: 76px, 76px
+    stroke-dashoffset: 0px
+    transform:rotate(-90deg)
+    transform-origin: 50% 50%
+    -webkit-animation: checkmark-circle 0.6s ease-in-out forwards
+    animation: checkmark-circle 0.6s ease-in-out forwards
+  
+
+@keyframes checkmark 
+    0% 
+        stroke-dashoffset: 17px
+    
+
+    100% 
+        stroke-dashoffset: 0
+    
+
+
+@keyframes checkmark-circle 
+    0% 
+        stroke-dashoffset: 76px
+    
+
+    100% 
+        stroke-dashoffset: 0px

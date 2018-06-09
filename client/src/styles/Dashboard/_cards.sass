@@ -1,0 +1,365 @@
+.dashboard-content
+  overflow-y: scroll
+  position: absolute
+  z-index: 0
+  height: calc(100vh - 70px)
+  overflow: scroll
+  top: 70px
+  padding: 40px
+  right: 0px
+  width: calc(100vw - 170px)
+
+.searchbar 
+  background-color: #1a1b19
+  height: 220px
+  position: relative
+  top: 50px
+  width: 100vw
+  display: flex 
+  align-items: center
+
+  .input-col 
+    display: flex
+    align-items: center 
+    padding-left: 100px
+    .filter-col 
+      display: flex 
+      flex-direction: column
+      flex-wrap: wrap
+      height: 150px
+      .filter-box 
+        padding: 5px 30px
+        font-family: 'Oxygen', sans-serif
+        font-size: 12px
+        transition: .3s
+        cursor: pointer
+        color: rgba(255, 255, 255, 0.5)
+        border: 1px solid rgba(255, 255, 255, 0.5)
+        margin: 10px
+        border-radius: 20px
+
+        &.checked-true, &:hover
+          transition: .3s
+          border-color: #00b496
+          color: #00b496
+          text-shadow: #00b496 0px 0px 10px
+          box-shadow: #00b496 0px 0px 10px
+          color: darkgrey
+
+span
+  text-align: center
+  color: white
+  font-family: 'Montserrat', sans-serif
+  font-weight: 100
+  font-size: 25px
+
+.find-cards
+  width: 100vw
+  padding: 0px 20px
+  display: flex
+  flex-wrap: wrap
+  position: relative 
+  height: calc(100vh - 70px)
+  
+  .card
+    background-color: rgba(0, 0, 0, 0.2)
+    color: white
+    padding: 2em
+    border-radius: 3px
+    margin: 10px 20px
+    border: 1px solid rgba(255, 255, 255, 0.1)
+    width: 280px
+
+
+    #profile 
+      background-color: #51524a
+      border: none
+      color: white
+      padding: 10px 20px
+      font-family: 'Montserrat', sans-serif
+      font-size: 15px
+
+
+.card-user-info
+  display: flex
+  flex-direction: column
+  align-items: center
+  img 
+    border-radius: 50px
+    margin-top: 1em
+    height: 100px
+    width: 120px
+  .card-info 
+    text-align: center
+    h3 
+      font-family: 'Poppins', sans-serif
+      font-size: 21px
+    h4 
+      font-family: 'Roboto', sans-serif
+      font-weight: 100
+      font-size: 11px
+      text-transform: uppercase
+      letter-spacing: 1px
+      color: rgba(255, 255, 255, 0.4)
+
+  &.contracted-true 
+    img 
+      position: relative 
+      top: -22px 
+      transform: scale(0.5)
+ 
+    .card-info 
+      transform: scale(0.6)
+      top: -60px
+      position: relative   
+
+.card-col-info-about 
+  border-top: 1px solid rgba(0, 0, 0, 0.1)
+  margin-top: 10px
+  height: 80px
+  p
+    padding-top: 20px
+    font-size: 13px
+    font-weight: 100
+    letter-spacing: .3px
+    font-family: 'Lato', sans-serif
+    color: rgba(255, 255, 255, 0.4)
+    text-align: center
+
+
+.card-col-info 
+  .card-col-skills
+    display: flex
+    position: relative 
+    left: -21px
+    width: 300px
+    flex-wrap: wrap
+    padding-top: 20px
+
+    .skill 
+      padding: 7px 29px
+      margin: 5px 10px
+      border-radius: 5px
+      display: flex
+      justify-content: space-between 
+      align-items: center 
+      width: 300px 
+
+      #skill-name 
+        width: 30%
+        font-family: 'Source Sans Pro', sans-serif
+        font-weight: 100
+        font-size: 12px
+        text-transform: uppercase
+        text-align: left
+
+      .progressbar 
+        margin-top: 0
+
+
+
+.find-btns-swipe 
+  display: flex
+  width: 100%
+  justify-content: space-around
+  margin-top: 10px
+  font-family: 'Poppins', sans-serif
+  font-size: 12px
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+
+  .find-btn-swipe 
+    padding: 7px
+    text-transform: uppercase 
+    letter-spacing: 1px
+    color: rgba(255, 255, 255, 0.8)
+
+    &.active-true 
+      border-bottom: 3px solid white
+
+
+  #contact-btn 
+    background-color: rgba(0, 0, 0, 0)
+    border: 1px solid #00b496
+    color: #00b496
+    border-radius: 20px
+    width: 100px
+    font-family: 'Source Sans Pro', sans-serif
+    font-size: 12px
+    letter-spacing: 1px
+    padding: 5px 10px
+    margin: 10px 0px
+
+.indicator 
+  background-color: white
+  transition: .4s cubic-bezier(.75,.2,.39,1.02)
+  height: 4px 
+  width: 15px
+  background: #00b496
+
+  &.active-about 
+    transform: translateX(56px)
+
+  &.active-contact 
+    transform: translateX(185px)
+
+
+
+.card-col
+  margin-top: 30px
+
+  p 
+    font-size: 13px 
+    color: white
+    font-family: 'Montserrat', sans-serif
+    font-weight: 100
+    margin: 0 7px
+    
+
+  #description
+    color: lightgrey
+
+
+.skills 
+  font-size: 12px
+  text-transform: uppercase
+  width: 100%
+  padding-top: 20px
+
+  &.profile 
+    display: flex 
+    flex-wrap: wrap
+    width: 310px 
+
+  .skill 
+    background: linear-gradient(to left, #ff8100, #f5af19)
+    padding: 7px 29px
+    margin: 0px 10px
+    border-radius: 5px
+    font-family: 'Source Sans Pro', sans-serif
+    font-weight: 100
+    font-size: 12px
+    text-transform: uppercase
+
+    &.profile 
+      margin: 7px 7px
+
+      svg 
+        height: 10px
+
+.card-icons 
+  position: relative
+  right: -244px
+  top: -29px 
+  height: 20px
+  width: 20px
+  z-index: 99
+
+  &.expanded-true 
+    height: 60px
+
+
+
+  div 
+    z-index: 1
+
+
+#line 
+  width: 200px 
+  height: 1px 
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0))
+  margin: 10px 0px
+
+
+.card-user-info-col 
+  height: 250px
+
+.find-cards
+  .user-find-card 
+    opacity: 0
+
+  @for $i from 0 through 6
+    [data-style='#{$i}'] 
+      animation: fadeIn .3s linear forwards
+      animation-delay: $i * .08s
+
+.card-col-info-contact 
+  height: 250px
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  form 
+    display: flex 
+    flex-direction: column 
+    background-color: rgba(0, 0, 0, 0.2)
+    padding: 10px 
+    align-items: flex-end
+    opacity: 0
+    animation: fadeIn .3s linear forwards
+    textarea 
+      height: 100px
+      width: 200px
+      background: none
+      border: none     
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: .9px
+      font-size: 12px
+
+      &:focus 
+        outline: none 
+        box-shadow: none
+
+    button 
+      background-color: rgba(255, 255, 255, 0.4)
+      font-size: 11px 
+      font-family: 'Lato', sans-serif 
+      padding: 4px
+      width: 55px
+
+        
+
+.contact-btns
+  display: flex 
+  .contact-btn 
+    opacity: 0   
+
+  @for $i from 0 through 4
+    [data-style='#{$i}'] 
+      animation: fadeIn .3s linear forwards
+      animation-delay: $i * .08s
+
+      svg 
+        margin: 10px 15px
+        height: 20px
+        fill: rgba(255, 255, 255, 0.8)
+
+.skills-icon 
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+
+  .arrow-down
+    border: solid rgba(255, 255, 255, 0.2)
+    border-width: 0 2px 2px 0
+    transform: rotate(45deg)
+    height: 8px
+    width: 8px
+    fill: rgba(0, 0, 0, 0.4)
+
+.loader
+  margin: 0 0 2em
+  height: 100px
+  width: 20%
+  text-align: center
+  padding: 1em
+  margin: 0 auto 1em
+  display: inline-block
+  vertical-align: top
+
+  svg path, svg rect
+    fill: #00b496
+
+@keyframes fadeIn
+  to
+    opacity: 1

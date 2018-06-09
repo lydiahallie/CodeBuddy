@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/LandingPage/App';
-// import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux';
@@ -20,7 +20,7 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path='/' component={App} />
-        {/* <Route path='/dashboard/:name' component={Dashboard} /> */}
+        <Route path='/:name' component={Dashboard} />
       </Switch>
     </Router>  
   </Provider>
