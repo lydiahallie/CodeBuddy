@@ -4,42 +4,61 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import MessageReply from './MessageReply';
 
-const Message = ({msg, onClick, i, activeMessage}) => (
-  <div onClick={ i => onClick(i) } className={`message active-${i === activeMessage}`}>
-    <div className='message-info'>
-      <img src={ msg.author.img } alt='' />
-    </div>
-    <div className='post-content'>
-      <div className='post-info'>
-        <p id='user-msg'>{msg.author.firstName} {msg.author.lastName}</p>
-        <p id='user-msg-time'>{moment(msg.author.date).fromNow()}</p>
-      </div> 
-      <p id="msg">{msg.body}</p>
-    </div>
-  </div>
-);
+const MessageContext = React.createContext('no default');
 
-const MessagesOverview = ({changeActiveMessage, messages, activeMessage}) => {
-  let messagesData =  Object.values(messages);
+export const MessageConsumer = props =>  (
+  <MessageContext.Consumer {...props}>
+    {context => {
+      if (!context) {
+        throw new Error(
+          `Message compound components cannot be rendered outside the Message component`,
+        )
+      }
+      return props.children(context)
+    }}
+  </MessageContext.Consumer>
+)
+
+const Message = ({msg, toggle, i, activeMessage}) => {
   return (
-    <div className='overview messages'>
-    { messagesData.map((msg, i) => 
-      <Message 
-        activeMessage={ activeMessage }
-        onClick={ changeActiveMessage }
-        msg={msg} 
-        i={i}/>) }
+    <div onClick={ () => toggle(i) } className={`message active-${i === activeMessage}`}>
+      <div className='message-info'>
+        <img src={ msg.author.img } alt='' />
+      </div>
+      <div className='post-content'>
+        <div className='post-info'>
+          <p id='user-msg'>{msg.author.firstName} {msg.author.lastName}</p>
+          <p id='user-msg-time'>{moment(msg.author.date).fromNow()}</p>
+        </div> 
+        <p id="msg">{msg.body}</p>
+      </div>
     </div>
   );
 };
 
-class AllMessages extends Component {
-  constructor() {
-    super();
-    this.state = { activeMessage: 0 }
-  }
+const MessagesOverview = props => (
+  <MessageConsumer>
+    {({activeMessage, toggle, messages}) => (
+      <div className='overview messages'>
+      { Object.values(messages).map((msg, i) => 
+          <Message 
+            activeMessage={ activeMessage }
+            toggle={ toggle }
+            msg={msg} 
+            i={i} />) }
+      </div>
+    )}
+  </MessageConsumer>
+);
 
-  changeActiveMessage = val => this.setState({ activeMessage: val });
+
+class AllMessages extends Component {
+  state = { activeMessage: 0 }
+
+  changeActiveMessage = val => {
+    console.log('change active msg', val)
+    this.setState({ activeMessage: val });
+  }
 
   onSubmit = values => {
     const { messages, currentUser } = this.props;
@@ -50,16 +69,13 @@ class AllMessages extends Component {
 
   render() {
     const { messages } = this.props;
+    const { activeMessage } = this.state;
     return (
       <div className='messages-wrapper'>
-        <MessagesOverview 
-          activeMessage={ this.state.activeMessage }
-          messages={ messages } 
-          changeActiveMessage={ this.changeActiveMessage } />
-        <MessageReply 
-          onSubmit={ this.onSubmit }
-          messages={ this.props.messages }
-          activeMessage={ this.state.activeMessage } />
+      <MessageContext.Provider value={{ activeMessage, messages, toggle: this.changeActiveMessage }}>
+        <MessagesOverview  />
+        <MessageReply onSubmit={ this.onSubmit }  />
+      </MessageContext.Provider>
       </div>
     );
   }

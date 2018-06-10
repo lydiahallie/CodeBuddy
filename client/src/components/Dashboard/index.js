@@ -55,9 +55,7 @@ class Dashboard extends Component {
         <DashHeader />
         <div className='dash-app-content'>
           <SidePane changeView={ this.changeView } />
-          <View>
-            { this.blockComponent(name) }
-          </View>
+          <View>{ this.blockComponent(name) }</View>
         </div>
       </div>
     );

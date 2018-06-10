@@ -4,12 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import { LOGIN_FIELDS, SIGNUP_FIELDS } from './formFields';
 
 class InputFields extends Component {
-  constructor() {
-    super();
-    this.state = {
-      animate: false
-    }
-  }
+  state = { animate: false }
 
   componentDidMount() {
     this.setState({ animate: true })

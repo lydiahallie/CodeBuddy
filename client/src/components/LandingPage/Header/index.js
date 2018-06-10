@@ -19,12 +19,9 @@ const MobileListMenu = ({onClick, menuActive}) => (
 );
 
 export class Header extends Component {
-  constructor() {
-    super();
-    this.state = {
-      width: null,
-      menuActive: false,
-    }
+  state = {
+    width: null,
+    menuActive: false,
   }
 
   componentDidMount() {
@@ -33,24 +30,26 @@ export class Header extends Component {
   }
 
   updateWindowDimensions = () => {
-    const width = window.innerWidth || 
-                  document.documentElement.clientWidth ||
-                  document.body.clientWidth;
+    const width = 
+      window.innerWidth || 
+      document.documentElement.clientWidth || 
+      document.body.clientWidth;
 
-    this.setState({ width});
+    this.setState({ width });
   }
 
-  toggleMenu = () => this.setState({ menuActive: !this.state.menuActive });
+  toggleMenu = () => this.setState((prevState, props) => ({
+    menuActive: !prevState.menuActive
+  }));
 
   render() {
+    const { menuActive } = this.state;
     return (
       <div className='header'>
         <h1>CodeBuddy</h1>
         { this.state.width > 700 ? 
           <ListMenu /> :
-          <MobileListMenu 
-            onClick={ this.toggleMenu } 
-            menuActive={ this.state.menuActive } />
+          <MobileListMenu onClick={ this.toggleMenu } menuActive={ menuActive } />
         }
       </div>
     );

@@ -2,6 +2,7 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { ProfileIcon, MessagesIcon, LinkedinIcon, GithubIcon } from '../../../assets/icons';
 
+const Icons = [ <ProfileIcon />, <MessagesIcon />, <LinkedinIcon />, <GithubIcon />];
 
 const ContactForm = ({user, handleSubmit}) => (
   <div className='card-col-info-contact'>
@@ -10,10 +11,8 @@ const ContactForm = ({user, handleSubmit}) => (
       <button type='submit' />
     </form>
     <div className='contact-btns'>
-      <div className='contact-btn' data-style='1'><ProfileIcon /></div>
-      <div className='contact-btn' data-style='2'><GithubIcon /></div>
-      <div className='contact-btn' data-style='3'><LinkedinIcon /></div>
-      <div className='contact-btn' data-style='4'><MessagesIcon /></div>
+      { Icons.map((icon, i) =>
+         <div className='contact-btn' data-style={i}>{icon}</div>)}
     </div>
   </div>
 );

@@ -2,7 +2,7 @@ export const CURRENT_USER = [
 	{
 		"profile": {
 				"userName": "lydiahallie",
-				"img": "http://fuuse.net/wp-content/uploads/2016/02/avatar-placeholder.png",
+				"img": "https://pbs.twimg.com/profile_images/933660989802807296/maudzPZE_400x400.jpg",
 				"title": "JavaScript Developer",
 				"skills": [
 					{ "lang": "JavaScript", "value": 95 },
@@ -22,7 +22,7 @@ export const ALL_USERS = [
 	{
 		"profile": {
 				"userName": "lydiahallie",
-				"img": "http://fuuse.net/wp-content/uploads/2016/02/avatar-placeholder.png",
+				"img": "https://pbs.twimg.com/profile_images/933660989802807296/maudzPZE_400x400.jpg",
 				"title": "JavaScript Developer",
 				"skills": [
 					{ "lang": "JavaScript", "value": 95 },

@@ -10,9 +10,6 @@ export const DashHeaderContent = ({currentUser}) => (
       <div className='search-bar'>
         <input type='text' />
       </div>
-      <MessagesIcon />
-      <EventsIcon />
-      <p>{currentUser.profile.userName}</p>
       <img id='header-img' src={currentUser.profile.img} alt='' />
     </div>
   </div>

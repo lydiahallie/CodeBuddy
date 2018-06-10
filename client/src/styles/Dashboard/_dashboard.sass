@@ -41,8 +41,9 @@
             margin: 0
             font-family: 'Source Sans Pro', sans-serif
 
-          #dot 
-            font-size: 8px 
+          #msg-date::before 
+            content: '●'
+            font-size: 8px
             margin: 0 3px
 
           span 
@@ -157,12 +158,12 @@
 
 
 .dash-msg-input 
-  positioN: relative
+  position: relative
   top: -100px
   height: 80px
-  z-index: 5
   right: -7px 
   display: flex
+  z-index: 2
   flex-direction: column
   justify-content: flex-start
   align-items: flex-end

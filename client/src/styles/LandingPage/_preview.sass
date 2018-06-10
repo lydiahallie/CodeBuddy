@@ -1,41 +1,42 @@
 .preview-images 
-  +flex-justify(space-between )
+  +flex-justify(space-around)
 
-  .image-wrapper 
-    padding: 30px 
-    +flex-align(center)
-    flex-direction: column
-    transition: .3s ease-in-out
+.image-wrapper 
+  padding: 30px 
+  +flex-align(center)
+  flex-direction: column
+  transition: .3s ease-in-out
+  width: 25%
 
-    &:hover 
-      transform: scale(1.1)
+  img 
+    width: 280px 
+    height: auto
+    box-shadow: #211d1d 0px 0px 30px
 
-  @for $i from 1 through 3
-    #img-#{$i} 
-      animation: floating 3s infinite ease-in-out
-      animation-delay: $i * 2s
+  &:hover 
+    transform: scale(1.1)
 
-    img 
-      width: 280px 
-      height: auto
-      box-shadow: #211d1d 0px 0px 30px
+@for $i from 1 through 3
+  #img-#{$i} 
+    animation: floating 3s infinite ease-in-out
+    animation-delay: $i * 2s
 
-    #img-line 
-      height: 2px 
-      width: 60px
-      background-color: #00b496
+  #img-line 
+    height: 2px 
+    width: 60px
+    background-color: #00b496
 
-    h3 
-      font-family: 'Oxygen', sans-serif
-      color: white
-      font-weight: 100
+  h3 
+    font-family: 'Oxygen', sans-serif
+    color: white
+    font-weight: 100
 
-    h5 
-      font-family: 'Roboto', sans-serif !important
-      color: rgba(255, 255, 255, 0.7)
-      font-weight: lighter
-      font-size: 18px
-      text-align: center
+  h5 
+    font-family: 'Roboto', sans-serif !important
+    color: rgba(255, 255, 255, 0.7)
+    font-weight: lighter
+    font-size: 18px
+    text-align: center
 
 @keyframes floating 
     from { transform: translate(0,  0px) }

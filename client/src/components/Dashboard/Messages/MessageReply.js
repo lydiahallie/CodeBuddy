@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { MessageConsumer } from './Messages';
 
-export class MessageReplyInput extends Component {
-  constructor() {
-    super();
-    this.state = { expanded: false };
-  }
-
-  toggleMessage = () => this.setState({ expanded: !this.state.expanded });
-
-  render() {
-    const { messages, activeMessage, handleSubmit } = this.props;
-    const message = Object.values(messages)[activeMessage]
-    return message !== undefined &&
+const MessageReply = ({messages, activeMessage, handleSubmit}) => {
+  const message = messages[activeMessage];
+  return message !== undefined && (
     <div className='message-reply'>
       <form onSubmit={ handleSubmit } >    
-        <div className={`message-reply-author expanded-${this.state.expanded}`}>
+        <div className='message-reply-author'>
           <div className='message-reply-name'>
             <span>{message.author.firstName} {message.author.lastName}</span>
           </div>
@@ -28,8 +20,16 @@ export class MessageReplyInput extends Component {
         <button type='submit'>Send</button>
       </form>
     </div>
-  }
+  );
 };
+
+export const MessageReplyInput = ({handleSubmit}) => (
+  <MessageConsumer>
+    {({activeMessage, toggle, messages}) => (
+      <MessageReply activeMessage={activeMessage} messages={messages} handleSubmit={ handleSubmit } />
+    )}
+  </MessageConsumer>
+);
 
 export default reduxForm({
   form: 'messageReply'

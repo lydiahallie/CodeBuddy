@@ -6,14 +6,13 @@ import shortid from 'short-id';
 import { InfoBox } from './InfoBoxes';
 import { CrossIcon } from '../../../assets/icons';
 
-
 const Message = ({msg}) => (
   msg.post !== undefined &&
   <div className='dash-message'>
     <div className='dash-message-info'>
       <img src={msg.img} alt='' />
       <h3>{msg.firstName} {msg.lastName}</h3>
-      <span><span id='dot'>●</span> {moment(msg.post.date).fromNow()}</span>
+      <span><span id='msg-date'>{moment(msg.post.date).fromNow()}</span></span>
       <button id='unfollow'>Unfollow</button>
     </div>
     <p className='dash-message-msg'>{msg.post.body}</p>
@@ -21,24 +20,19 @@ const Message = ({msg}) => (
 );
 
 class TextInput extends Component {
-  constructor() {
-    super();
-    this.state = {
-      expanded: false,
-    }
-  }
+  state = { expanded: false };
 
   toggleMessage = () => {
-    this.setState({ expanded: !this.state.expanded })
+    this.setState(({expanded}) => ({ expanded: !expanded }))
   }
 
   render() {
     const { expanded } = this.state;
     return (
       <div className='dash-msg-input'>
-        <div className={`dash-msg-button expanded-${expanded}`} >
+        <div onClick={ this.toggleMessage } className={`dash-msg-button expanded-${expanded}`} >
           <div>
-            <CrossIcon onClick={ this.toggleMessage }/>
+            <CrossIcon />
           </div>
            { expanded && 
             <React.Fragment>
@@ -53,17 +47,10 @@ class TextInput extends Component {
 };
 
 export class MessagesTable extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      body: '',
-    }
-  }
-
-  onPostChange = (key, e) => {
-    this.setState({ [key]: e.target.value })
-  }
-
+  state = { body: '' };
+  
+	onPostChange = (key, e) => this.setState({ [key]: e.target.value })
+  
   addPost = () => {
     const formData = this.state;
     const data = this.props;

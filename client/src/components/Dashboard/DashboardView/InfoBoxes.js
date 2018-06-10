@@ -36,6 +36,7 @@ const mapStateToProps = state => {
     messages: state.messages
   }
 }
+
 export default connect(mapStateToProps)(InfoBoxes);
 
 export const InfoBox = styled.div`
