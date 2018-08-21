@@ -5,14 +5,15 @@ import { ProfileIcon, MessagesIcon, LinkedinIcon, GithubIcon } from '../../../as
 const Icons = [ <ProfileIcon />, <MessagesIcon />, <LinkedinIcon />, <GithubIcon />];
 
 const ContactForm = ({user, handleSubmit}) => (
-  <div className='card-col-info-contact'>
+  <div className="card-col-info-contact">
     <form onSubmit={ handleSubmit }>
-      <Field component='textarea' name='message' /> 
-      <button type='submit' />
+      <Field component="textarea" name="message" /> 
+      <button type="submit" />
     </form>
-    <div className='contact-btns'>
-      { Icons.map((icon, i) =>
-         <div className='contact-btn' data-style={i}>{icon}</div>)}
+    <div className="contact-btns">
+      {Icons.map((icon, i) =>
+        <div className="contact-btn" data-style={i}>{icon}</div>
+      )}
     </div>
   </div>
 );

@@ -8,7 +8,8 @@ export default class Title extends Component {
     setInterval(() => 
       this.setState((prevState, props) => ({
         activeIndex: prevState.activeIndex + 1
-      })), 4000)
+      })), 4000
+    )
   }
 
   render() {

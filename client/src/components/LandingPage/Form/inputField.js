@@ -4,11 +4,11 @@ import { reduxForm, Field } from 'redux-form';
 import { LOGIN_FIELDS, SIGNUP_FIELDS } from './formFields';
 
 class InputFields extends Component {
-  state = { animate: false }
+  state = { animate: false };
 
   componentDidMount() {
-    this.setState({ animate: true })
-    setTimeout(() => this.setState({ animate: false }), 2000)
+    this.setState({ animate: true });
+    setTimeout(() => this.setState({ animate: false }), 2000);
   }
 
   render() {
@@ -19,21 +19,23 @@ class InputFields extends Component {
       { type: SIGNUP_FIELDS, class: 'su' };
 
     return (
-      <form onSubmit={ handleSubmit }>
-      { fieldInfo.type.map((field, index) => 
-        <Field
-          key={ shortid.generate() } 
-          name={ field.placeholder.toLowerCase() }
-          type={ field.type } 
-          component='input'
-          placeholder={ field.placeholder } 
-          className={ `input-${fieldInfo.class}-${index + 1} animate-${this.state.animate}` }/> )}
-        <button type='submit'>Submit</button>
+      <form onSubmit={handleSubmit}>
+        {fieldInfo.type.map((field, index) => 
+          <Field
+            key={shortid.generate()}
+            name={field.placeholder.toLowerCase()}
+            type={field.type} 
+            component='input'
+            placeholder={field.placeholder} 
+            className={`input-${fieldInfo.class}-${index + 1} animate-${this.state.animate}`}
+          /> 
+        )}
+        <button type="submit">Submit</button>
       </form>
     );
-  }
+  };
 }
 
 export default reduxForm({
   form: 'userAuth'
-})(InputFields)
+})(InputFields);

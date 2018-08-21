@@ -5,5 +5,5 @@ export const MENU_CONTENTS = [
   { name: 'Dashboard', icon: <DashboardIcon /> },
   { name: 'Find',      icon: <SearchIcon /> },
   { name: 'Messages',  icon: <MessagesIcon /> },
-  { name: 'Profile',    icon: <ProfileIcon /> },
+  { name: 'Profile',   icon: <ProfileIcon /> },
 ];

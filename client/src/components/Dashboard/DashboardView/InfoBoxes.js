@@ -7,23 +7,23 @@ import { MessagesIcon } from '../../../assets/icons.js';
 
 
 export const ProgressBar = ({width}) => (
-  <div className='progressbar'>
+  <div className="progressbar">
     <Bar width={width} />
   </div>
 );
 
 const InfoBoxes = ({messages}) => (
-  <div className='info-boxes'>
-    { BOX_INFO.map(box => (
-      <InfoBox size={400} key={ shortid.generate() }>
-        <div id='box-icon'>{box.icon}</div>
+  <div className="info-boxes">
+    {BOX_INFO.map(box => (
+      <InfoBox size={400} key={shortid.generate()}>
+        <div id="box-icon">{box.icon}</div>
         <Title title>{box.value}</Title>
         <Title>{box.name}</Title>
         <ProgressBar width={70} />
       </InfoBox>
-    )) }
+    ))}
     <InfoBox size={400}>
-      <div id='box-icon'><MessagesIcon /></div>
+      <div id="box-icon"><MessagesIcon /></div>
       <Title title>{Object.keys(messages).length}</Title>
       <Title>Unread Messages</Title>
       <ProgressBar width={Object.keys(messages).length * 10} />

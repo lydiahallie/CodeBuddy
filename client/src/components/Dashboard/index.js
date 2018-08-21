@@ -15,12 +15,7 @@ const View = props => (
 );
 
 class Dashboard extends Component {
-  constructor() {
-    super();
-    this.state = {
-      currentView: 'Find',
-    }
-  }
+  state = { currentView: 'Find' };
 
   blockComponent = block => {
     switch (block) {
@@ -51,11 +46,11 @@ class Dashboard extends Component {
   render() {
     const { name } = this.props.match.params;
     return (
-      <div className='app dashboard'>
+      <div className="app dashboard">
         <DashHeader />
-        <div className='dash-app-content'>
-          <SidePane changeView={ this.changeView } />
-          <View>{ this.blockComponent(name) }</View>
+        <div className="dash-app-content">
+          <SidePane changeView={this.changeView} />
+          <View>{this.blockComponent(name)}</View>
         </div>
       </div>
     );

@@ -50,25 +50,25 @@ import { ALL_USERS } from '../../../fake_backend/users';
 
 const CardButton = ({btn, changeView}) => (
   <div 
-    className='find-btn-swipe' 
+    className="find-btn-swipe" 
     onClick={ () => changeView(btn.toLowerCase()) }>
     {btn}
   </div>
 );
 
 const CardAbout = ({text}) => (
-  <div className='card-col-info-about'>
+  <div className="card-col-info-about">
     <p>{text}</p>
   </div>
 );
 
 export const CardSkills = ({skills}) => (
-  skills !== undefined && 
-  <div className='card-col-info'>
-    <div className='card-col-skills'>
+  skills && 
+  <div className="card-col-info">
+    <div className="card-col-skills">
       {skills.slice(0, 3).map(skill => 
-        <div className='skill' id={skill.lang.toLowerCase()} >
-          <span id='skill-name'>{skill.lang}:</span> 
+        <div className="skill" id={skill.lang.toLowerCase()} >
+          <span id="skill-name">{skill.lang}:</span> 
           <ProgressBar width={skill.value} />
         </div> 
       )}
@@ -102,17 +102,17 @@ class Card extends Component {
     const { user, i } = this.props;
     const { active } = this.state;
     return (
-      <InfoBox margin nojustify size={300} height={500} data-style={i} className='user-find-card'>
-        <div className='card-user-info'>
+      <InfoBox margin nojustify size={300} height={500} data-style={i} className="user-find-card">
+        <div className="card-user-info">
           <img src={user.profile.img} alt={user.firstName} />
-          <div className='card-info'>
+          <div className="card-info">
             <h3>{user.firstName} {user.lastName}</h3>
-            <h4>{user.profile.title || 'Developer'}</h4>
+            <h4>{user.profile.title || "Developer"}</h4>
           </div>
         </div>
-        <div className='find-btns-swipe'>
-          <CardButton btn='About' active={ active } changeView={ this.changeView } />
-          <CardButton btn='Contact' active={ active } changeView={ this.changeView } />
+        <div className="find-btns-swipe">
+          <CardButton btn="About" active={ active } changeView={ this.changeView } />
+          <CardButton btn="Contact" active={ active } changeView={ this.changeView } />
         </div>
         <div className={`indicator active-${active}`} />
         { active === 'about' ?
@@ -166,11 +166,13 @@ class Find extends Component {
     const { activeUsers, loaded } = this.state;
     const { currentUser } = this.props;
     return (
-      <div className='overview'>
+      <div className="overview">
         {/* <SearchBar updateResults={ this.updateResults } /> */}
-        <div className='find-cards'>
-          { !loaded ? <Spinner /> : 
-            Object.values(activeUsers).map((user, i) => <Card user={user} i={i} currentUser={ currentUser } />) 
+        <div className="find-cards">
+          {!loaded ? <Spinner /> : 
+            Object.values(activeUsers).map((user, i) => 
+              <Card user={user} i={i} currentUser={ currentUser } />
+            ) 
           }
         </div>
       </div> 

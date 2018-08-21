@@ -8,10 +8,10 @@ import { Preview } from '../Preview';
 import { CubicParticleWrapper } from '../Particles/cubics';
 import { FooterWrapper as Footer } from '../Footer';
 
-const App = ({history}) => (
-  <div className='app'>
+const App = ({ history }) => (
+  <div className="app">
     <Header />
-    <Content history={ history } />
+    <Content history={history} />
     <Info />
     <Preview />
     <CubicParticleWrapper />

@@ -5,23 +5,25 @@ import { MENU_CONTENTS } from './menuBtns.js';
 import { LogOutIcon } from '../../../../assets/icons.js';
 
 export const Menu = () => (
-  <div className='menu'>
-    { MENU_CONTENTS.map(btn => (
+  <div className="menu">
+    {MENU_CONTENTS.map(btn => (
       <NavLink
         to={`/dashboard/${btn.name.toLowerCase()}`}
-        className='btn-menu' 
-        activeClassName='active'
-        key={ shortid.generate() } >
-        <div className='icon'>
+        className="btn-menu" 
+        activeClassName="active"
+        key={shortid.generate()} 
+      >
+        <div className="icon">
           {btn.icon}
         </div>
         {btn.name}
       </NavLink>  
-    )) } 
+    ))} 
     <a
-      href='/api/logout'
-      className='btn-menu'>
-      <div className='icon'>
+      href="/api/logout"
+      className="btn-menu"
+    >
+      <div className="icon">
         <LogOutIcon />
       </div>
       Log Out

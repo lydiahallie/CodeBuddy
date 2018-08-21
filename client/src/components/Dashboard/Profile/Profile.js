@@ -15,7 +15,7 @@ class UserProfile extends React.Component {
   }
 
   handleSubmit = async values => {
-    this.setState({request: true});
+    this.setState({ request: true });
     const { currentUser } = this.props;
     const res = await axios.post('/api/update_user', { currentUser, values});
     this.setState({
@@ -26,15 +26,16 @@ class UserProfile extends React.Component {
 
   render() {
     return (
-      <div className='overview'>
-        <div className='profile-card'>
+      <div className="overview">
+        <div className="profile-card">
           <ProfileInfo
-            info={ this.props.currentUser[0] }
-            onSubmit={ this.handleSubmit } 
-            handleImage={ this.handleImage }
-            updateProfile={ this.updateProfile } 
-            reqData={ this.state }
-            onSkillsChange={ this.onSkillsChange } /> 
+            info={this.props.currentUser[0]}
+            onSubmit={this.handleSubmit} 
+            handleImage={this.handleImage}
+            updateProfile={this.updateProfile} 
+            reqData={this.state}
+            onSkillsChange={this.onSkillsChange} 
+          /> 
         </div>
       </div> 
     )

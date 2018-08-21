@@ -22,13 +22,13 @@ class AuthForm extends Component {
   render() {
     const { activeBtn } = this.state;
     return (
-      <div className='col'>
-        <div className='form-wrapper'>
-          <ButtonSwipe activeBtn={ activeBtn } changeActiveBtn={ this.changeActiveBtn } />
+      <div className="col">
+        <div className="form-wrapper">
+          <ButtonSwipe activeBtn={activeBtn} changeActiveBtn={this.changeActiveBtn} />
           <div className={`form-content-wrapper expanded-${activeBtn}`}>
             <InputFields 
-              activeBtn={ activeBtn }
-              onSubmit={ this.handleSubmit } />
+              activeBtn={activeBtn}
+              onSubmit={this.handleSubmit} />
           </div>
         </div>
       </div>
@@ -37,10 +37,10 @@ class AuthForm extends Component {
 } 
 
 export const Content = ({history}) => (
-  <div className='content'>
+  <div className="content">
     <div>
       <Title />
-      <AuthForm history={ history } />
+      <AuthForm history={history} />
     </div>
     <ParticleWrapper />
   </div> 

@@ -16,62 +16,63 @@ const sortInputForms = x => {
 					x.startsWith('_') ? false : true
   }
 
-const RequestMessage = ({req, loaded, success}) => (
-  <span id='save-btn-span'>
-  { !req ? 'Save Changes' :
-    req && !loaded ? <React.Fragment><Spinner /> Updating...</React.Fragment> :
-    success && loaded ? <React.Fragment><Success /> Successfully updated!</React.Fragment> :
-    !success && loaded && 'Something went wrong..' }
+const RequestMessage = ({ req, loaded, success }) => (
+  <span id="save-btn-span">
+  { !req ? "Save Changes" :
+    req && !loaded ? <React.Fragment><Spinner />Updating...</React.Fragment> :
+    success && loaded ? <React.Fragment><Success />Successfully updated!</React.Fragment> :
+    !success && loaded && "Something went wrong.." }
   </span>
 );
 
-const ProfileInputField = ({field, currentUser}) => (
-  <div className='profile-span'>
-    <span id='profile-span-text'>{field}</span>
+const ProfileInputField = ({ field, currentUser }) => (
+  <div className="profile-span">
+    <span id="profile-span-text">{field}</span>
     <div>
-      { field === 'description' ? 
-        <Field component='textarea' name={field} max='120' placeholder={currentUser[field]} /> :
-        field === 'gender' ? 
-        <Field component='select' name={field}>
+      { field === "description" ? 
+        <Field component="textarea" name={field} max="120" placeholder={currentUser[field]} /> :
+        field === "gender" ? 
+        <Field component="select" name={field}>
           {selectOpts.map(opt => <option key={shortid.generate()} value={lower(opt)}>{opt}</option>)}
         </Field> :
-        <Field type='text' name={field} placeholder={currentUser[field]} component='input' /> }
+        <Field type="text" name={field} placeholder={currentUser[field]} component='input' /> }
     </div>
   </div>
 );
 
-const ProfileInputFields = ({currentUser, profile = false}) => {
+const ProfileInputFields = ({ currentUser, profile = false }) => {
   let fields = Object.keys(profile ? currentUser.profile : currentUser);
   let user = profile ? currentUser.profile : currentUser;
   fields = fields.filter(x => sortInputForms(x));
   return fields.map(field => <ProfileInputField field={field} currentUser={user} key={shortid.generate()}/>)
 }
 
-const ProfileInfoForm = ({info, handleSubmit, reqData, ...props}) => {
-  return info !== undefined &&
-  <form onSubmit={ handleSubmit } className='profile-user-info-wrapper'>
-    <div className='profile-user-info-input'>
-      <div className='profile-user-img'>
-        <img src={info.profile.img} alt={info.firstName} />
-        <span>image URL</span>
-        <Field type='text' name='img' component='input' />
-      </div>
-      <div className='profile-user-info'>
-        <div className='profile-fields'>
-          <ProfileInputFields currentUser={info} />
-          <ProfileInputFields currentUser={info} profile />
+const ProfileInfoForm = ({ info, handleSubmit, reqData, ...props }) => {
+  return info && (
+    <form onSubmit={ handleSubmit } className="profile-user-info-wrapper">
+      <div className="profile-user-info-input">
+        <div className="profile-user-img">
+          <img src={info.profile.img} alt={info.firstName} />
+          <span>image URL</span>
+          <Field type="text" name="img" component="input" />
+        </div>
+        <div className="profile-user-info">
+          <div className="profile-fields">
+            <ProfileInputFields currentUser={info} />
+            <ProfileInputFields currentUser={info} profile />
+          </div>
         </div>
       </div>
-    </div>
-    <Skills skills={ info.profile.skills } info={ info } />
-    <div className='save-btn'>
-      <button type='submit'>
-        <RequestMessage req={reqData.request} loaded={reqData.loaded} success={reqData.success}/>
-      </button>
-    </div>
-  </form>
-}
+      <Skills skills={info.profile.skills} info={info} />
+      <div className="save-btn">
+        <button type="submit">
+          <RequestMessage req={reqData.request} loaded={reqData.loaded} success={reqData.success}/>
+        </button>
+      </div>
+    </form>
+  );
+};
 
 export const ProfileInfo = reduxForm({
   form: 'userUpdate'
-})(ProfileInfoForm)
+})(ProfileInfoForm);
