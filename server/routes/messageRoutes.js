@@ -11,7 +11,7 @@ const Message = mongoose.model('messages');
 const User = mongoose.model('users');
 
 module.exports = app => {
-  app.get('/api/messages', async (req, res, user) => {
+  app.get('/api/messages', requireLogin, async (req, res, user) => {
     Message.find({ recipientUserId: req.user._id }, (err, messages) => {
       let messageMap = {};
   
