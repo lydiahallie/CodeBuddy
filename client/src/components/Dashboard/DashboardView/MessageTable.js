@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
 import moment from 'moment';
 import shortid from 'short-id';
-import { InfoBox } from './InfoBoxes';
+import InfoBox from '../styled_components/InfoBox';
 import { CrossIcon } from '../../../assets/icons';
 
 const Message = ({msg}) => (
@@ -52,7 +51,7 @@ class TextInput extends Component {
   }
 };
 
-export class MessagesTable extends React.Component {
+class MessagesTable extends Component {
   state = { body: '' };
   
 	onPostChange = (key, e) => this.setState({ [key]: e.target.value })
@@ -76,11 +75,4 @@ export class MessagesTable extends React.Component {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-    posts: state.posts,
-  }
-}
-
-export default connect(mapStateToProps)(MessagesTable)
+export default MessagesTable;

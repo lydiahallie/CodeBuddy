@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs';
-import { InfoBox } from './InfoBoxes';
-import { CHART_DATA } from './dashMockData';
+import InfoBox from '../styled_components/InfoBox';
+import { CHART_DATA } from '../../../data/dashboard_data';
 
 export const ActivityGraph = () => (
   <InfoBox size={800}>

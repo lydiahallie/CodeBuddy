@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { InfoBox } from './InfoBoxes';
+import InfoBox from '../styled_components/InfoBox';
 // import { Bar } from 'react-chartjs';
 // import { CardSkills } from '../Find/Find';
 
-const StatsInfo = ({val, name, line}) => (
+const StatsInfo = ({ val, name, line }) => (
   <React.Fragment>
     <div className="dash-user-col">
       <span className="proj-num">{val}</span> {name}
@@ -13,9 +12,9 @@ const StatsInfo = ({val, name, line}) => (
   </React.Fragment>
 );
 
-export const DashUserProfile = ({currentUser, messages}) => (
-  currentUser!== undefined &&
-    <InfoBox none margin odd size={400} height={700}>
+const DashUserProfile = ({ currentUser, messages }) => (
+  currentUser && currentUser.profile !== undefined &&
+    <InfoBox none odd margin size={400} height={700}>
       <div className="dash-profile">
         <div className="dash-user-info">
           <img src={currentUser.profile.img} alt="" />
@@ -36,11 +35,4 @@ export const DashUserProfile = ({currentUser, messages}) => (
     </InfoBox>
 );
 
-const mapStateToProps = state => {
-  return {
-    currentUser: state.user[0],
-    messages: state.messages,
-  }
-}
-
-export const DashProfile = connect(mapStateToProps)(DashUserProfile)
+export default DashUserProfile;

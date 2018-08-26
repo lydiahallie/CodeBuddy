@@ -3,8 +3,8 @@ import { reduxForm, Field } from 'redux-form';
 import { MessageConsumer } from './Messages';
 
 const MessageReply = ({ messages, activeMessage, handleSubmit }) => {
-  const message = messages[activeMessage];
-  return message && (
+  const message = messages.length && messages[activeMessage];
+  return messages.length && (
     <div className="message-reply">
       <form onSubmit={ handleSubmit } >    
         <div className="message-reply-author">

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
 import { Spinner } from '../../../assets/spinners';
-import { InfoBox } from '../DashboardView/InfoBoxes';
+import InfoBox from '../styled_components/InfoBox';
 import { ProgressBar } from '../DashboardView/InfoBoxes';
-import { fetchMessages } from '../../../actions';
 import { CardContact } from './CardContact';
 import { ALL_USERS } from '../../../fake_backend/users'; 
 
@@ -180,16 +178,4 @@ class Find extends Component {
   }
 }
 
-const mapStateToProps = state =>  {
-  return {
-    currentUser: state.user
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchMessages: () => dispatch(fetchMessages)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Find)
+export default Find;

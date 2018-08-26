@@ -98,6 +98,17 @@
       "mjs"
     ]
   },
+  "proxy": {
+    "/auth/google": {
+      "target": "http://localhost:5000"
+    },
+    "/userauth": {
+      "target": "http://localhost:5000"
+    },
+    "/api/*": {
+      "target": "http://localhost:5000"
+    }
+  },
   "babel": {
     "presets": [
       "react-app"

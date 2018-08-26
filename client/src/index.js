@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/LandingPage/App';
-import Dashboard from './components/Dashboard';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
+
+import App from './components/LandingPage/App';
+import Dashboard from './containers/Dashboard';
+
 import './styles/main.sass';
 
 export const store = createStore(

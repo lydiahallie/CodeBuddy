@@ -4,7 +4,7 @@ import { ProfileIcon, MessagesIcon, LinkedinIcon, GithubIcon } from '../../../as
 
 const Icons = [ <ProfileIcon />, <MessagesIcon />, <LinkedinIcon />, <GithubIcon />];
 
-const ContactForm = ({user, handleSubmit}) => (
+const ContactForm = ({ user, handleSubmit }) => (
   <div className="card-col-info-contact">
     <form onSubmit={ handleSubmit }>
       <Field component="textarea" name="message" /> 

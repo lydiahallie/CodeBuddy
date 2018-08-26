@@ -46,17 +46,18 @@ passport.use(new LocalStrategy(
     passwordField: 'password',
     passReqToCallback: true,
   }, async (req, email, password, done) => {
+    console.log('Being called now')
     const { userName, firstName, lastName } = req.body;
     try {
       const user = await User.findOne({ 'email': email })
       if (user) return done(null, user);
-      const newUser = 
-        await new User({ 
-          email, 
-          password: bcrypt.hashSync(password, 10),
-          userName, 
-          firstName, 
-          lastName }).save();
+      const newUser = await new User({ 
+        email, 
+        password: bcrypt.hashSync(password, 10),
+        userName, 
+        firstName, 
+        lastName 
+      }).save();
       newUser => done(null, newUser)
     } catch (e) {
       console.log("Error: ", e)

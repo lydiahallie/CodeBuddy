@@ -48,8 +48,9 @@ const ProfileInputFields = ({ currentUser, profile = false }) => {
 }
 
 const ProfileInfoForm = ({ info, handleSubmit, reqData, ...props }) => {
+  console.log("profile info form props", props)
   return info && (
-    <form onSubmit={ handleSubmit } className="profile-user-info-wrapper">
+    <form onSubmit={handleSubmit} className="profile-user-info-wrapper">
       <div className="profile-user-info-input">
         <div className="profile-user-img">
           <img src={info.profile.img} alt={info.firstName} />
@@ -73,6 +74,6 @@ const ProfileInfoForm = ({ info, handleSubmit, reqData, ...props }) => {
   );
 };
 
-export const ProfileInfo = reduxForm({
+export default reduxForm({
   form: 'userUpdate'
 })(ProfileInfoForm);

@@ -1,4 +1,3 @@
-import React from 'react';
 import fakepic1 from '../../../assets/fakepic1.png';
 import fakepic2 from '../../../assets/fakepic2.png';
 import fakepic3 from '../../../assets/fakepic3.png';

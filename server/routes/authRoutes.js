@@ -18,9 +18,9 @@ module.exports = app => {
     })
   );
 
-  app.get('/dashboard/dashboard', (req, res) => {
-    res.send(req.body)
-  })
+  // app.get('/dashboard/dashboard', (req, res) => {
+  //   res.send(req.body)
+  // })
 
   app.get(
     '/auth/google/callback',
@@ -32,10 +32,12 @@ module.exports = app => {
     req.logOut();
     res.redirect('/');
   });
-  
+
   app.post(
     '/api/userauth',
     passport.authenticate('local'),
-    (req, res) => res.redirect('/dashboard/dashboard')
+    (req, res) => {
+      res.send('Done')
+    }
   );
 }

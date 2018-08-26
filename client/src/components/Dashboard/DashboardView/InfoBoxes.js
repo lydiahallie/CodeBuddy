@@ -1,8 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import shortid from 'short-id';
-import styled from 'styled-components';
-import { BOX_INFO } from './dashMockData';
+import InfoBox from '../styled_components/InfoBox';
+import Title from '../styled_components/Title';
+import Bar from '../../../components/Dashboard/styled_components/Bar';
+import { BOX_INFO } from '../../../data/dashboard_data';
 import { MessagesIcon } from '../../../assets/icons.js';
 
 
@@ -31,39 +32,4 @@ const InfoBoxes = ({messages}) => (
   </div>
 );
 
-const mapStateToProps = state => {
-  return {
-    messages: state.messages
-  }
-}
-
-export default connect(mapStateToProps)(InfoBoxes);
-
-export const InfoBox = styled.div`
-  height: ${props => props.height ? props.height : props.size * 0.45}px;
-  width: ${props => props.size}px;
-  margin: ${props => props.margin ? '20px 20px' : '0px 20px'};
-  color: white;
-  background: linear-gradient(#464646, #3e3e3e);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  display: ${props => props.none ? 'block' : 'flex'}
-  flex-direction: column;
-  justify-content: ${props => props.nojustify ? 'none' : 'center'};
-  padding: 20px;
-`;
-
-const Title = styled.span`
-  font-family: ${props => props.title ? 'Roboto' : 'Source Sans Pro'};, sans-serif;
-  font-size: ${props => props.title ? '25px' : '14px'};
-  font-weight: lighter;
-  color: rgba(255, 255, 255, 0.8);
-  text-align: left;
-`;
-
-const Bar = styled.div`
-  animation: grow .8s cubic-bezier(.75,.2,.39,1.02) forwards;
-  width: ${props => props.width}px;
-  background-color: #00b496;
-  box-shadow: #00b496 0px 0px 10px;
-  height: 5px;
-`;
+export default InfoBoxes;

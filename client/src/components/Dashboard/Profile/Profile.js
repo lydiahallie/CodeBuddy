@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
-import { ProfileInfo } from './ProfileInfo';
-import { fetchUser } from '../../../actions';
+import ProfileInfo from './ProfileInfo';
 
 class UserProfile extends React.Component {
   constructor() {
@@ -25,7 +23,7 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    return (
+    return this.props.currentUser && (
       <div className="overview">
         <div className="profile-card">
           <ProfileInfo
@@ -42,16 +40,4 @@ class UserProfile extends React.Component {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    currentUser: state.user,
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchUser: () => dispatch(fetchUser)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
+export default UserProfile;

@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { SidePane } from './SidePane';
-import { fetchUser, fetchPosts, fetchMessages } from '../../actions';
-import { DashHeader } from './SidePane/Header';
-import Find from './Find/Find';
-import Profile from './Profile/Profile';
-import Messages from './Messages/Messages';
-import { DashboardView } from './DashboardView/Dashboard';
+import DashHeader from '../../containers/DashHeader';
+import Find from '../../containers/Find';
+import Profile from '../../containers/Profile';
+import { DashboardView } from '../../components/Dashboard/DashboardView/Dashboard';
+import Messages from '../../containers/Messages';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-const View = props => (
-  <div className='dashboard-content'>
-    { props.children }
-  </div>
-);
+const View = ({children}) => {
+  console.log('children', children)
+  return (
+    <div className='dashboard-content'>
+      {children}
+    </div>
+  );
+};
 
 class Dashboard extends Component {
-  state = { currentView: 'Find' };
+  constructor() {
+    super();
+    this.state = {
+      currentView: null,
+    }
+  }
 
   blockComponent = block => {
     switch (block) {
@@ -36,6 +43,7 @@ class Dashboard extends Component {
     this.setState({ currentView: view })
   }
 
+ 
   componentDidMount() {
     const { fetchUser, fetchPosts, fetchMessages, currentUser } = this.props;
     fetchUser();
@@ -49,7 +57,7 @@ class Dashboard extends Component {
       <div className="app dashboard">
         <DashHeader />
         <div className="dash-app-content">
-          <SidePane changeView={this.changeView} />
+          <SidePane />
           <View>{this.blockComponent(name)}</View>
         </div>
       </div>
@@ -57,18 +65,4 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    currentUser: state.user
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchUser: () => dispatch(fetchUser),
-    fetchPosts: () => dispatch(fetchPosts),
-    fetchMessages: () => dispatch(fetchMessages),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default Dashboard;

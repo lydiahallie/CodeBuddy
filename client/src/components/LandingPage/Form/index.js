@@ -17,7 +17,10 @@ class AuthForm extends Component {
 
   changeActiveBtn = value => this.setState({ activeBtn: value });
 
-  handleSubmit = values => axios.post('/api/userauth', values);
+  handleSubmit = values => {
+    axios.post('/api/userauth', values)
+      .then(() => this.props.history.push('/dashboard/dashboard'));
+  }
 
   render() {
     const { activeBtn } = this.state;
@@ -28,7 +31,8 @@ class AuthForm extends Component {
           <div className={`form-content-wrapper expanded-${activeBtn}`}>
             <InputFields 
               activeBtn={activeBtn}
-              onSubmit={this.handleSubmit} />
+              onSubmit={this.handleSubmit} 
+            />
           </div>
         </div>
       </div>

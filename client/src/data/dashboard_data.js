@@ -1,5 +1,5 @@
 import React from 'react';
-import { ConnectRequestIcon, ProfileViewIcon, MessagesIcon } from '../../../assets/icons.js';
+import { ConnectRequestIcon, ProfileViewIcon, MessagesIcon } from '../assets/icons.js';
 
 export const BOX_INFO = [
   { value: 931, name: 'Profile Views', icon: <ProfileViewIcon /> },

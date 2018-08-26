@@ -1,4 +1,4 @@
-import { FETCH_POSTS } from '../actions/types.js';
+import { FETCH_POSTS } from '../constants/actionTypes.js';
 
 export const postsReducer = (state = {}, action) => {
   switch (action.type) {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
 import moment from 'moment';
 import MessageReply from './MessageReply';
 
@@ -39,7 +38,7 @@ const Message = ({ msg, toggle, i, activeMessage }) => {
 const MessagesOverview = props => (
   <MessageConsumer>
     {({activeMessage, toggle, messages}) => (
-      <div className="overview messages">
+      messages.length ? <div className="overview messages">
       {Object.values(messages).map((msg, i) => 
         <Message 
           activeMessage={activeMessage}
@@ -48,7 +47,8 @@ const MessagesOverview = props => (
           i={i} 
         />
       )}
-      </div>
+      </div> : 
+      <div />
     )}
   </MessageConsumer>
 );
@@ -82,11 +82,4 @@ class AllMessages extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    currentUser: state.user,
-    messages: state.messages
-  }
-}
-
-export default connect(mapStateToProps)(AllMessages)
+export default AllMessages;
