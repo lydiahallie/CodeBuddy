@@ -1,4 +1,4 @@
-##CodeBuddy
+## CodeBuddy
 
 Personal project using React Redux, oAuth and MongoDB.
 
