@@ -3,7 +3,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
-
+const requireLogin = require('../middlewares/requireLogin');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
