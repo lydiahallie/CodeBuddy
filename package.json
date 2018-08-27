@@ -7,7 +7,9 @@
     "start": "node index.js",
     "server": "nodemon server/server.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "postinstall": "chmod +x ./update-commit-hook.sh && ./update-commit-hook.sh",
+    "commit-hook": "rsync pre-commit .git/hooks && chmod 755 .git/hooks/pre-commit"
   },
   "author": "",
   "license": "ISC",
