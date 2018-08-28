@@ -13,29 +13,28 @@ class InputFields extends Component {
 
   render() {
     const { handleSubmit, activeBtn } = this.props;
-    const fieldInfo = 
-      activeBtn === 'login' ? 
-      { type: LOGIN_FIELDS, class: 'lg' } : 
-      { type: SIGNUP_FIELDS, class: 'su' };
+    const fieldInfo = activeBtn === 'login'
+      ? { type: LOGIN_FIELDS, class: 'lg' }
+      : { type: SIGNUP_FIELDS, class: 'su' };
 
     return (
       <form onSubmit={handleSubmit}>
-        {fieldInfo.type.map((field, index) => 
+        {fieldInfo.type.map((field, index) => (
           <Field
             key={shortid.generate()}
             name={field.placeholder.toLowerCase()}
-            type={field.type} 
-            component='input'
-            placeholder={field.placeholder} 
+            type={field.type}
+            component="input"
+            placeholder={field.placeholder}
             className={`input-${fieldInfo.class}-${index + 1} animate-${this.state.animate}`}
-          /> 
-        )}
+          />
+        ))}
         <button type="submit">Submit</button>
       </form>
     );
-  };
+  }
 }
 
 export default reduxForm({
-  form: 'userAuth'
+  form: 'userAuth',
 })(InputFields);

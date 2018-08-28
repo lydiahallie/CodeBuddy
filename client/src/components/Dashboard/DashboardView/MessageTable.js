@@ -5,24 +5,30 @@ import shortid from 'short-id';
 import InfoBox from '../styled_components/InfoBox';
 import { CrossIcon } from '../../../assets/icons';
 
-const Message = ({msg}) => (
-  msg.post &&
+const Message = ({ msg }) => (
+  msg.post
+  && (
   <div className="dash-message">
     <div className="dash-message-info">
       <img src={msg.img} alt="" />
-      <h3>{msg.firstName} {msg.lastName}</h3>
+      <h3>
+        {msg.firstName}
+        {' '}
+        {msg.lastName}
+      </h3>
       <span><span id="msg-date">{moment(msg.post.date).fromNow()}</span></span>
       <button id="unfollow">Unfollow</button>
     </div>
     <p className="dash-message-msg">{msg.post.body}</p>
   </div>
+  )
 );
 
 class TextInput extends Component {
   state = { expanded: false };
 
   toggleMessage = () => {
-    this.setState(({expanded}) => ({ expanded: !expanded }))
+    this.setState(({ expanded }) => ({ expanded: !expanded }));
   }
 
   render() {
@@ -33,33 +39,35 @@ class TextInput extends Component {
           <div>
             <CrossIcon />
           </div>
-          {expanded && 
+          {expanded
+            && (
             <React.Fragment>
-              <input 
-                style={{color: "black"}} 
-                type="textarea" 
-                placeholder="Message" 
-                onChange={e => this.onPostChange('body', e)} 
-                value={ this.state.body} 
+              <input
+                style={{ color: 'black' }}
+                type="textarea"
+                placeholder="Message"
+                onChange={e => this.onPostChange('body', e)}
+                value={this.state.body}
               />
-              <button onClick={this.addPost}>Add</button> 
+              <button onClick={this.addPost}>Add</button>
             </React.Fragment>
+            )
           }
-        </div> 
-      </div> 
+        </div>
+      </div>
     );
   }
-};
+}
 
 class MessagesTable extends Component {
   state = { body: '' };
-  
+
 	onPostChange = (key, e) => this.setState({ [key]: e.target.value })
-  
+
   addPost = () => {
     const formData = this.state;
     const data = this.props;
-    axios.post('/api/all_posts', {data, formData});
+    axios.post('/api/all_posts', { data, formData });
   }
 
   render() {
@@ -68,11 +76,11 @@ class MessagesTable extends Component {
       <InfoBox size={400} height={300}>
         <TextInput />
         <div className="dash-messages">
-          {posts.reverse().map(msg => <Message msg={msg} key={shortid.generate()}/>)}
+          {posts.reverse().map(msg => <Message msg={msg} key={shortid.generate()} />)}
         </div>
       </InfoBox>
     );
   }
-};
+}
 
 export default MessagesTable;

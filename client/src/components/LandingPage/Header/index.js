@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MenuIcon }  from '../../../assets/icons';
+import { MenuIcon } from '../../../assets/icons';
 
 const ListMenu = () => (
   <ul className="nav">
@@ -9,11 +9,11 @@ const ListMenu = () => (
   </ul>
 );
 
-const MobileListMenu = ({onClick, menuActive}) => (
+const MobileListMenu = ({ onClick, menuActive }) => (
   <ul className={`mobile-nav expanded-${menuActive}`}>
-    {!menuActive ? 
-      <MenuIcon onClick={onClick} /> : 
-      <ListMenu />
+    {!menuActive
+      ? <MenuIcon onClick={onClick} />
+      : <ListMenu />
     }
   </ul>
 );
@@ -30,16 +30,15 @@ export class Header extends Component {
   }
 
   updateWindowDimensions = () => {
-    const width = 
-      window.innerWidth || 
-      document.documentElement.clientWidth || 
-      document.body.clientWidth;
+    const width = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
 
     this.setState({ width });
   }
 
   toggleMenu = () => this.setState((prevState, props) => ({
-    menuActive: !prevState.menuActive
+    menuActive: !prevState.menuActive,
   }));
 
   render() {
@@ -47,11 +46,11 @@ export class Header extends Component {
     return (
       <div className="header">
         <h1>CodeBuddy</h1>
-        {this.state.width > 700 ? 
-          <ListMenu /> :
-          <MobileListMenu onClick={this.toggleMenu} menuActive={menuActive} />
+        {this.state.width > 700
+          ? <ListMenu />
+          : <MobileListMenu onClick={this.toggleMenu} menuActive={menuActive} />
         }
       </div>
     );
   }
-};
+}

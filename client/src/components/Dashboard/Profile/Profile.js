@@ -9,17 +9,17 @@ class UserProfile extends React.Component {
       success: false,
       request: false,
       loaded: false,
-    }
+    };
   }
 
-  handleSubmit = async values => {
+  handleSubmit = async (values) => {
     this.setState({ request: true });
     const { currentUser } = this.props;
-    const res = await axios.post('/api/update_user', { currentUser, values});
+    const res = await axios.post('/api/update_user', { currentUser, values });
     this.setState({
-      success: res.status === 200 ? true : false,
-      loaded: true
-    })
+      success: res.status === 200,
+      loaded: true,
+    });
   }
 
   render() {
@@ -28,16 +28,16 @@ class UserProfile extends React.Component {
         <div className="profile-card">
           <ProfileInfo
             info={this.props.currentUser[0]}
-            onSubmit={this.handleSubmit} 
+            onSubmit={this.handleSubmit}
             handleImage={this.handleImage}
-            updateProfile={this.updateProfile} 
+            updateProfile={this.updateProfile}
             reqData={this.state}
-            onSkillsChange={this.onSkillsChange} 
-          /> 
+            onSkillsChange={this.onSkillsChange}
+          />
         </div>
-      </div> 
-    )
+      </div>
+    );
   }
-};
+}
 
 export default UserProfile;

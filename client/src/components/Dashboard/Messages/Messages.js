@@ -5,50 +5,56 @@ import MessageReply from './MessageReply';
 
 const MessageContext = React.createContext('no default');
 
-export const MessageConsumer = props =>  (
+export const MessageConsumer = props => (
   <MessageContext.Consumer {...props}>
-    {context => {
+    {(context) => {
       if (!context) {
         throw new Error(
           'Message compound components cannot be rendered outside the Message component',
-        )
+        );
       }
-      return props.children(context)
+      return props.children(context);
     }}
   </MessageContext.Consumer>
-)
+);
 
-const Message = ({ msg, toggle, i, activeMessage }) => {
-  return (
-    <div onClick={ () => toggle(i) } className={`message active-${i === activeMessage}`}>
-      <div className="message-info">
-        <img src={ msg.author.img } alt="" />
-      </div>
-      <div className="post-content">
-        <div className="post-info">
-          <p id="user-msg">{msg.author.firstName} {msg.author.lastName}</p>
-          <p id="user-msg-time">{moment(msg.author.date).fromNow()}</p>
-        </div> 
-        <p id="msg">{msg.body}</p>
-      </div>
+const Message = ({
+  msg, toggle, i, activeMessage,
+}) => (
+  <div onClick={() => toggle(i)} className={`message active-${i === activeMessage}`}>
+    <div className="message-info">
+      <img src={msg.author.img} alt="" />
     </div>
-  );
-};
+    <div className="post-content">
+      <div className="post-info">
+        <p id="user-msg">
+          {msg.author.firstName}
+          {' '}
+          {msg.author.lastName}
+        </p>
+        <p id="user-msg-time">{moment(msg.author.date).fromNow()}</p>
+      </div>
+      <p id="msg">{msg.body}</p>
+    </div>
+  </div>
+);
 
 const MessagesOverview = props => (
   <MessageConsumer>
-    {({activeMessage, toggle, messages}) => (
-      messages.length ? <div className="overview messages">
-      {Object.values(messages).map((msg, i) => 
-        <Message 
-          activeMessage={activeMessage}
-          toggle={toggle}
-          msg={msg} 
-          i={i} 
-        />
-      )}
-      </div> : 
-      <div />
+    {({ activeMessage, toggle, messages }) => (
+      messages.length ? (
+        <div className="overview messages">
+          {Object.values(messages).map((msg, i) => (
+            <Message
+              activeMessage={activeMessage}
+              toggle={toggle}
+              msg={msg}
+              i={i}
+            />
+          ))}
+        </div>
+      )
+        : <div />
     )}
   </MessageConsumer>
 );
@@ -57,14 +63,14 @@ const MessagesOverview = props => (
 class AllMessages extends Component {
   state = { activeMessage: 0 };
 
-  changeActiveMessage = val => {
+  changeActiveMessage = (val) => {
     this.setState({ activeMessage: val });
   };
 
-  onSubmit = values => {
+  onSubmit = (values) => {
     const { messages, currentUser } = this.props;
     const { activeMessage } = this.state;
-    const user = Object.values(messages)[activeMessage]['author'];
+    const user = Object.values(messages)[activeMessage].author;
     axios.post('/api/add_message', { values, user, currentUser });
   };
 
@@ -74,10 +80,10 @@ class AllMessages extends Component {
     return (
       <div className="messages-wrapper">
         <MessageContext.Provider value={{ activeMessage, messages, toggle: this.changeActiveMessage }}>
-          <MessagesOverview  />
+          <MessagesOverview />
           <MessageReply onSubmit={this.onSubmit} />
         </MessageContext.Provider>
-      </div> 
+      </div>
     );
   }
 }
