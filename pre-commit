@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Extract staged files to a temp directory
+export NODE_MODULES=$(cd ./node_modules && pwd)
+export ESLINT_PATH=`echo $NODE_MODULES"/eslint/bin/eslint.js"`
+JSFILES=$(git diff-index --name-status --cached HEAD | grep -v ^D | egrep '.jsx?$' | cut -c3-)
+
+
+if [ "$JSFILES" == "" ]; then
+    exit 0
+fi
+
+PASS=true
+for FILE in $JSFILES
+do
+  $ESLINT_PATH "$FILE" > /dev/null
+
+  if [ $? -eq 0 ]; then
+    printf "\t\033[32mESLint Passed: $FILE\033[0m\n"
+  else
+    printf "\t\033[41mESLint Failed: $FILE\033[0m\n"
+    $ESLINT_PATH "$FILE" --fix
+
+    if [ $? -eq 0 ]; then
+      printf "\n \n There were errors, but they were all able to be \033[42mautomatically fixed\033[0m by eslint. Please stage those fixes and commit again. \n \n"
+    fi
+
+    PASS=false
+  fi
+done
+
+if ! $PASS; then
+  printf "\033[41mCOMMIT FAILED:\033[0m Your commit contains files that should pass ESLint but do not. Please fix the ESLint errors and try again.\n"
+  exit 1
+else
+  printf "\033[42mESLINT SUCCEEDED\033[0m\n"
+fi
