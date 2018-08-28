@@ -37,22 +37,29 @@ const Message = ({ msg, toggle, i, activeMessage }) => {
 
 const MessagesOverview = props => (
   <MessageConsumer>
-    {({activeMessage, toggle, messages}) => (
-      messages.length ? <div className="overview messages">
-      {Object.values(messages).map((msg, i) => 
-        <Message 
-          activeMessage={activeMessage}
-          toggle={toggle}
-          msg={msg} 
-          i={i} 
-        />
-      )}
-      </div> : 
-      <div />
+    {({ activeMessage, toggle, messages }) => (
+      <div className="overview messages">
+        {messages.length > 0 ? (
+          messages.map((msg, i) => (
+            <Message
+              activeMessage={activeMessage}
+              toggle={toggle}
+              msg={msg}
+              i={i}
+            />
+          ))
+        ) : (
+          <div className="message active-true">
+            <p id="msg">
+              You have not yet received any messages. Once you do, they will
+              appear here!
+            </p>
+          </div>
+        )}
+      </div>
     )}
   </MessageConsumer>
 );
-
 
 class AllMessages extends Component {
   state = { activeMessage: 0 };
