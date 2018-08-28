@@ -9,16 +9,16 @@ export const Menu = () => (
     {MENU_CONTENTS.map(btn => (
       <NavLink
         to={`/dashboard/${btn.name.toLowerCase()}`}
-        className="btn-menu" 
+        className="btn-menu"
         activeClassName="active"
-        key={shortid.generate()} 
+        key={shortid.generate()}
       >
         <div className="icon">
           {btn.icon}
         </div>
         {btn.name}
-      </NavLink>  
-    ))} 
+      </NavLink>
+    ))}
     <a
       href="/api/logout"
       className="btn-menu"
@@ -27,6 +27,6 @@ export const Menu = () => (
         <LogOutIcon />
       </div>
       Log Out
-    </a>  
+    </a>
   </div>
 );

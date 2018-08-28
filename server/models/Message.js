@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const { Schema } = mongoose;
 
 const messageSchema = new Schema({
@@ -8,7 +9,7 @@ const messageSchema = new Schema({
     img: String,
     date: { type: Date, default: Date.now },
   },
-  recipientUserId:  String,
+  recipientUserId: String,
   body: String,
 });
 

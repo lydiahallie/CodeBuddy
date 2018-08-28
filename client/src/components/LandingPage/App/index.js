@@ -1,7 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Header } from '../Header';
 import { Content } from '../Form';
-import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import { Info } from '../Info';
 import { Preview } from '../Preview';

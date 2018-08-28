@@ -2,18 +2,18 @@ import React from 'react';
 import shortid from 'short-id';
 import InfoBox from '../styled_components/InfoBox';
 import Title from '../styled_components/Title';
-import Bar from '../../../components/Dashboard/styled_components/Bar';
+import Bar from '../styled_components/Bar';
 import { BOX_INFO } from '../../../data/dashboard_data';
 import { MessagesIcon } from '../../../assets/icons.js';
 
 
-export const ProgressBar = ({width}) => (
+export const ProgressBar = ({ width }) => (
   <div className="progressbar">
     <Bar width={width} />
   </div>
 );
 
-const InfoBoxes = ({messages}) => (
+const InfoBoxes = ({ messages }) => (
   <div className="info-boxes">
     {BOX_INFO.map(box => (
       <InfoBox size={400} key={shortid.generate()}>

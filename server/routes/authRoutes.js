@@ -1,6 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+
 const app = express();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
@@ -10,12 +11,12 @@ app.use(bodyParser.json());
 
 const User = mongoose.model('users');
 
-module.exports = app => {
+module.exports = (app) => {
   app.get(
-    '/auth/google', 
-    passport.authenticate('google', { 
-      scope: ['profile', 'email']
-    })
+    '/auth/google',
+    passport.authenticate('google', {
+      scope: ['profile', 'email'],
+    }),
   );
 
   // app.get('/dashboard/dashboard', (req, res) => {
@@ -25,7 +26,7 @@ module.exports = app => {
   app.get(
     '/auth/google/callback',
     passport.authenticate('google'),
-    (req, res) => res.redirect('/dashboard')
+    (req, res) => res.redirect('/dashboard'),
   );
 
   app.get('/api/logout', (req, res) => {
@@ -37,7 +38,7 @@ module.exports = app => {
     '/api/userauth',
     passport.authenticate('local'),
     (req, res) => {
-      res.send('Done')
-    }
+      res.send('Done');
+    },
   );
-}
+};
