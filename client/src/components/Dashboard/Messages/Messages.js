@@ -35,11 +35,22 @@ const Message = ({ msg, toggle, i, activeMessage }) => {
   );
 };
 
+const NoMessagesInfo = () => (
+  <div className="message active-true">
+    <p id="msg">
+      You have not yet received any messages. Once you do, they will appear
+      here!
+    </p>
+  </div>
+);
+
 const MessagesOverview = props => (
   <MessageConsumer>
     {({ activeMessage, toggle, messages }) => (
       <div className="overview messages">
-        {messages.length > 0 ? (
+        {messages.length === 0 ? (
+          <NoMessagesInfo />
+        ) : (
           messages.map((msg, i) => (
             <Message
               activeMessage={activeMessage}
@@ -48,13 +59,6 @@ const MessagesOverview = props => (
               i={i}
             />
           ))
-        ) : (
-          <div className="message active-true">
-            <p id="msg">
-              You have not yet received any messages. Once you do, they will
-              appear here!
-            </p>
-          </div>
         )}
       </div>
     )}
