@@ -6,12 +6,12 @@ Hey everyone! Thank you so much for wanting to contribute! :+1::tada: Here are s
 
 Make sure that you've read and accepted the [Code of Conduct](CODE_OF_CONDUCT.md) before contributing to this project. :smile:
 
-## Guidelines 
+## Guidelines
 
 ### Adding a commit
 Commit any improvements, additions, or bug fixes on new branches with:
 
-* ```fix/name_of_fix``` 
+* ```fix/name_of_fix```
 * ```feature/name_of_feature```
 
 
@@ -21,7 +21,7 @@ Commit any improvements, additions, or bug fixes on new branches with:
 * Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
 * Limit the first line to 72 characters or less
 
-### JavaScript Styleguide 
+### JavaScript Styleguide
 
 All JavaScript must adhere to [Airbnb JavaScript Styleguide](https://github.com/airbnb/javascript).
 
