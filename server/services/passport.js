@@ -1,5 +1,5 @@
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+// const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const passportJWT = require('passport-jwt');
@@ -18,6 +18,7 @@ passport.deserializeUser(async (id, done) => {
   if (user) return done(null, user);
 });
 
+/*
 passport.use(
   new GoogleStrategy({
     clientID: keys.googleClientID,
@@ -38,6 +39,7 @@ passport.use(
     newUser => done(null, newUser);
   }),
 );
+*/
 
 
 passport.use(new LocalStrategy(
