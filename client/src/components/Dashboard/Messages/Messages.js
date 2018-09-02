@@ -48,7 +48,7 @@ const MessagesOverview = props => (
   <MessageConsumer>
     {({ activeMessage, toggle, messages }) => (
       <div className="overview messages">
-        {messages.length === 0 ? (
+        {!messages.length ? (
           <NoMessagesInfo />
         ) : (
           messages.map((msg, i) => (
