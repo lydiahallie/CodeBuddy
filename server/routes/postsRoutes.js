@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 const Post = mongoose.model('posts');
 const User = mongoose.model('users');
 
-module.exports = (app) => {
+module.exports = () => {
   app.get('/api/all_posts', requireLogin, (req, res) => {
     Post.find({}, (err, posts) => {
       const postMap = {};
@@ -35,6 +35,9 @@ module.exports = (app) => {
         title: req.body.formData.title,
         body: req.body.formData.body,
       },
-    }).then(() => console.log('done'));
+    }).then(() => {
+      console.log('done');
+      res.send();
+    });
   });
 };

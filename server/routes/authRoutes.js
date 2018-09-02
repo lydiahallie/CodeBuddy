@@ -3,25 +3,17 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 
 const app = express();
-const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const User = mongoose.model('users');
-
-module.exports = (app) => {
+module.exports = () => {
   app.get(
     '/auth/google',
     passport.authenticate('google', {
       scope: ['profile', 'email'],
     }),
   );
-
-  // app.get('/dashboard/dashboard', (req, res) => {
-  //   res.send(req.body)
-  // })
 
   app.get(
     '/auth/google/callback',

@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const mongoose = require('mongoose');
-const object = require('lodash/fp/object');
 const requireLogin = require('../middlewares/requireLogin');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -11,7 +10,7 @@ app.use(bodyParser.json());
 
 const User = mongoose.model('users');
 
-module.exports = (app) => {
+module.exports = () => {
   app.get('/api/current_user', requireLogin, (req, res) => {
     res.send(req.user);
   });

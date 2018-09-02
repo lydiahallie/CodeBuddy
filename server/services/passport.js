@@ -2,12 +2,12 @@ const passport = require('passport');
 // const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
-const passportJWT = require('passport-jwt');
+// const passportJWT = require('passport-jwt');
 const bcrypt = require('bcrypt');
-const keys = require('../config/keys');
+// const keys = require('../config/keys');
 
-const JWTStrategy = passportJWT.Strategy;
-const ExtractJWT = passportJWT.ExtractJwt;
+// const JWTStrategy = passportJWT.Strategy;
+// const ExtractJWT = passportJWT.ExtractJwt;
 
 const User = mongoose.model('users');
 
@@ -60,7 +60,7 @@ passport.use(new LocalStrategy(
         firstName,
         lastName,
       }).save();
-      newUser => done(null, newUser);
+      if (newUser) return done(null, newUser);
     } catch (e) {
       console.log('Error: ', e);
     }

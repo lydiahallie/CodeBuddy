@@ -1,5 +1,4 @@
 const express = require('express');
-const passport = require('passport');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -12,8 +11,8 @@ app.use(bodyParser.json());
 const Message = mongoose.model('messages');
 const User = mongoose.model('users');
 
-module.exports = (app) => {
-  app.get('/api/messages', requireLogin, async (req, res, user) => {
+module.exports = () => {
+  app.get('/api/messages', requireLogin, async (req, res) => {
     Message.find({ recipientUserId: req.user._id }, (err, messages) => {
       const messageMap = {};
 
@@ -40,7 +39,10 @@ module.exports = (app) => {
         recipient: recipient._id,
         body: values.message,
       });
+
+      res.send();
     } catch (e) {
+      /* eslint-disable no-console */
       console.log('Error: ', e);
     }
   });
