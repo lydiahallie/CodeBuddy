@@ -18,6 +18,7 @@ module.exports = () => {
 
       posts.map((post) => {
         postMap[post._id] = post;
+        return postMap;
       });
 
       res.send(postMap);

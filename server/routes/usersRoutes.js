@@ -21,6 +21,7 @@ module.exports = () => {
 
       users.map((user) => {
         userMap[user._id] = user;
+        return userMap;
       });
 
       res.send(userMap);

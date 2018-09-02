@@ -18,6 +18,7 @@ module.exports = () => {
 
       messages.map((message) => {
         messageMap[message._id] = message;
+        return messageMap;
       });
 
       res.send(messageMap);

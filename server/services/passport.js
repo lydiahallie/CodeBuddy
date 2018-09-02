@@ -16,6 +16,8 @@ passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser(async (id, done) => {
   const user = await User.findById(id);
   if (user) return done(null, user);
+
+  return null;
 });
 
 /*
@@ -64,5 +66,7 @@ passport.use(new LocalStrategy(
     } catch (e) {
       console.log('Error: ', e);
     }
+
+    return null;
   },
 ));
