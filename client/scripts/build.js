@@ -24,8 +24,8 @@ const printBuildError = require('react-dev-utils/printBuildError');
 const paths = require('../config/paths');
 const config = require('../config/webpack.config.prod');
 
-const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
-const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
+const { measureFileSizesBeforeBuild } = FileSizeReporter;
+const { printFileSizesAfterBuild } = FileSizeReporter;
 const useYarn = fs.existsSync(paths.yarnLockFile);
 
 // These sizes are pretty large. We'll warn for bundles exceeding them.
@@ -79,8 +79,8 @@ measureFileSizesBeforeBuild(paths.appBuild)
       console.log();
 
       const appPackage = require(paths.appPackageJson);
-      const publicUrl = paths.publicUrl;
-      const publicPath = config.output.publicPath;
+      const { publicUrl } = paths;
+      const { publicPath } = config.output;
       const buildFolder = path.relative(process.cwd(), paths.appBuild);
       printHostingInstructions(
         appPackage,
