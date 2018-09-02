@@ -5,7 +5,9 @@
   "rules": {
     "jsx-a11y/anchor-is-valid": 2,
     "jsx-a11y/href-no-hash": "off",
-    "allowArrowFunctions": true
+    "allowArrowFunctions": true,
+    "comma-dangle": 0,
+    "no-underscore-dangle": 0
   },
   "parserOptions": {
     "ecmaVersion": 8
