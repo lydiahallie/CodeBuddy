@@ -86,7 +86,7 @@ class AllMessages extends Component {
       <div className="messages-wrapper">
         <MessageContext.Provider value={{ activeMessage, messages, toggle: this.changeActiveMessage }}>
           <MessagesOverview  />
-          <MessageReply onSubmit={this.onSubmit} />
+          {messages.length ? <MessageReply onSubmit={this.onSubmit} /> : ''}
         </MessageContext.Provider>
       </div> 
     );
