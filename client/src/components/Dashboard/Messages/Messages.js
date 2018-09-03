@@ -35,24 +35,35 @@ const Message = ({ msg, toggle, i, activeMessage }) => {
   );
 };
 
+const NoMessagesInfo = () => (
+  <div className="message active-true">
+    <p id="msg">
+      You have not yet received any messages. Once you do, they will appear
+      here!
+    </p>
+  </div>
+);
+
 const MessagesOverview = props => (
   <MessageConsumer>
-    {({activeMessage, toggle, messages}) => (
-      messages.length ? <div className="overview messages">
-      {Object.values(messages).map((msg, i) => 
-        <Message 
-          activeMessage={activeMessage}
-          toggle={toggle}
-          msg={msg} 
-          i={i} 
-        />
-      )}
-      </div> : 
-      <div />
+    {({ activeMessage, toggle, messages }) => (
+      <div className="overview messages">
+        {!messages.length ? (
+          <NoMessagesInfo />
+        ) : (
+          messages.map((msg, i) => (
+            <Message
+              activeMessage={activeMessage}
+              toggle={toggle}
+              msg={msg}
+              i={i}
+            />
+          ))
+        )}
+      </div>
     )}
   </MessageConsumer>
 );
-
 
 class AllMessages extends Component {
   state = { activeMessage: 0 };
@@ -75,7 +86,7 @@ class AllMessages extends Component {
       <div className="messages-wrapper">
         <MessageContext.Provider value={{ activeMessage, messages, toggle: this.changeActiveMessage }}>
           <MessagesOverview  />
-          <MessageReply onSubmit={this.onSubmit} />
+          {messages.length && <MessageReply onSubmit={this.onSubmit} />}
         </MessageContext.Provider>
       </div> 
     );
