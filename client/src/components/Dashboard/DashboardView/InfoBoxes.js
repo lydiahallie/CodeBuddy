@@ -1,5 +1,6 @@
 import React from 'react';
 import shortid from 'short-id';
+import PropTypes from 'prop-types';
 import InfoBox from '../styled_components/InfoBox';
 import Title from '../styled_components/Title';
 import Bar from '../styled_components/Bar';
@@ -12,6 +13,10 @@ export const ProgressBar = ({ width }) => (
     <Bar width={width} />
   </div>
 );
+
+ProgressBar.propTypes = {
+  width: PropTypes.number.isRequired,
+};
 
 const InfoBoxes = ({ messages }) => (
   <div className="info-boxes">
@@ -31,5 +36,20 @@ const InfoBoxes = ({ messages }) => (
     </InfoBox>
   </div>
 );
+
+InfoBoxes.propTypes = {
+  messages: PropTypes.arrayOf(
+    PropTypes.shape({
+      author: PropTypes.shape({
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        img: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+      }),
+      body: PropTypes.string.isRequired,
+      __v: PropTypes.number,
+    }),
+  ).isRequired,
+};
 
 export default InfoBoxes;

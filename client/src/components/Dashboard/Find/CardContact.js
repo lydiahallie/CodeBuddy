@@ -1,12 +1,13 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
+import PropTypes from 'prop-types';
 import {
   ProfileIcon, MessagesIcon, LinkedinIcon, GithubIcon,
 } from '../../../assets/icons';
 
 const Icons = [<ProfileIcon />, <MessagesIcon />, <LinkedinIcon />, <GithubIcon />];
 
-const ContactForm = ({ user, handleSubmit }) => (
+const ContactForm = ({ handleSubmit }) => (
   <div className="card-col-info-contact">
     <form onSubmit={handleSubmit}>
       <Field component="textarea" name="message" />
@@ -17,6 +18,10 @@ const ContactForm = ({ user, handleSubmit }) => (
     </div>
   </div>
 );
+
+ContactForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
 
 export const CardContact = reduxForm({
   form: 'contactMessage',

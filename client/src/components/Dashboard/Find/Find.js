@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Spinner } from '../../../assets/spinners';
 import InfoBox from '../styled_components/InfoBox';
 import { ProgressBar } from '../DashboardView/InfoBoxes';
@@ -55,11 +56,20 @@ const CardButton = ({ btn, changeView }) => (
   </div>
 );
 
+CardButton.propTypes = {
+  btn: PropTypes.string.isRequired,
+  changeView: PropTypes.func.isRequired,
+};
+
 const CardAbout = ({ text }) => (
   <div className="card-col-info-about">
     <p>{text}</p>
   </div>
 );
+
+CardAbout.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
 export const CardSkills = ({ skills }) => (
   skills
@@ -137,6 +147,49 @@ class Card extends Component {
   }
 }
 
+Card.propTypes = {
+  i: PropTypes.number.isRequired,
+  user: PropTypes.shape({
+    profile: PropTypes.shape({
+      userName: PropTypes.string.isRequired,
+      img: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      skills: PropTypes.arrayOf(
+        PropTypes.shape({
+          lang: PropTypes.string.isRequired,
+          value: PropTypes.number.isRequired,
+          // eslint-disable-next-line comma-dangle
+        })
+      ).isRequired,
+      level: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }),
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    __v: PropTypes.number,
+  }).isRequired,
+  currentUser: PropTypes.shape({
+    profile: PropTypes.shape({
+      userName: PropTypes.string.isRequired,
+      img: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      skills: PropTypes.arrayOf(
+        PropTypes.shape({
+          lang: PropTypes.string.isRequired,
+          value: PropTypes.number.isRequired,
+          // eslint-disable-next-line comma-dangle
+        })
+      ).isRequired,
+      level: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }),
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    __v: PropTypes.number,
+  }).isRequired,
+  fetchMessages: PropTypes.func.isRequired,
+};
+
 class Find extends Component {
   constructor() {
     super();
@@ -184,5 +237,27 @@ class Find extends Component {
     );
   }
 }
+
+Find.propTypes = {
+  currentUser: PropTypes.shape({
+    profile: PropTypes.shape({
+      userName: PropTypes.string.isRequired,
+      img: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      skills: PropTypes.arrayOf(
+        PropTypes.shape({
+          lang: PropTypes.string.isRequired,
+          value: PropTypes.number.isRequired,
+          // eslint-disable-next-line comma-dangle
+        })
+      ).isRequired,
+      level: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }),
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    __v: PropTypes.number,
+  }).isRequired,
+};
 
 export default Find;

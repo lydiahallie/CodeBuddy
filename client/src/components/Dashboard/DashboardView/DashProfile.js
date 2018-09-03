@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InfoBox from '../styled_components/InfoBox';
 // import { Bar } from 'react-chartjs';
 // import { CardSkills } from '../Find/Find';
@@ -42,5 +43,15 @@ const DashUserProfile = ({ currentUser, messages }) => (
     </InfoBox>
     )
 );
+
+StatsInfo.propTypes = {
+  val: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  line: PropTypes.bool,
+};
+
+StatsInfo.defaultProps = {
+  line: false,
+};
 
 export default DashUserProfile;
