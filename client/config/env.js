@@ -1,3 +1,4 @@
+/* eslint-disable global-require, no-param-reassign */
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');

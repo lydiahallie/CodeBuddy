@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow, global-require, import/no-dynamic-require */
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
