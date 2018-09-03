@@ -3,9 +3,11 @@
   "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
     "jsx-a11y/anchor-is-valid": 2,
-    "jsx-a11y/href-no-hash": "off"
+    "jsx-a11y/href-no-hash": "off",
+    "react/jsx-filename-extension": "off"
   },
   "env": {
-    "browser": true
+    "browser": true,
+    "jest": true
   }
 }

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component renders correctly 1`] = `
+<div>
+  <div
+    class="header"
+  >
+    <h1>
+      CodeBuddy
+    </h1>
+    <ul
+      class="nav"
+    >
+      <li>
+        <a
+          href="/"
+        >
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          href="/"
+        >
+          Contact
+        </a>
+      </li>
+      <li>
+        <a
+          href="/"
+        >
+          About
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
