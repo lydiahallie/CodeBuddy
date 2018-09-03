@@ -1,4 +1,4 @@
-export const FOOTER_CONTENT = [
+const FOOTER_CONTENT = [
   {
     name: 'About',
     links: [
@@ -16,3 +16,5 @@ export const FOOTER_CONTENT = [
     ],
   },
 ];
+
+export default FOOTER_CONTENT;

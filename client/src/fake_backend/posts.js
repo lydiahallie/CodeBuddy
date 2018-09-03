@@ -1,4 +1,4 @@
-export const POSTS = [
+const POSTS = [
   {
     post: {
       title: 'Title',
@@ -130,3 +130,5 @@ export const POSTS = [
     __v: 0,
   },
 ];
+
+export default POSTS;

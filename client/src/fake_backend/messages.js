@@ -1,4 +1,4 @@
-export const MESSAGES = [
+const MESSAGES = [
   {
     author: {
       firstName: 'Hubert',
@@ -50,3 +50,5 @@ export const MESSAGES = [
     __v: 0,
   },
 ];
+
+export default MESSAGES;

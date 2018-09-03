@@ -13,10 +13,12 @@ import Dashboard from './containers/Dashboard';
 
 import './styles/main.sass';
 
-export const store = createStore(
+const store = createStore(
   reducers,
   composeWithDevTools(applyMiddleware(thunk)),
 );
+
+export default store;
 
 ReactDOM.render(
   <Provider store={store}>

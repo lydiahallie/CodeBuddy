@@ -1,10 +1,10 @@
 import React from 'react';
 import shortid from 'short-id';
 import { NavLink } from 'react-router-dom';
-import { MENU_CONTENTS } from './menuBtns.js';
+import MENU_CONTENTS from './menuBtns';
 import { LogOutIcon } from '../../../../assets/icons.js';
 
-export const Menu = () => (
+const Menu = () => (
   <div className="menu">
     {MENU_CONTENTS.map(btn => (
       <NavLink
@@ -30,3 +30,5 @@ export const Menu = () => (
     </a>
   </div>
 );
+
+export default Menu;

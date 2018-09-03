@@ -1,4 +1,4 @@
-export const USED_LANGUAGES = [
+const USED_LANGUAGES = [
   'HTML',
   'CSS',
   'JavaScript',
@@ -9,3 +9,5 @@ export const USED_LANGUAGES = [
   'C++',
   'C#',
 ];
+
+export default USED_LANGUAGES;

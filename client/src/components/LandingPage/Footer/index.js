@@ -1,7 +1,7 @@
 import React from 'react';
-import { FOOTER_CONTENT } from './footerContent';
+import FOOTER_CONTENT from './footerContent';
 
-export const FooterWrapper = () => (
+const FooterWrapper = () => (
   <div className="footer">
     {FOOTER_CONTENT.map(block => (
       <div className="footer-col">
@@ -11,3 +11,5 @@ export const FooterWrapper = () => (
     ))}
   </div>
 );
+
+export default FooterWrapper;
