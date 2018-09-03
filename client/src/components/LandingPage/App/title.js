@@ -5,13 +5,14 @@ export default class Title extends Component {
   state = { activeIndex: 0 };
 
   componentDidMount() {
-    setInterval(() => this.setState((prevState, props) => ({
+    setInterval(() => this.setState(prevState => ({
       activeIndex: prevState.activeIndex + 1,
     })), 4000);
   }
 
   render() {
-    const index = this.state.activeIndex % WORDS.length;
+    const { activeIndex } = this.state;
+    const index = activeIndex % WORDS.length;
     return (
       <h1 id="title">
 Find A Partner To

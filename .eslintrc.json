@@ -6,7 +6,8 @@
     "jsx-a11y/anchor-is-valid": 2,
     "jsx-a11y/href-no-hash": "off",
     "allowArrowFunctions": true,
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "react/jsx-filename-extension": 0
   },
   "parserOptions": {
     "ecmaVersion": 8

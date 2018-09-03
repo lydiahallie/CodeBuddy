@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   SearchIcon, ProfileIcon, MessagesIcon, DashboardIcon,
-} from '../../../../assets/icons.js';
+} from '../../../../assets/icons';
 
 const MENU_CONTENTS = [
   { name: 'Dashboard', icon: <DashboardIcon /> },

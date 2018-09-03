@@ -2,7 +2,7 @@ import React from 'react';
 import shortid from 'short-id';
 import { NavLink } from 'react-router-dom';
 import MENU_CONTENTS from './menuBtns';
-import { LogOutIcon } from '../../../../assets/icons.js';
+import { LogOutIcon } from '../../../../assets/icons';
 
 const Menu = () => (
   <div className="menu">
