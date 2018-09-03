@@ -8,9 +8,10 @@
     "server": "nodemon server/server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "postinstall": "chmod +x ./update-commit-hook.sh && ./update-commit-hook.sh",
-    "commit-hook": "rsync pre-commit .git/hooks && chmod 755 .git/hooks/pre-commit",
-    "precommit": "pretty-quick --staged"
+    "precommit": "pretty-quick --staged && lint-staged"
+  },
+  "lint-staged": {
+    "*.js": "eslint"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +25,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.0",
     "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
     "nodemon": "^1.18.3",
     "prettier": "1.14.2",
     "pretty-quick": "^1.6.0"
