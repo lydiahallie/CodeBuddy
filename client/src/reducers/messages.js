@@ -1,3 +1,5 @@
+/* eslint-disable  */
+
 import {
   EXPAND_MESSAGE,
   FETCH_MESSAGES,
