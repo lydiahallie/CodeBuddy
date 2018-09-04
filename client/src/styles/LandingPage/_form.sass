@@ -1,10 +1,9 @@
 .signup-form
   display: flex
-  flex-direction: row
+  flex-direciton: column
   justify-content: center
   @include md
-    flex-direciton: column
-
+    
 
 .content 
   height: 80vh
@@ -121,14 +120,17 @@
 
 
 .particles 
-  height: 100vh
-  width: 100vw
+  height: 50vh
+  width: 50vw
   position: relative 
   left: 200px
 
 canvas 
   position: relative
   height: 800px
+  top: 0
+  left: 0
+  pointer-events: none
  
 @keyframes fadeIn
   to

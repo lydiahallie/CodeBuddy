@@ -42,7 +42,7 @@ class AuthForm extends Component {
 
 export const Content = ({history}) => (
   < div className = "content signup-form" >
-    < div className="">
+    < div  >
       <Title />
       <AuthForm history={history} />
     </div>
