@@ -77,7 +77,11 @@ Dashboard.propTypes = {
 };
 
 View.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
+};
+
+View.defaultProps = {
+  children: undefined,
 };
 
 export default Dashboard;

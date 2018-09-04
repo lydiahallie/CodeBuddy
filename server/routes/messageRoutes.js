@@ -1,17 +1,10 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-
-const app = express();
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 const Message = mongoose.model('messages');
 const User = mongoose.model('users');
 
-module.exports = () => {
+module.exports = app => {
   app.get('/api/messages', requireLogin, async (req, res) => {
     Message.find({ recipientUserId: req.user._id }, (err, messages) => {
       const messageMap = {};

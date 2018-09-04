@@ -1,16 +1,9 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-
-const app = express();
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
 const User = mongoose.model('users');
 
-module.exports = () => {
+module.exports = app => {
   app.get('/api/current_user', requireLogin, (req, res) => {
     res.send(req.user);
   });
