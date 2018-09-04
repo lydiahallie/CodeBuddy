@@ -1,7 +1,7 @@
 import React from 'react';
 import Particles from 'react-particles-js';
 
-export const ParticleWrapper = () => (
+const ParticleWrapper = () => (
   <Particles
     className="particles"
     style={{
@@ -120,3 +120,5 @@ export const ParticleWrapper = () => (
     }}
   />
 );
+
+export default ParticleWrapper;

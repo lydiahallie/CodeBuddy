@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import { MessageConsumer } from './Messages';
 
@@ -29,7 +30,7 @@ const MessageReply = ({ messages, activeMessage, handleSubmit }) => {
 
 export const MessageReplyInput = ({ handleSubmit }) => (
   <MessageConsumer>
-    {({ activeMessage, toggle, messages }) => (
+    {({ activeMessage, messages }) => (
       <MessageReply
         activeMessage={activeMessage}
         messages={messages}
@@ -38,6 +39,10 @@ export const MessageReplyInput = ({ handleSubmit }) => (
     )}
   </MessageConsumer>
 );
+
+MessageReplyInput.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
 
 export default reduxForm({
   form: 'messageReply',

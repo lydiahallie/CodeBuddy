@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
-import { ParticleWrapper } from '../Particles';
+import ParticleWrapper from '../Particles';
 import Title from '../App/title';
 import InputFields from './inputField';
 
@@ -19,7 +21,7 @@ class AuthForm extends Component {
 
   handleSubmit = (values) => {
     axios.post('/api/userauth', values)
-      .then(() => this.props.history.push('/dashboard/dashboard'));
+      .then(() => this.props.history.push('/dashboard/dashboard')); //eslint-disable-line
   }
 
   render() {
@@ -40,7 +42,7 @@ class AuthForm extends Component {
   }
 }
 
-export const Content = ({ history }) => (
+const Content = ({ history }) => (
   <div className="content">
     <div>
       <Title />
@@ -49,3 +51,18 @@ export const Content = ({ history }) => (
     <ParticleWrapper />
   </div>
 );
+
+ButtonSwipe.propTypes = {
+  changeActiveBtn: PropTypes.func.isRequired,
+  activeBtn: PropTypes.string.isRequired,
+};
+
+AuthForm.propTypes = {
+  history: PropTypes.object.isRequired, //eslint-disable-line
+};
+
+Content.propTypes = {
+  history: PropTypes.object.isRequired, //eslint-disable-line
+};
+
+export default Content;

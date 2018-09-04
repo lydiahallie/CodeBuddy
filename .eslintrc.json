@@ -3,11 +3,15 @@
   "extends": "airbnb",
   "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/anchor-is-valid": 2,
     "jsx-a11y/href-no-hash": "off",
     "allowArrowFunctions": true,
     "no-underscore-dangle": 0,
-    "react/jsx-filename-extension": 0
+    "no-console": 0,
+    "react/jsx-filename-extension": 0,
+    "react/button-has-type": 0
   },
   "parserOptions": {
     "ecmaVersion": 8

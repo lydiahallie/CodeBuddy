@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import ProfileInfo from './ProfileInfo';
 
 class UserProfile extends React.Component {
@@ -23,15 +24,17 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    return this.props.currentUser && (
+    const reqData = { ...this.state };
+    const { currentUser } = this.props;
+    return currentUser && (
       <div className="overview">
         <div className="profile-card">
           <ProfileInfo
-            info={this.props.currentUser[0]}
+            info={currentUser[0]}
             onSubmit={this.handleSubmit}
             handleImage={this.handleImage}
             updateProfile={this.updateProfile}
-            reqData={this.state}
+            reqData={reqData}
             onSkillsChange={this.onSkillsChange}
           />
         </div>
@@ -41,3 +44,25 @@ class UserProfile extends React.Component {
 }
 
 export default UserProfile;
+
+UserProfile.propTypes = {
+  currentUser: PropTypes.shape({
+    profile: PropTypes.shape({
+      userName: PropTypes.string.isRequired,
+      img: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      skills: PropTypes.arrayOf(
+        PropTypes.shape({
+          lang: PropTypes.string.isRequired,
+          value: PropTypes.number.isRequired,
+          // eslint-disable-next-line comma-dangle
+        })
+      ).isRequired,
+      level: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }),
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    __v: PropTypes.number,
+  }).isRequired,
+};

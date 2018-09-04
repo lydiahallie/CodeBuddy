@@ -23,6 +23,8 @@ ContactForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 
-export const CardContact = reduxForm({
+const CardContact = reduxForm({
   form: 'contactMessage',
 })(ContactForm);
+
+export default CardContact;

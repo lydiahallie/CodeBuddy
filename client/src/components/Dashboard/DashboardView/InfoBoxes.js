@@ -5,7 +5,7 @@ import InfoBox from '../styled_components/InfoBox';
 import Title from '../styled_components/Title';
 import Bar from '../styled_components/Bar';
 import { BOX_INFO } from '../../../data/dashboard_data';
-import { MessagesIcon } from '../../../assets/icons.js';
+import { MessagesIcon } from '../../../assets/icons';
 
 
 export const ProgressBar = ({ width }) => (

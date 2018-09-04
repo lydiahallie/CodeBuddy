@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import MessageReply from './MessageReply';
 
 const MessageContext = React.createContext('no default');
@@ -39,7 +40,7 @@ const Message = ({
   </div>
 );
 
-const MessagesOverview = props => (
+const MessagesOverview = () => (
   <MessageConsumer>
     {({ activeMessage, toggle, messages }) => (
       messages.length ? (
@@ -79,7 +80,9 @@ class AllMessages extends Component {
     const { activeMessage } = this.state;
     return (
       <div className="messages-wrapper">
-        <MessageContext.Provider value={{ activeMessage, messages, toggle: this.changeActiveMessage }}>
+        <MessageContext.Provider
+          value={{ activeMessage, messages, toggle: this.changeActiveMessage }}
+        >
           <MessagesOverview />
           <MessageReply onSubmit={this.onSubmit} />
         </MessageContext.Provider>
@@ -87,5 +90,37 @@ class AllMessages extends Component {
     );
   }
 }
+
+AllMessages.propTypes = {
+  messages: PropTypes.arrayOf(
+    PropTypes.shape({
+      author: PropTypes.shape({
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        img: PropTypes.string.isRequired,
+      }).isRequired,
+      body: PropTypes.string.isRequired,
+      // eslint-disable-next-line comma-dangle
+    })
+  ).isRequired,
+  currentUser: PropTypes.number.isRequired,
+};
+
+Message.propTypes = {
+  msg: PropTypes.arrayOf(
+    PropTypes.shape({
+      author: PropTypes.shape({
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        img: PropTypes.string.isRequired,
+      }).isRequired,
+      body: PropTypes.string.isRequired,
+      // eslint-disable-next-line comma-dangle
+    })
+  ).isRequired,
+  toggle: PropTypes.func.isRequired,
+  i: PropTypes.number.isRequired,
+  activeMessage: PropTypes.number.isRequired,
+};
 
 export default AllMessages;

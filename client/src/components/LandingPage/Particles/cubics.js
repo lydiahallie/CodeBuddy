@@ -1,7 +1,7 @@
 import React from 'react';
 import Particles from 'react-particles-js';
 
-export const CubicParticleWrapper = () => (
+const CubicParticleWrapper = () => (
   <Particles
     className="cubic-particles"
     style={{
@@ -120,3 +120,5 @@ export const CubicParticleWrapper = () => (
     }}
   />
 );
+
+export default CubicParticleWrapper;

@@ -1,7 +1,7 @@
 import React from 'react';
-import { PREVIEW_DATA } from './previewData';
+import PREVIEW_DATA from './previewData';
 
-export const Preview = () => (
+const Preview = () => (
   <div className="preview-images">
     {PREVIEW_DATA.map((item, i) => (
       <div className="image-wrapper">
@@ -13,3 +13,5 @@ export const Preview = () => (
     ))}
   </div>
 );
+
+export default Preview;

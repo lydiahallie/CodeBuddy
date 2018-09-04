@@ -15,7 +15,7 @@ const StatsInfo = ({ val, name, line }) => (
   </React.Fragment>
 );
 
-const DashUserProfile = ({ currentUser, messages }) => (
+const DashUserProfile = ({ currentUser }) => (
   currentUser && currentUser.profile !== undefined
     && (
     <InfoBox none odd margin size={400} height={700}>

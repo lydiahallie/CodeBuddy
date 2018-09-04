@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import shortid from 'short-id';
+import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import { LOGIN_FIELDS, SIGNUP_FIELDS } from './formFields';
 
@@ -13,6 +14,7 @@ class InputFields extends Component {
 
   render() {
     const { handleSubmit, activeBtn } = this.props;
+    const { animate } = this.state;
     const fieldInfo = activeBtn === 'login'
       ? { type: LOGIN_FIELDS, class: 'lg' }
       : { type: SIGNUP_FIELDS, class: 'su' };
@@ -26,7 +28,7 @@ class InputFields extends Component {
             type={field.type}
             component="input"
             placeholder={field.placeholder}
-            className={`input-${fieldInfo.class}-${index + 1} animate-${this.state.animate}`}
+            className={`input-${fieldInfo.class}-${index + 1} animate-${animate}`}
           />
         ))}
         <button type="submit">Submit</button>
@@ -34,6 +36,11 @@ class InputFields extends Component {
     );
   }
 }
+
+InputFields.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  activeBtn: PropTypes.string.isRequired,
+};
 
 export default reduxForm({
   form: 'userAuth',
