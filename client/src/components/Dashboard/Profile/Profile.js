@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import ProfileInfo from './ProfileInfo';
+import {
+  Spinner
+} from '../../../assets/spinners';
 
 class UserProfile extends React.Component {
   constructor() {
@@ -23,7 +26,7 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    return this.props.currentUser && (
+  return  this.props.currentUser ? <div className="overview"><Spinner/></div> : (
       <div className="overview">
         <div className="profile-card">
           <ProfileInfo
