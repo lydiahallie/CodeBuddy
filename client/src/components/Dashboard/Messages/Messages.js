@@ -103,7 +103,25 @@ AllMessages.propTypes = {
       // eslint-disable-next-line comma-dangle
     })
   ).isRequired,
-  currentUser: PropTypes.number.isRequired,
+  currentUser: PropTypes.shape({
+    profile: PropTypes.shape({
+      userName: PropTypes.string.isRequired,
+      img: PropTypes.string.isRequired,
+      title: PropTypes.bool.isRequired,
+      skills: PropTypes.arrayOf(
+        PropTypes.shape({
+          lang: PropTypes.string.isRequired,
+          value: PropTypes.number.isRequired,
+          // eslint-disable-next-line comma-dangle
+        })
+      ).isRequired,
+      level: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }),
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    __v: PropTypes.number,
+  }).isRequired,
 };
 
 Message.propTypes = {

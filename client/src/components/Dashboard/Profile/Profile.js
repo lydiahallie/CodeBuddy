@@ -50,7 +50,7 @@ UserProfile.propTypes = {
     profile: PropTypes.shape({
       userName: PropTypes.string.isRequired,
       img: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
+      title: PropTypes.bool.isRequired,
       skills: PropTypes.arrayOf(
         PropTypes.shape({
           lang: PropTypes.string.isRequired,

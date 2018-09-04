@@ -54,22 +54,8 @@ class MessagesTable extends Component {
   }
 }
 
-// TODO: Fix the comma-dangle error which should not be showing for the arrayOf
-// arguments
 MessagesTable.propTypes = {
-  posts: PropTypes.arrayOf(
-    PropTypes.shape({
-      post: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-      }).isRequired,
-      firstName: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
-      img: PropTypes.string.isRequired,
-      __v: PropTypes.number,
-      // eslint-disable-next-line comma-dangle
-    })
-  ).isRequired,
+  posts: PropTypes.object.isRequired, //eslint-disable-line
 };
 
 export default MessagesTable;

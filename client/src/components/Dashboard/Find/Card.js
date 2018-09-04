@@ -131,7 +131,7 @@ Card.propTypes = {
     profile: PropTypes.shape({
       userName: PropTypes.string.isRequired,
       img: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
+      title: PropTypes.bool.isRequired,
       skills: PropTypes.arrayOf(
         PropTypes.shape({
           lang: PropTypes.string.isRequired,
@@ -142,11 +142,15 @@ Card.propTypes = {
       level: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
     }),
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
     __v: PropTypes.number,
   }).isRequired,
-  fetchMessages: PropTypes.func.isRequired,
+  fetchMessages: PropTypes.func,
+};
+
+Card.defaultProps = {
+  fetchMessages: undefined,
 };
 
 export default Card;

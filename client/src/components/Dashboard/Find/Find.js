@@ -115,8 +115,8 @@ Find.propTypes = {
       level: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
     }),
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
     __v: PropTypes.number,
   }).isRequired,
 };
