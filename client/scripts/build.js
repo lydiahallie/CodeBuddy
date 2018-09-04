@@ -1,5 +1,3 @@
-/* eslint-disable global-require, import/no-dynamic-require, no-console */
-
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
@@ -26,8 +24,7 @@ const printBuildError = require('react-dev-utils/printBuildError');
 const paths = require('../config/paths');
 const config = require('../config/webpack.config.prod');
 
-const { measureFileSizesBeforeBuild } = FileSizeReporter;
-const { printFileSizesAfterBuild } = FileSizeReporter;
+const { measureFileSizesBeforeBuild, printFileSizesAfterBuild } = FileSizeReporter;
 const useYarn = fs.existsSync(paths.yarnLockFile);
 
 // These sizes are pretty large. We'll warn for bundles exceeding them.

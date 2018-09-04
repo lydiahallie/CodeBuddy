@@ -45,7 +45,8 @@ class Dashboard extends Component {
         return <DashboardView />;
       case 'messages':
         return <Messages />;
-      default:
+
+        // no default
     }
   }
 

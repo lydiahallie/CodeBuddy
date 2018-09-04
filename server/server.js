@@ -31,9 +31,9 @@ app.use(passport.session());
 
 const PORT = process.env.PORT || 5000;
 
-require('./routes/authRoutes.js')(app);
-require('./routes/usersRoutes.js')(app);
-require('./routes/postsRoutes.js')(app);
-require('./routes/messageRoutes.js')(app);
+require('./routes/authRoutes.js');
+require('./routes/usersRoutes.js');
+require('./routes/postsRoutes.js');
+require('./routes/messageRoutes.js');
 
 app.listen(PORT, console.log(`Listening on ${PORT}!`));
