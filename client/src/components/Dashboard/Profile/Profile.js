@@ -13,7 +13,7 @@ class UserProfile extends React.Component {
     };
   }
 
-  handleSubmit = async (values) => {
+  handleSubmit = async values => {
     this.setState({ request: true });
     const { currentUser } = this.props;
     const res = await axios.post('/api/update_user', { currentUser, values });

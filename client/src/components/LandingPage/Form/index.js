@@ -19,7 +19,7 @@ class AuthForm extends Component {
 
   changeActiveBtn = value => this.setState({ activeBtn: value });
 
-  handleSubmit = (values) => {
+  handleSubmit = values => {
     axios.post('/api/userauth', values)
       .then(() => this.props.history.push('/dashboard/dashboard')); //eslint-disable-line
   }

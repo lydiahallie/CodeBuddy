@@ -16,7 +16,7 @@ module.exports = () => {
     Message.find({ recipientUserId: req.user._id }, (err, messages) => {
       const messageMap = {};
 
-      messages.map((message) => {
+      messages.map(message => {
         messageMap[message._id] = message;
         return messageMap;
       });

@@ -66,7 +66,7 @@ class Find extends Component {
     }), 2000);
   }
 
-  updateResults = (name) => {
+  updateResults = name => {
     const { filterOptions, activeUsers } = this.state;
     if (!filterOptions.includes(name)) {
       filterOptions.push(name);

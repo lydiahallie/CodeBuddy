@@ -16,7 +16,7 @@ module.exports = () => {
     Post.find({}, (err, posts) => {
       const postMap = {};
 
-      posts.map((post) => {
+      posts.map(post => {
         postMap[post._id] = post;
         return postMap;
       });

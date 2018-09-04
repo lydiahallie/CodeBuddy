@@ -18,12 +18,12 @@ import { FETCH_USER, FETCH_POSTS, FETCH_MESSAGES } from '../constants/actionType
 // }
 
 // Using real backend.
-export const fetchUser = async (dispatch) => {
+export const fetchUser = async dispatch => {
   const res = await axios.get('/api/current_user');
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const fetchPosts = async (dispatch) => {
+export const fetchPosts = async dispatch => {
   const res = await axios.get('/api/all_posts');
   dispatch({ type: FETCH_POSTS, payload: res.data });
 };

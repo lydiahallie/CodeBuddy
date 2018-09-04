@@ -61,11 +61,11 @@ class Card extends Component {
     this.setState({ expanded: !expanded });
   }
 
-  changeView = (view) => {
+  changeView = view => {
     this.setState({ active: view });
   }
 
-  onSubmit = (values) => {
+  onSubmit = values => {
     const { user, currentUser, fetchMessages } = this.props;
     axios.post('/api/add_message', { values, user, currentUser });
     fetchMessages();

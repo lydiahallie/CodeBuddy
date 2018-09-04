@@ -37,7 +37,7 @@ class Dashboard extends Component {
   }
 
   // eslint-disable-next-line consistent-return
-  blockComponent = (block) => {
+  blockComponent = block => {
     switch (block) {
       case 'find':
         return <Find />;
@@ -51,7 +51,7 @@ class Dashboard extends Component {
     }
   }
 
-  changeView = (view) => {
+  changeView = view => {
     this.setState({ currentView: view });
   }
 

@@ -19,7 +19,7 @@ module.exports = () => {
     User.find({}, (err, users) => {
       const userMap = {};
 
-      users.map((user) => {
+      users.map(user => {
         userMap[user._id] = user;
         return userMap;
       });

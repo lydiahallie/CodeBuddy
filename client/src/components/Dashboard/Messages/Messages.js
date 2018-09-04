@@ -8,10 +8,10 @@ const MessageContext = React.createContext('no default');
 
 export const MessageConsumer = props => (
   <MessageContext.Consumer {...props}>
-    {(context) => {
+    {context => {
       if (!context) {
         throw new Error(
-          'Message compound components cannot be rendered outside the Message component',
+          'Message compound components cannot be rendered outside the Message component'
         );
       }
       return props.children(context);
@@ -19,20 +19,20 @@ export const MessageConsumer = props => (
   </MessageContext.Consumer>
 );
 
-const Message = ({
-  msg, toggle, i, activeMessage,
-}) => (
-  <div onClick={() => toggle(i)} className={`message active-${i === activeMessage}`}>
+// TODO: Seems like this is part of a bigger issue not yet resolved:
+// https://github.com/eslint/eslint/issues/9259
+// eslint-disable-next-line
+const Message = ({ msg, toggle, i, activeMessage }) => (
+  <div
+    onClick={() => toggle(i)}
+    className={`message active-${i === activeMessage}`}
+  >
     <div className="message-info">
       <img src={msg.author.img} alt="" />
     </div>
     <div className="post-content">
       <div className="post-info">
-        <p id="user-msg">
-          {msg.author.firstName}
-          {' '}
-          {msg.author.lastName}
-        </p>
+        <p id="user-msg">{`${msg.author.firstName} ${msg.author.lastName}`}</p>
         <p id="user-msg-time">{moment(msg.author.date).fromNow()}</p>
       </div>
       <p id="msg">{msg.body}</p>
@@ -40,35 +40,44 @@ const Message = ({
   </div>
 );
 
+const NoMessagesInfo = () => (
+  <div className="message active-true">
+    <p id="msg">
+      You have not yet received any messages. Once you do, they will appear
+      here!
+    </p>
+  </div>
+);
+
 const MessagesOverview = () => (
   <MessageConsumer>
     {({ activeMessage, toggle, messages }) => (
-      messages.length ? (
-        <div className="overview messages">
-          {Object.values(messages).map((msg, i) => (
+      <div className="overview messages">
+        {!messages.length ? (
+          <NoMessagesInfo />
+        ) : (
+          messages.map((msg, i) => (
             <Message
               activeMessage={activeMessage}
               toggle={toggle}
               msg={msg}
               i={i}
             />
-          ))}
-        </div>
-      )
-        : <div />
+          ))
+        )}
+      </div>
     )}
   </MessageConsumer>
 );
 
-
 class AllMessages extends Component {
   state = { activeMessage: 0 };
 
-  changeActiveMessage = (val) => {
+  changeActiveMessage = val => {
     this.setState({ activeMessage: val });
   };
 
-  onSubmit = (values) => {
+  onSubmit = values => {
     const { messages, currentUser } = this.props;
     const { activeMessage } = this.state;
     const user = Object.values(messages)[activeMessage].author;
@@ -84,7 +93,7 @@ class AllMessages extends Component {
           value={{ activeMessage, messages, toggle: this.changeActiveMessage }}
         >
           <MessagesOverview />
-          <MessageReply onSubmit={this.onSubmit} />
+          {messages.length && <MessageReply onSubmit={this.onSubmit} />}
         </MessageContext.Provider>
       </div>
     );
