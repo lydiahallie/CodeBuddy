@@ -9,14 +9,12 @@ import DashboardView from './DashboardView/Dashboard';
 import Messages from '../../containers/Messages';
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-const View = ({ children }) => {
-  console.log('children', children);
-  return (
-    <div className="dashboard-content">
-      {children}
-    </div>
-  );
-};
+const View = ({ children }) => (
+  // console.log('children', children);
+  <div className="dashboard-content">
+    {children}
+  </div>
+);
 
 class Dashboard extends Component {
   constructor() {
@@ -30,7 +28,7 @@ class Dashboard extends Component {
     const {
       fetchUser, fetchPosts, fetchMessages, currentUser,
     } = this.props;
-    console.log('=====>', currentUser);
+    // console.log('=====>', currentUser);
     fetchUser();
     fetchPosts();
     fetchMessages(currentUser);

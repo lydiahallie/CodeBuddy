@@ -50,7 +50,7 @@ passport.use(new LocalStrategy(
     passwordField: 'password',
     passReqToCallback: true,
   }, async (req, email, password, done) => {
-    console.log('Being called now');
+    // console.log('Being called now');
     const { userName, firstName, lastName } = req.body;
     try {
       const user = await User.findOne({ email });
@@ -64,7 +64,7 @@ passport.use(new LocalStrategy(
       }).save();
       if (newUser) return done(null, newUser);
     } catch (e) {
-      console.log('Error: ', e);
+      console.log('Error: ', e); // eslint-disable-line no-console
     }
 
     return null;

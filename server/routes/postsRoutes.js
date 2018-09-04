@@ -37,7 +37,7 @@ module.exports = () => {
         body: req.body.formData.body,
       },
     }).then(() => {
-      console.log('done');
+      // console.log('done');
       res.send();
     });
   });

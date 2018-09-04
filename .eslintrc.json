@@ -11,7 +11,6 @@
     "react/button-has-type": 0,
     "allowArrowFunctions": true,
     "no-underscore-dangle": 0,
-    "no-console": 0,
     "comma-dangle": ["error", {
       "arrays": "always-multiline",
       "objects": "always-multiline",

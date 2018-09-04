@@ -66,10 +66,10 @@ const ProfileInputFields = ({ currentUser, profile = false }) => {
 };
 
 const ProfileInfoForm = ({
-  info, handleSubmit, reqData, ...props
-}) => {
-  console.log('profile info form props', props);
-  return info && (
+  info, handleSubmit, reqData,
+}) => (
+  // console.log('profile info form props', props);
+  info && (
     <form onSubmit={handleSubmit} className="profile-user-info-wrapper">
       <div className="profile-user-info-input">
         <div className="profile-user-img">
@@ -91,8 +91,8 @@ const ProfileInfoForm = ({
         </button>
       </div>
     </form>
-  );
-};
+  )
+);
 
 RequestMessage.propTypes = {
   req: PropTypes.bool.isRequired,
