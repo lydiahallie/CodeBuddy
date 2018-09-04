@@ -58,7 +58,7 @@ class Header extends Component {
 
 MobileListMenu.propTypes = {
   onClick: PropTypes.func.isRequired,
-  menuActive: PropTypes.string.isRequired,
+  menuActive: PropTypes.bool.isRequired,
 };
 
 export default Header;

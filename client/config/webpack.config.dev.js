@@ -170,7 +170,7 @@ module.exports = {
                   // https://github.com/facebookincubator/create-react-app/issues/2677
                   ident: 'postcss',
                   plugins: () => [
-                    require('postcss-flexbugs-fixes'),
+                    require('postcss-flexbugs-fixes'), // eslint-disable-line global-require
                     autoprefixer({
                       browsers: [
                         '>1%',
