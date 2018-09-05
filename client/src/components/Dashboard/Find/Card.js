@@ -14,20 +14,11 @@ const CardButton = ({ btn, changeView }) => (
   </div>
 );
 
-CardButton.propTypes = {
-  btn: PropTypes.string.isRequired,
-  changeView: PropTypes.func.isRequired,
-};
-
 const CardAbout = ({ text }) => (
   <div className="card-col-info-about">
     <p>{text}</p>
   </div>
 );
-
-CardAbout.propTypes = {
-  text: PropTypes.string.isRequired,
-};
 
 const CardSkills = ({ skills }) => (
   skills
@@ -105,6 +96,15 @@ class Card extends Component {
     );
   }
 }
+
+CardButton.propTypes = {
+  btn: PropTypes.string.isRequired,
+  changeView: PropTypes.func.isRequired,
+};
+
+CardAbout.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
 Card.propTypes = {
   i: PropTypes.number.isRequired,

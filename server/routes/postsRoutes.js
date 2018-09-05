@@ -1,17 +1,10 @@
-const express = require('express');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
-const app = express();
 const requireLogin = require('../middlewares/requireLogin');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 const Post = mongoose.model('posts');
 const User = mongoose.model('users');
 
-module.exports = () => {
+module.exports = app => {
   app.get('/api/all_posts', requireLogin, (req, res) => {
     Post.find({}, (err, posts) => {
       const postMap = {};

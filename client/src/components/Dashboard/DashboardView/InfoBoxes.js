@@ -14,10 +14,6 @@ export const ProgressBar = ({ width }) => (
   </div>
 );
 
-ProgressBar.propTypes = {
-  width: PropTypes.number.isRequired,
-};
-
 const InfoBoxes = ({ messages }) => (
   <div className="info-boxes">
     {BOX_INFO.map(box => (
@@ -36,6 +32,10 @@ const InfoBoxes = ({ messages }) => (
     </InfoBox>
   </div>
 );
+
+ProgressBar.propTypes = {
+  width: PropTypes.number.isRequired,
+};
 
 InfoBoxes.propTypes = {
   messages: PropTypes.arrayOf(
