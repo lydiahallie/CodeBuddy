@@ -35,17 +35,21 @@ $font2: 'Source Sans Pro', sans-serif
     font-size: 50px !important
 
 .info 
-  height: 400px 
+  height: 30% 
   +flex(center, center)
   flex-direction: column
-  padding: 0 200px
+  padding: 0 50px
   margin-top: 100px
   #info-span 
     color: rgba(255, 255, 255, 0.9)
     font-family: $font1
     font-weight: 100
-    font-size: 35px
+    font-size: 25px
     text-align: center
+    @include md
+      font-size: 35px
+      padding: 0 200px
+
 
   #info-btn 
     width: 200px
@@ -53,24 +57,36 @@ $font2: 'Source Sans Pro', sans-serif
     padding: 10px 0px
     border: none
     margin: 30px
+    margin-bottom: 100px
     border-radius: 5px
     font-family: $font2
     font-weight: 900
     box-shadow: #00b496 0px 0px 10px
 
+    &:hover
+      opacity: .8
+      transition: .6s
+
 .cubic-particles 
   height: 200px
 
 .footer 
-  height: 300px 
+  height: 25% 
   display: flex 
+  // flex-direction: column
   background-color: #2a2a2a
-  border-top: 2px solid #262626  
+  border-top: 2px solid #262626
   padding: 50px 0px
+  text-align: left
+
+  @include md
+    flex-direction: row
+    justify-content: left
+    text-align: left
+
   .footer-col 
     display: flex
     flex-direction: column
-    width: 400px
     margin: 0 70px
     h3, a 
       color: white 
@@ -83,6 +99,8 @@ $font2: 'Source Sans Pro', sans-serif
        font-size: 14px 
        letter-spacing: 1px
        margin: 6px 0px
+
+
 
 
 @keyframes fade 
