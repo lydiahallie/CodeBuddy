@@ -1,12 +1,13 @@
 import React from 'react';
-import { Header } from '../Header';
-import { Content } from '../Form';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Header from '../Header';
+import Content from '../Form';
 import * as actions from '../../../actions';
-import { Info } from '../Info';
-import { Preview } from '../Preview';
-import { CubicParticleWrapper } from '../Particles/cubics';
-import { FooterWrapper as Footer } from '../Footer';
+import Info from '../Info';
+import Preview from '../Preview';
+import CubicParticleWrapper from '../Particles/cubics';
+import Footer from '../Footer';
 
 const App = ({ history }) => (
   <div className="app">
@@ -18,5 +19,9 @@ const App = ({ history }) => (
     <Footer />
   </div>
 );
+
+App.propTypes = {
+  history: PropTypes.object.isRequired, //eslint-disable-line
+};
 
 export default connect(null, actions)(App);
