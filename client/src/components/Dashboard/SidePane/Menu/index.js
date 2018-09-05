@@ -1,24 +1,24 @@
 import React from 'react';
 import shortid from 'short-id';
 import { NavLink } from 'react-router-dom';
-import { MENU_CONTENTS } from './menuBtns.js';
-import { LogOutIcon } from '../../../../assets/icons.js';
+import MENU_CONTENTS from './menuBtns';
+import { LogOutIcon } from '../../../../assets/icons';
 
-export const Menu = () => (
+const Menu = () => (
   <div className="menu">
     {MENU_CONTENTS.map(btn => (
       <NavLink
         to={`/dashboard/${btn.name.toLowerCase()}`}
-        className="btn-menu" 
+        className="btn-menu"
         activeClassName="active"
-        key={shortid.generate()} 
+        key={shortid.generate()}
       >
         <div className="icon">
           {btn.icon}
         </div>
         {btn.name}
-      </NavLink>  
-    ))} 
+      </NavLink>
+    ))}
     <a
       href="/api/logout"
       className="btn-menu"
@@ -27,6 +27,8 @@ export const Menu = () => (
         <LogOutIcon />
       </div>
       Log Out
-    </a>  
+    </a>
   </div>
 );
+
+export default Menu;

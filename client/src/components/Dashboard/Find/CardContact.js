@@ -1,23 +1,30 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { ProfileIcon, MessagesIcon, LinkedinIcon, GithubIcon } from '../../../assets/icons';
+import PropTypes from 'prop-types';
+import {
+  ProfileIcon, MessagesIcon, LinkedinIcon, GithubIcon,
+} from '../../../assets/icons';
 
-const Icons = [ <ProfileIcon />, <MessagesIcon />, <LinkedinIcon />, <GithubIcon />];
+const Icons = [<ProfileIcon />, <MessagesIcon />, <LinkedinIcon />, <GithubIcon />];
 
-const ContactForm = ({ user, handleSubmit }) => (
+const ContactForm = ({ handleSubmit }) => (
   <div className="card-col-info-contact">
-    <form onSubmit={ handleSubmit }>
-      <Field component="textarea" name="message" /> 
+    <form onSubmit={handleSubmit}>
+      <Field component="textarea" name="message" />
       <button type="submit" />
     </form>
     <div className="contact-btns">
-      {Icons.map((icon, i) =>
-        <div className="contact-btn" data-style={i}>{icon}</div>
-      )}
+      {Icons.map((icon, i) => <div className="contact-btn" data-style={i}>{icon}</div>)}
     </div>
   </div>
 );
 
-export const CardContact = reduxForm({
-  form: 'contactMessage'
-})(ContactForm)
+ContactForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
+
+const CardContact = reduxForm({
+  form: 'contactMessage',
+})(ContactForm);
+
+export default CardContact;

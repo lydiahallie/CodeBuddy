@@ -1,17 +1,13 @@
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
-import UserProfile from '../components/Dashboard/Profile/Profile'; 
+import UserProfile from '../components/Dashboard/Profile/Profile';
 
-const mapStateToProps = state => {
-  return {
-    currentUser: state.user,
-  }
-}
+const mapStateToProps = state => ({
+  currentUser: state.user,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchUser: () => dispatch(fetchUser)
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  fetchUser: () => dispatch(fetchUser),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

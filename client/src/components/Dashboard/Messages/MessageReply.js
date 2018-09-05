@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import { MessageConsumer } from './Messages';
 
@@ -6,10 +7,14 @@ const MessageReply = ({ messages, activeMessage, handleSubmit }) => {
   const message = messages.length && messages[activeMessage];
   return messages.length && (
     <div className="message-reply">
-      <form onSubmit={ handleSubmit } >    
+      <form onSubmit={handleSubmit}>
         <div className="message-reply-author">
           <div className="message-reply-name">
-            <span>{message.author.firstName} {message.author.lastName}</span>
+            <span>
+              {message.author.firstName}
+              {' '}
+              {message.author.lastName}
+            </span>
           </div>
           <img src={message.author.img} alt="" />
         </div>
@@ -23,18 +28,22 @@ const MessageReply = ({ messages, activeMessage, handleSubmit }) => {
   );
 };
 
-export const MessageReplyInput = ({handleSubmit}) => (
+export const MessageReplyInput = ({ handleSubmit }) => (
   <MessageConsumer>
-    {({activeMessage, toggle, messages}) => (
-      <MessageReply 
-        activeMessage={activeMessage} 
-        messages={messages} 
-        handleSubmit={handleSubmit} 
+    {({ activeMessage, messages }) => (
+      <MessageReply
+        activeMessage={activeMessage}
+        messages={messages}
+        handleSubmit={handleSubmit}
       />
     )}
   </MessageConsumer>
 );
 
+MessageReplyInput.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
+
 export default reduxForm({
-  form: 'messageReply'
+  form: 'messageReply',
 })(MessageReplyInput);

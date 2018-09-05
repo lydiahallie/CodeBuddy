@@ -1,22 +1,26 @@
-const passport = require('passport'),
-      GoogleStrategy = require('passport-google-oauth20').Strategy,
-      LocalStrategy = require('passport-local').Strategy,
-      keys = require('../config/keys'),
-      mongoose = require('mongoose'),
-      passportJWT = require('passport-jwt'),
-      JWTStrategy   = passportJWT.Strategy,
-      bcrypt = require('bcrypt'),
-      ExtractJWT = passportJWT.ExtractJwt;
+const passport = require('passport');
+// const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
+const mongoose = require('mongoose');
+// const passportJWT = require('passport-jwt');
+const bcrypt = require('bcrypt');
+// const keys = require('../config/keys');
+
+// const JWTStrategy = passportJWT.Strategy;
+// const ExtractJWT = passportJWT.ExtractJwt;
 
 const User = mongoose.model('users');
 
 passport.serializeUser((user, done) => done(null, user.id));
 
-passport.deserializeUser( async (id, done) => {
+passport.deserializeUser(async (id, done) => {
   const user = await User.findById(id);
   if (user) return done(null, user);
-})
 
+  return null;
+});
+
+/*
 passport.use(
   new GoogleStrategy({
     clientID: keys.googleClientID,
@@ -24,20 +28,20 @@ passport.use(
     callbackURL: '/auth/google/callback',
     proxy: true,
   }, async (accessToken, refreshToken, profile, done) => {
-    const user = await User.findOne({ 'email': profile.email });
+    const user = await User.findOne({ email: profile.email });
     if (user) return done(null, user);
-    const newUser = 
-      await new User({ 
-        userName: profile.displayName,
-        firstName: profile.name.givenName,
-        lastName: profile.name.familyName,
-        img: profile.photos[0].value.split('sz=50').join('sz=150'),
-        email: profile.email,
-        gender: profile.gender,
-      }).save();
+    const newUser = await new User({
+      userName: profile.displayName,
+      firstName: profile.name.givenName,
+      lastName: profile.name.familyName,
+      img: profile.photos[0].value.split('sz=50').join('sz=150'),
+      email: profile.email,
+      gender: profile.gender,
+    }).save();
     newUser => done(null, newUser);
-  }
-));
+  }),
+);
+*/
 
 
 passport.use(new LocalStrategy(
@@ -46,21 +50,23 @@ passport.use(new LocalStrategy(
     passwordField: 'password',
     passReqToCallback: true,
   }, async (req, email, password, done) => {
-    console.log('Being called now')
+    // console.log('Being called now');
     const { userName, firstName, lastName } = req.body;
     try {
-      const user = await User.findOne({ 'email': email })
+      const user = await User.findOne({ email });
       if (user) return done(null, user);
-      const newUser = await new User({ 
-        email, 
+      const newUser = await new User({
+        email,
         password: bcrypt.hashSync(password, 10),
-        userName, 
-        firstName, 
-        lastName 
+        userName,
+        firstName,
+        lastName,
       }).save();
-      newUser => done(null, newUser)
+      if (newUser) return done(null, newUser);
     } catch (e) {
-      console.log("Error: ", e)
+      console.log('Error: ', e); // eslint-disable-line no-console
     }
-  }
+
+    return null;
+  },
 ));

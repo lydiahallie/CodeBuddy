@@ -9,4 +9,3 @@ const Bar = styled.div`
 `;
 
 export default Bar;
-
