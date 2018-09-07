@@ -20,10 +20,31 @@ module.exports = app => {
   });
 
   app.post(
-    '/api/userauth',
-    passport.authenticate('local'),
-    (req, res) => {
-      res.send('Done');
-    },
+    '/api/login',
+    (req, res, next) => {
+      passport.authenticate('local-login', (err, user, info) => {
+        if (err) {
+          return res.status(500).send({ error: 'Internal Server Error' });
+        }
+        if (!user) {
+          return res.status(400).send({ error: info });
+        }
+        return res.send('Done');
+      })(req, res, next);
+    }
+  );
+  app.post(
+    '/api/signup',
+    (req, res, next) => {
+      passport.authenticate('local-signup', (err, user, info) => {
+        if (err) {
+          return res.status(500).send({ error: 'Internal Server Error' });
+        }
+        if (!user) {
+          return res.status(400).send({ error: info });
+        }
+        return res.send('Done');
+      })(req, res, next);
+    }
   );
 };
