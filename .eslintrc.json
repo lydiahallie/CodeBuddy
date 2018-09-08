@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
+  "extends": ["airbnb", "prettier", "prettier/react"],
   "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
     "jsx-a11y/no-static-element-interactions": 0,
