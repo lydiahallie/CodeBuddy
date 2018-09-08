@@ -44,17 +44,20 @@ passport.use(
 */
 
 
-passport.use(new LocalStrategy(
+passport.use('local-signup', new LocalStrategy(
   {
     usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true,
   }, async (req, email, password, done) => {
-    // console.log('Being called now');
     const { userName, firstName, lastName } = req.body;
     try {
       const user = await User.findOne({ email });
-      if (user) return done(null, user);
+      if (user) return done(null, false, 'This emailId is already taken.');
+    } catch (e) {
+      return done(e);
+    }
+    try {
       const newUser = await new User({
         email,
         password: bcrypt.hashSync(password, 10),
@@ -62,11 +65,30 @@ passport.use(new LocalStrategy(
         firstName,
         lastName,
       }).save();
-      if (newUser) return done(null, newUser);
+      return done(null, newUser);
     } catch (e) {
-      console.log('Error: ', e); // eslint-disable-line no-console
+      return done(e);
     }
+  },
+));
 
-    return null;
+passport.use('local-login', new LocalStrategy(
+  {
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true,
+  }, async (req, email, password, done) => {
+    try {
+      const user = await User.findOne({ email });
+      if (!user) {
+        return done(null, false, 'Invalid Username');
+      }
+      if (!bcrypt.compareSync(password, user.password)) {
+        return done(null, false, 'Wrong Password');
+      }
+      return done(null, user);
+    } catch (e) {
+      return done(e);
+    }
   },
 ));
