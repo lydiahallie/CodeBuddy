@@ -35,4 +35,5 @@ require('./routes/usersRoutes.js')(app);
 require('./routes/postsRoutes.js')(app);
 require('./routes/messageRoutes.js')(app);
 
+// eslint-disable-next-line no-console
 app.listen(PORT, console.log(`Listening on ${PORT}!`));
