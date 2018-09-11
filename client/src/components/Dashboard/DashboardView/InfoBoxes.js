@@ -7,7 +7,6 @@ import Bar from '../styled_components/Bar';
 import { BOX_INFO } from '../../../data/dashboard_data';
 import { MessagesIcon } from '../../../assets/icons';
 
-
 export const ProgressBar = ({ width }) => (
   <div className="progressbar">
     <Bar width={width} />
@@ -25,7 +24,9 @@ const InfoBoxes = ({ messages }) => (
       </InfoBox>
     ))}
     <InfoBox size={400}>
-      <div id="box-icon"><MessagesIcon /></div>
+      <div id="box-icon">
+        <MessagesIcon />
+      </div>
       <Title title>{Object.keys(messages).length}</Title>
       <Title>Unread Messages</Title>
       <ProgressBar width={Object.keys(messages).length * 10} />
@@ -48,7 +49,7 @@ InfoBoxes.propTypes = {
       }),
       body: PropTypes.string.isRequired,
       __v: PropTypes.number,
-    }),
+    })
   ).isRequired,
 };
 

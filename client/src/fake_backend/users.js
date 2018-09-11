@@ -2,7 +2,8 @@ export const CURRENT_USER = [
   {
     profile: {
       userName: 'lydiahallie',
-      img: 'https://pbs.twimg.com/profile_images/933660989802807296/maudzPZE_400x400.jpg',
+      img:
+        'https://pbs.twimg.com/profile_images/933660989802807296/maudzPZE_400x400.jpg',
       title: 'JavaScript Developer',
       skills: [
         { lang: 'JavaScript', value: 95 },
@@ -10,7 +11,8 @@ export const CURRENT_USER = [
         { lang: 'Python', value: 80 },
       ],
       level: 'Advanced',
-      description: "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
+      description:
+        "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
     },
     firstName: 'Lydia',
     lastName: 'Hallie',
@@ -22,7 +24,8 @@ export const ALL_USERS = [
   {
     profile: {
       userName: 'lydiahallie',
-      img: 'https://pbs.twimg.com/profile_images/933660989802807296/maudzPZE_400x400.jpg',
+      img:
+        'https://pbs.twimg.com/profile_images/933660989802807296/maudzPZE_400x400.jpg',
       title: 'JavaScript Developer',
       skills: [
         { lang: 'JavaScript', value: 95 },
@@ -30,7 +33,8 @@ export const ALL_USERS = [
         { lang: 'Python', value: 80 },
       ],
       level: 'Advanced',
-      description: "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
+      description:
+        "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
     },
     firstName: 'Lydia',
     lastName: 'Hallie',
@@ -64,7 +68,8 @@ export const ALL_USERS = [
         { lang: 'Ruby on Rails', value: 70 },
       ],
       level: 'Advanced',
-      description: 'I am an experience front end engineer who works a lot with JavaScript, Python and RoR.',
+      description:
+        'I am an experience front end engineer who works a lot with JavaScript, Python and RoR.',
     },
     firstName: 'Sarah',
     lastName: 'Johnson',
@@ -115,7 +120,8 @@ export const ALL_USERS = [
         { lang: 'Sass', value: 90 },
       ],
       level: 'Advanced',
-      description: 'I am an art school graduate who has designed websites for tech giants.',
+      description:
+        'I am an art school graduate who has designed websites for tech giants.',
     },
     firstName: 'Sara',
     lastName: 'Wade',
@@ -132,7 +138,8 @@ export const ALL_USERS = [
         { lang: 'Python', value: 60 },
       ],
       level: 'Advanced',
-      description: "I'm a computer science student in Iceland, working on strengthening my backend skills.",
+      description:
+        "I'm a computer science student in Iceland, working on strengthening my backend skills.",
     },
     firstName: 'Sigurðr',
     lastName: ' Melvin',
@@ -149,7 +156,8 @@ export const ALL_USERS = [
         { lang: 'Haskell', value: 80 },
       ],
       level: 'Advanced',
-      description: 'I am a computer programmer who has worked a lot with game developement.',
+      description:
+        'I am a computer programmer who has worked a lot with game developement.',
     },
     firstName: 'Hubert',
     lastName: 'Beran',
@@ -183,7 +191,8 @@ export const ALL_USERS = [
         { lang: 'Go', value: 80 },
       ],
       level: 'Advanced',
-      description: "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
+      description:
+        "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
     },
     firstName: 'Kristiina',
     lastName: 'Thomas',
@@ -217,7 +226,8 @@ export const ALL_USERS = [
         { lang: 'Python', value: 80 },
       ],
       level: 'Advanced',
-      description: 'I am a backend engineer who works on 2D games in my free time!',
+      description:
+        'I am a backend engineer who works on 2D games in my free time!',
     },
     firstName: 'Rosalina',
     lastName: 'Holub',
@@ -251,7 +261,8 @@ export const ALL_USERS = [
         { lang: 'Python', value: 80 },
       ],
       level: 'Advanced',
-      description: "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
+      description:
+        "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
     },
     firstName: 'Marina',
     lastName: 'Hewitt',
@@ -268,7 +279,8 @@ export const ALL_USERS = [
         { lang: 'Ruby', value: 80 },
       ],
       level: 'Advanced',
-      description: "I'm a front end developer who is always coding in his freetime!",
+      description:
+        "I'm a front end developer who is always coding in his freetime!",
     },
     firstName: 'Merav',
     lastName: 'Kuiper',
@@ -285,7 +297,8 @@ export const ALL_USERS = [
         { lang: 'Python', value: 80 },
       ],
       level: 'Advanced',
-      description: "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
+      description:
+        "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
     },
     firstName: 'Mosi',
     lastName: 'Holzer',
@@ -319,7 +332,8 @@ export const ALL_USERS = [
         { lang: 'Python', value: 80 },
       ],
       level: 'Advanced',
-      description: "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
+      description:
+        "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
     },
     firstName: 'Nikhil',
     lastName: 'Jedlička',
@@ -336,7 +350,8 @@ export const ALL_USERS = [
         { lang: 'Python', value: 80 },
       ],
       level: 'Advanced',
-      description: "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
+      description:
+        "I'm a highly motivated JavaScript developer who is always looking for interesting side projects!",
     },
     firstName: 'Jóna',
     lastName: 'Mutton',
