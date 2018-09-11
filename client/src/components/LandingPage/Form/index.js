@@ -1,10 +1,11 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/anchor-is-valid, no-shadow */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import ParticleWrapper from '../Particles';
 import Title from '../App/title';
 import InputFields from './inputField';
+import { authenticateUser } from '../../../actions';
 
 const ButtonSwipe = ({ activeBtn, changeActiveBtn }) => (
   <div className="wrap-swipe">
@@ -25,11 +26,15 @@ class AuthForm extends Component {
 
   handleSubmit = values => {
     const { activeBtn } = this.state;
+    const { authenticateUser } = this.props;
     const userauth = activeBtn === 'login' ? 'login' : 'signup';
-    axios
-      .post(`/api/${userauth}`, values)
-      .then(() => this.props.history.push('/dashboard/dashboard')); //eslint-disable-line
-  };
+
+    authenticateUser(userauth, values)
+      .then(() => {
+        this.props.history.push('/dashboard/dashboard'); //eslint-disable-line
+      })
+      .catch(err => console.log(err.response.data.error));
+  }
 
   render() {
     const { activeBtn } = this.state;
@@ -46,11 +51,14 @@ class AuthForm extends Component {
   }
 }
 
-const Content = ({ history }) => (
+const Content = ({ history, authenticateUser }) => (
   <div className="content">
     <div>
       <Title />
-      <AuthForm history={history} />
+      <AuthForm
+        history={history}
+        authenticateUser={authenticateUser}
+      />
     </div>
     <ParticleWrapper />
   </div>
@@ -63,10 +71,12 @@ ButtonSwipe.propTypes = {
 
 AuthForm.propTypes = {
   history: PropTypes.object.isRequired, //eslint-disable-line
+  authenticateUser: PropTypes.func.isRequired,
 };
 
 Content.propTypes = {
   history: PropTypes.object.isRequired, //eslint-disable-line
+  authenticateUser: PropTypes.func.isRequired,
 };
 
-export default Content;
+export default connect(null, { authenticateUser })(Content);

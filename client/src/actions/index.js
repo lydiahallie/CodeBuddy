@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_POSTS, FETCH_MESSAGES } from '../constants/actionTypes';
+import {
+  AUTH_USER,
+  FETCH_USER,
+  FETCH_POSTS,
+  FETCH_MESSAGES,
+} from '../constants/actionTypes';
 // import { POSTS } from '../fake_backend/posts';
 // import { CURRENT_USER } from '../fake_backend/users';
 // import { MESSAGES } from '../fake_backend/messages';
@@ -18,6 +23,11 @@ import { FETCH_USER, FETCH_POSTS, FETCH_MESSAGES } from '../constants/actionType
 // }
 
 // Using real backend.
+export const authenticateUser = (userauth, values) => async dispatch => {
+  const res = await axios.post(`/api/${userauth}`, values);
+  dispatch({ type: AUTH_USER, payload: res.data });
+};
+
 export const fetchUser = async dispatch => {
   const res = await axios.get('/api/current_user');
   dispatch({ type: FETCH_USER, payload: res.data });
