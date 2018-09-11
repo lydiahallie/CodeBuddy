@@ -16,8 +16,7 @@ const PREVIEW_DATA = [
   {
     img: fakepic3,
     title: 'Create a Team',
-    subtitle:
-      'Work together with people who have the right skill set, and start your own team.',
+    subtitle: 'Work together with people who have the right skill set, and start your own team.',
   },
 ];
 

@@ -49,8 +49,7 @@ const MESSAGES = [
       img: 'https://randomuser.me/api/portraits/women/28.jpg',
       date: { $date: '2018-06-03T19:51:52.578Z' },
     },
-    body:
-      'Do you need help with any backend implementation? If so, let me know!',
+    body: 'Do you need help with any backend implementation? If so, let me know!',
     __v: 0,
   },
 ];

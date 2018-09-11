@@ -14,10 +14,7 @@ class TextInput extends Component {
     const { body, onPostChange } = this.props;
     return (
       <div className="dash-msg-input">
-        <div
-          onClick={this.toggleMessage}
-          className={`dash-msg-button expanded-${expanded}`}
-        >
+        <div onClick={this.toggleMessage} className={`dash-msg-button expanded-${expanded}`}>
           <div>
             <CrossIcon />
           </div>

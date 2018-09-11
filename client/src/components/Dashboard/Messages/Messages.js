@@ -23,10 +23,7 @@ export const MessageConsumer = props => (
 // https://github.com/eslint/eslint/issues/9259
 // eslint-disable-next-line
 const Message = ({ msg, toggle, i, activeMessage }) => (
-  <div
-    onClick={() => toggle(i)}
-    className={`message active-${i === activeMessage}`}
-  >
+  <div onClick={() => toggle(i)} className={`message active-${i === activeMessage}`}>
     <div className="message-info">
       <img src={msg.author.img} alt="" />
     </div>
@@ -42,10 +39,7 @@ const Message = ({ msg, toggle, i, activeMessage }) => (
 
 const NoMessagesInfo = () => (
   <div className="message active-true">
-    <p id="msg">
-      You have not yet received any messages. Once you do, they will appear
-      here!
-    </p>
+    <p id="msg">You have not yet received any messages. Once you do, they will appear here!</p>
   </div>
 );
 
@@ -57,12 +51,7 @@ const MessagesOverview = () => (
           <NoMessagesInfo />
         ) : (
           messages.map((msg, i) => (
-            <Message
-              activeMessage={activeMessage}
-              toggle={toggle}
-              msg={msg}
-              i={i}
-            />
+            <Message activeMessage={activeMessage} toggle={toggle} msg={msg} i={i} />
           ))
         )}
       </div>

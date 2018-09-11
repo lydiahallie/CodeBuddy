@@ -58,14 +58,7 @@ class Card extends Component {
     const { user, i } = this.props;
     const { active } = this.state;
     return (
-      <InfoBox
-        margin
-        nojustify
-        size={300}
-        height={500}
-        data-style={i}
-        className="user-find-card"
-      >
+      <InfoBox margin nojustify size={300} height={500} data-style={i} className="user-find-card">
         <div className="card-user-info">
           <img src={user.profile.img} alt={user.firstName} />
           <div className="card-info">
@@ -76,16 +69,8 @@ class Card extends Component {
           </div>
         </div>
         <div className="find-btns-swipe">
-          <CardButton
-            btn="About"
-            active={active}
-            changeView={this.changeView}
-          />
-          <CardButton
-            btn="Contact"
-            active={active}
-            changeView={this.changeView}
-          />
+          <CardButton btn="About" active={active} changeView={this.changeView} />
+          <CardButton btn="Contact" active={active} changeView={this.changeView} />
         </div>
         <div className={`indicator active-${active}`} />
         {active === 'about' ? (

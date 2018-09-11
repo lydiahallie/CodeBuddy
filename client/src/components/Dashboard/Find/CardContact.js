@@ -1,19 +1,9 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
-import {
-  ProfileIcon,
-  MessagesIcon,
-  LinkedinIcon,
-  GithubIcon,
-} from '../../../assets/icons';
+import { ProfileIcon, MessagesIcon, LinkedinIcon, GithubIcon } from '../../../assets/icons';
 
-const Icons = [
-  <ProfileIcon />,
-  <MessagesIcon />,
-  <LinkedinIcon />,
-  <GithubIcon />,
-];
+const Icons = [<ProfileIcon />, <MessagesIcon />, <LinkedinIcon />, <GithubIcon />];
 
 const ContactForm = ({ handleSubmit }) => (
   <div className="card-col-info-contact">

@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  ConnectRequestIcon,
-  ProfileViewIcon,
-  MessagesIcon,
-} from '../assets/icons';
+import { ConnectRequestIcon, ProfileViewIcon, MessagesIcon } from '../assets/icons';
 
 export const BOX_INFO = [
   { value: 931, name: 'Profile Views', icon: <ProfileViewIcon /> },
@@ -63,8 +59,7 @@ export const MESSAGES_DATA = [
   {
     author: 'John Doe',
     imgURL: 'https://randomuser.me/api/portraits/men/33.jpg',
-    message:
-      'Working on a great new project! Does anyone have experience with GraphQL?',
+    message: 'Working on a great new project! Does anyone have experience with GraphQL?',
     publishTime: '6m',
   },
   {
@@ -88,8 +83,7 @@ export const MESSAGES_DATA = [
   {
     author: 'John Doe',
     imgURL: 'https://randomuser.me/api/portraits/men/33.jpg',
-    message:
-      'Working on a great new project! Does anyone have experience with GraphQL?',
+    message: 'Working on a great new project! Does anyone have experience with GraphQL?',
     publishTime: '19m',
   },
   {
