@@ -24,26 +24,47 @@ module.exports = app => {
     (req, res, next) => {
       passport.authenticate('local-login', (err, user, info) => {
         if (err) {
-          return res.status(500).send({ error: 'Internal Server Error' });
+          return res.status(500).send({ error: err });
         }
         if (!user) {
           return res.status(400).send({ error: info });
         }
-        return res.send('Done');
+        const {
+          profile, firstName, lastName, _id, email, __v,
+        } = user;
+        return res.send({
+          profile,
+          firstName,
+          lastName,
+          _id,
+          email,
+          __v,
+        });
       })(req, res, next);
     }
   );
+
   app.post(
     '/api/signup',
     (req, res, next) => {
       passport.authenticate('local-signup', (err, user, info) => {
         if (err) {
-          return res.status(500).send({ error: 'Internal Server Error' });
+          return res.status(500).send({ error: err });
         }
         if (!user) {
           return res.status(400).send({ error: info });
         }
-        return res.send('Done');
+        const {
+          profile, firstName, lastName, _id, email, __v,
+        } = user;
+        return res.send({
+          profile,
+          firstName,
+          lastName,
+          _id,
+          email,
+          __v,
+        });
       })(req, res, next);
     }
   );
