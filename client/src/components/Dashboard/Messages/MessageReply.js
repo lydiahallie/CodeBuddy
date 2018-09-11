@@ -29,11 +29,7 @@ const MessageReply = ({ messages, activeMessage, handleSubmit }) => {
 export const MessageReplyInput = ({ handleSubmit }) => (
   <MessageConsumer>
     {({ activeMessage, messages }) => (
-      <MessageReply
-        activeMessage={activeMessage}
-        messages={messages}
-        handleSubmit={handleSubmit}
-      />
+      <MessageReply activeMessage={activeMessage} messages={messages} handleSubmit={handleSubmit} />
     )}
   </MessageConsumer>
 );

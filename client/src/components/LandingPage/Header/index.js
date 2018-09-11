@@ -35,9 +35,7 @@ class Header extends Component {
 
   updateWindowDimensions = () => {
     const width =
-      window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth;
+      window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
     this.setState({ width });
   };

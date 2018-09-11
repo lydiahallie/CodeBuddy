@@ -13,10 +13,7 @@ import Dashboard from './containers/Dashboard';
 
 import './styles/main.sass';
 
-const store = createStore(
-  reducers,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
 export default store;
 

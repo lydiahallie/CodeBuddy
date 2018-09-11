@@ -8,11 +8,7 @@ const DashHeaderContent = ({ currentUser }) =>
         <div className="search-bar">
           <input type="text" />
         </div>
-        <img
-          id="header-img"
-          src={currentUser.profile && currentUser.profile.img}
-          alt=""
-        />
+        <img id="header-img" src={currentUser.profile && currentUser.profile.img} alt="" />
       </div>
     </div>
   );

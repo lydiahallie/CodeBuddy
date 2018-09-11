@@ -54,8 +54,7 @@ const POSTS = [
   {
     post: {
       title: 'hoi',
-      body:
-        'Does anyone know a good UI/UX designer who could help out with svg animation?',
+      body: 'Does anyone know a good UI/UX designer who could help out with svg animation?',
       date: {
         $date: '2018-06-01T11:24:44.603Z',
       },

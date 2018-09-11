@@ -44,12 +44,7 @@ const ProfileInputField = ({ field, currentUser }) => (
     <span id="profile-span-text">{field}</span>
     <div>
       {field === 'description' ? (
-        <Field
-          component="textarea"
-          name={field}
-          max="120"
-          placeholder={currentUser[field]}
-        />
+        <Field component="textarea" name={field} max="120" placeholder={currentUser[field]} />
       ) : field === 'gender' ? (
         <Field component="select" name={field}>
           {selectOpts.map(
@@ -62,12 +57,7 @@ const ProfileInputField = ({ field, currentUser }) => (
           )}
         </Field>
       ) : (
-        <Field
-          type="text"
-          name={field}
-          placeholder={currentUser[field]}
-          component="input"
-        />
+        <Field type="text" name={field} placeholder={currentUser[field]} component="input" />
       )}
     </div>
   </div>
@@ -79,13 +69,7 @@ const ProfileInputFields = ({ currentUser, profile = false }) => {
   fields = fields.filter(x => sortInputForms(x));
   return fields.map(
     // eslint-disable-next-line comma-dangle
-    field => (
-      <ProfileInputField
-        field={field}
-        currentUser={user}
-        key={shortid.generate()}
-      />
-    )
+    field => <ProfileInputField field={field} currentUser={user} key={shortid.generate()} />
   );
 };
 
@@ -109,11 +93,7 @@ const ProfileInfoForm = ({ info, handleSubmit, reqData }) =>
       <Skills skills={info.profile.skills} info={info} />
       <div className="save-btn">
         <button type="submit">
-          <RequestMessage
-            req={reqData.request}
-            loaded={reqData.loaded}
-            success={reqData.success}
-          />
+          <RequestMessage req={reqData.request} loaded={reqData.loaded} success={reqData.success} />
         </button>
       </div>
     </form>

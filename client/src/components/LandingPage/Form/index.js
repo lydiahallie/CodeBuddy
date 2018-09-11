@@ -36,10 +36,7 @@ class AuthForm extends Component {
     return (
       <div className="col">
         <div className="form-wrapper">
-          <ButtonSwipe
-            activeBtn={activeBtn}
-            changeActiveBtn={this.changeActiveBtn}
-          />
+          <ButtonSwipe activeBtn={activeBtn} changeActiveBtn={this.changeActiveBtn} />
           <div className={`form-content-wrapper expanded-${activeBtn}`}>
             <InputFields activeBtn={activeBtn} onSubmit={this.handleSubmit} />
           </div>

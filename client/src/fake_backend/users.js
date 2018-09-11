@@ -2,8 +2,7 @@ export const CURRENT_USER = [
   {
     profile: {
       userName: 'lydiahallie',
-      img:
-        'https://pbs.twimg.com/profile_images/933660989802807296/maudzPZE_400x400.jpg',
+      img: 'https://pbs.twimg.com/profile_images/933660989802807296/maudzPZE_400x400.jpg',
       title: 'JavaScript Developer',
       skills: [
         { lang: 'JavaScript', value: 95 },
@@ -24,8 +23,7 @@ export const ALL_USERS = [
   {
     profile: {
       userName: 'lydiahallie',
-      img:
-        'https://pbs.twimg.com/profile_images/933660989802807296/maudzPZE_400x400.jpg',
+      img: 'https://pbs.twimg.com/profile_images/933660989802807296/maudzPZE_400x400.jpg',
       title: 'JavaScript Developer',
       skills: [
         { lang: 'JavaScript', value: 95 },
@@ -45,11 +43,7 @@ export const ALL_USERS = [
       userName: 'johndoe',
       img: 'https://randomuser.me/api/portraits/men/33.jpg',
       title: 'Backend Developer',
-      skills: [
-        { lang: 'Java', value: 90 },
-        { lang: 'Ruby', value: 80 },
-        { lang: 'C', value: 60 },
-      ],
+      skills: [{ lang: 'Java', value: 90 }, { lang: 'Ruby', value: 80 }, { lang: 'C', value: 60 }],
       level: 'Advanced',
       description: 'I love everything about backend',
     },
@@ -97,11 +91,7 @@ export const ALL_USERS = [
       userName: 'eulatliam',
       img: 'https://randomuser.me/api/portraits/women/61.jpg',
       title: 'Security Engineer',
-      skills: [
-        { lang: 'Python', value: 95 },
-        { lang: 'C', value: 90 },
-        { lang: 'C++', value: 80 },
-      ],
+      skills: [{ lang: 'Python', value: 95 }, { lang: 'C', value: 90 }, { lang: 'C++', value: 80 }],
       level: 'Advanced',
       description: 'I have a lot of experience in application security.',
     },
@@ -120,8 +110,7 @@ export const ALL_USERS = [
         { lang: 'Sass', value: 90 },
       ],
       level: 'Advanced',
-      description:
-        'I am an art school graduate who has designed websites for tech giants.',
+      description: 'I am an art school graduate who has designed websites for tech giants.',
     },
     firstName: 'Sara',
     lastName: 'Wade',
@@ -156,8 +145,7 @@ export const ALL_USERS = [
         { lang: 'Haskell', value: 80 },
       ],
       level: 'Advanced',
-      description:
-        'I am a computer programmer who has worked a lot with game developement.',
+      description: 'I am a computer programmer who has worked a lot with game developement.',
     },
     firstName: 'Hubert',
     lastName: 'Beran',
@@ -226,8 +214,7 @@ export const ALL_USERS = [
         { lang: 'Python', value: 80 },
       ],
       level: 'Advanced',
-      description:
-        'I am a backend engineer who works on 2D games in my free time!',
+      description: 'I am a backend engineer who works on 2D games in my free time!',
     },
     firstName: 'Rosalina',
     lastName: 'Holub',
@@ -238,11 +225,7 @@ export const ALL_USERS = [
       userName: 'matirtza',
       img: 'https://randomuser.me/api/portraits/women/77.jpg',
       title: 'Software Engineer',
-      skills: [
-        { lang: 'C++', value: 80 },
-        { lang: 'C#', value: 80 },
-        { lang: 'C', value: 70 },
-      ],
+      skills: [{ lang: 'C++', value: 80 }, { lang: 'C#', value: 80 }, { lang: 'C', value: 70 }],
       level: 'Advanced',
       description: "I'm an amateur embedded software engineer.",
     },
@@ -279,8 +262,7 @@ export const ALL_USERS = [
         { lang: 'Ruby', value: 80 },
       ],
       level: 'Advanced',
-      description:
-        "I'm a front end developer who is always coding in his freetime!",
+      description: "I'm a front end developer who is always coding in his freetime!",
     },
     firstName: 'Merav',
     lastName: 'Kuiper',

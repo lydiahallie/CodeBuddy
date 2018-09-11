@@ -29,8 +29,7 @@ class InputFields extends Component {
             type={field.type}
             component="input"
             placeholder={field.placeholder}
-            className={`input-${fieldInfo.class}-${index +
-              1} animate-${animate}`}
+            className={`input-${fieldInfo.class}-${index + 1} animate-${animate}`}
           />
         ))}
         <button type="submit">Submit</button>

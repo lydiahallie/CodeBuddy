@@ -1,11 +1,6 @@
 /* eslint-disable  */
 
-import {
-  LOGIN,
-  REGISTER,
-  LOGOUT,
-  FETCH_USER,
-} from '../constants/actionTypes.js';
+import { LOGIN, REGISTER, LOGOUT, FETCH_USER } from '../constants/actionTypes.js';
 
 export const authReducer = (state = {}, action) => {
   console.log('payload', action.payload);
