@@ -40,6 +40,11 @@
     "jsx-quotes": "off",
     "key-spacing": "off",
     "keyword-spacing": "off",
+    "max-len": ["error", {
+      "code": 100,
+      "ignoreUrls": true,
+      "ignoreStrings": true
+    }],
     "new-parens": "off",
     "newline-per-chained-call": "off",
     "no-confusing-arrow": ["error", {"allowParens": true}],
