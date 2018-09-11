@@ -15,7 +15,7 @@ import './styles/main.sass';
 
 const store = createStore(
   reducers,
-  composeWithDevTools(applyMiddleware(thunk)),
+  composeWithDevTools(applyMiddleware(thunk))
 );
 
 export default store;
@@ -29,6 +29,6 @@ ReactDOM.render(
       </Switch>
     </Router>
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 registerServiceWorker();

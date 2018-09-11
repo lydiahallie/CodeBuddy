@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_POSTS, FETCH_MESSAGES } from '../constants/actionTypes';
+import {
+  FETCH_USER,
+  FETCH_POSTS,
+  FETCH_MESSAGES,
+} from '../constants/actionTypes';
 // import { POSTS } from '../fake_backend/posts';
 // import { CURRENT_USER } from '../fake_backend/users';
 // import { MESSAGES } from '../fake_backend/messages';

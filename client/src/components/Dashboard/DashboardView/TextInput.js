@@ -7,19 +7,21 @@ class TextInput extends Component {
 
   toggleMessage = () => {
     this.setState(({ expanded }) => ({ expanded: !expanded }));
-  }
+  };
 
   render() {
     const { expanded } = this.state;
     const { body, onPostChange } = this.props;
     return (
       <div className="dash-msg-input">
-        <div onClick={this.toggleMessage} className={`dash-msg-button expanded-${expanded}`}>
+        <div
+          onClick={this.toggleMessage}
+          className={`dash-msg-button expanded-${expanded}`}
+        >
           <div>
             <CrossIcon />
           </div>
-          {expanded
-            && (
+          {expanded && (
             <React.Fragment>
               <input
                 style={{ color: 'black' }}
@@ -30,8 +32,7 @@ class TextInput extends Component {
               />
               <button onClick={this.addPost}>Add</button>
             </React.Fragment>
-            )
-          }
+          )}
         </div>
       </div>
     );

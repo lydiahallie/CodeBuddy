@@ -1,6 +1,9 @@
 import React from 'react';
 import {
-  SearchIcon, ProfileIcon, MessagesIcon, DashboardIcon,
+  SearchIcon,
+  ProfileIcon,
+  MessagesIcon,
+  DashboardIcon,
 } from '../../../../assets/icons';
 
 const MENU_CONTENTS = [

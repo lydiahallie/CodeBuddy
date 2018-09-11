@@ -9,30 +9,33 @@ import { Spinner, Success } from '../../../assets/spinners';
 const selectOpts = ['Male', 'Female', 'Other'];
 const lower = x => x.toLowerCase();
 
-const sortInputForms = x => (!(x === 'complete'
-  || x === 'img'
-  || x === 'skills'
-  || x === 'password'
-  || x === 'profile'
-  || x.startsWith('_')
-));
+const sortInputForms = x =>
+  !(
+    x === 'complete' ||
+    x === 'img' ||
+    x === 'skills' ||
+    x === 'password' ||
+    x === 'profile' ||
+    x.startsWith('_')
+  );
 
 const RequestMessage = ({ req, loaded, success }) => (
   <span id="save-btn-span">
-    { !req ? 'Save Changes'
-      : req && !loaded ? (
-        <React.Fragment>
-          <Spinner />
-          Updating...
-        </React.Fragment>
-      )
-        : success && loaded ? (
-          <React.Fragment>
-            <Success />
-            Successfully updated!
-          </React.Fragment>
-        )
-          : !success && loaded && 'Something went wrong..' }
+    {!req ? (
+      'Save Changes'
+    ) : req && !loaded ? (
+      <React.Fragment>
+        <Spinner />
+        Updating...
+      </React.Fragment>
+    ) : success && loaded ? (
+      <React.Fragment>
+        <Success />
+        Successfully updated!
+      </React.Fragment>
+    ) : (
+      !success && loaded && 'Something went wrong..'
+    )}
   </span>
 );
 
@@ -40,17 +43,32 @@ const ProfileInputField = ({ field, currentUser }) => (
   <div className="profile-span">
     <span id="profile-span-text">{field}</span>
     <div>
-      { field === 'description'
-        ? <Field component="textarea" name={field} max="120" placeholder={currentUser[field]} />
-        : field === 'gender' ? (
-          <Field component="select" name={field}>
-            {selectOpts.map(
-              // eslint-disable-next-line comma-dangle
-              opt => <option key={shortid.generate()} value={lower(opt)}>{opt}</option>
-            )}
-          </Field>
-        )
-          : <Field type="text" name={field} placeholder={currentUser[field]} component="input" /> }
+      {field === 'description' ? (
+        <Field
+          component="textarea"
+          name={field}
+          max="120"
+          placeholder={currentUser[field]}
+        />
+      ) : field === 'gender' ? (
+        <Field component="select" name={field}>
+          {selectOpts.map(
+            // eslint-disable-next-line comma-dangle
+            opt => (
+              <option key={shortid.generate()} value={lower(opt)}>
+                {opt}
+              </option>
+            )
+          )}
+        </Field>
+      ) : (
+        <Field
+          type="text"
+          name={field}
+          placeholder={currentUser[field]}
+          component="input"
+        />
+      )}
     </div>
   </div>
 );
@@ -61,13 +79,17 @@ const ProfileInputFields = ({ currentUser, profile = false }) => {
   fields = fields.filter(x => sortInputForms(x));
   return fields.map(
     // eslint-disable-next-line comma-dangle
-    field => <ProfileInputField field={field} currentUser={user} key={shortid.generate()} />
+    field => (
+      <ProfileInputField
+        field={field}
+        currentUser={user}
+        key={shortid.generate()}
+      />
+    )
   );
 };
 
-const ProfileInfoForm = ({
-  info, handleSubmit, reqData,
-}) => (
+const ProfileInfoForm = ({ info, handleSubmit, reqData }) =>
   // console.log('profile info form props', props);
   info && (
     <form onSubmit={handleSubmit} className="profile-user-info-wrapper">
@@ -87,12 +109,15 @@ const ProfileInfoForm = ({
       <Skills skills={info.profile.skills} info={info} />
       <div className="save-btn">
         <button type="submit">
-          <RequestMessage req={reqData.request} loaded={reqData.loaded} success={reqData.success} />
+          <RequestMessage
+            req={reqData.request}
+            loaded={reqData.loaded}
+            success={reqData.success}
+          />
         </button>
       </div>
     </form>
-  )
-);
+  );
 
 RequestMessage.propTypes = {
   req: PropTypes.bool.isRequired,

@@ -1,5 +1,9 @@
 import React from 'react';
-import { ConnectRequestIcon, ProfileViewIcon, MessagesIcon } from '../assets/icons';
+import {
+  ConnectRequestIcon,
+  ProfileViewIcon,
+  MessagesIcon,
+} from '../assets/icons';
 
 export const BOX_INFO = [
   { value: 931, name: 'Profile Views', icon: <ProfileViewIcon /> },
@@ -49,7 +53,6 @@ export const BAR_CHART_DATA = {
   ],
 };
 
-
 export const MESSAGES_DATA = [
   {
     author: 'Sarah Green',
@@ -60,13 +63,14 @@ export const MESSAGES_DATA = [
   {
     author: 'John Doe',
     imgURL: 'https://randomuser.me/api/portraits/men/33.jpg',
-    message: 'Working on a great new project! Does anyone have experience with GraphQL?',
+    message:
+      'Working on a great new project! Does anyone have experience with GraphQL?',
     publishTime: '6m',
   },
   {
     author: 'Harry Red',
     imgURL: 'https://randomuser.me/api/portraits/men/17.jpg',
-    message: 'Can\'t wait until our app goes live! Exciting times! Thanks team!',
+    message: "Can't wait until our app goes live! Exciting times! Thanks team!",
     publishTime: '11m',
   },
   {
@@ -84,13 +88,14 @@ export const MESSAGES_DATA = [
   {
     author: 'John Doe',
     imgURL: 'https://randomuser.me/api/portraits/men/33.jpg',
-    message: 'Working on a great new project! Does anyone have experience with GraphQL?',
+    message:
+      'Working on a great new project! Does anyone have experience with GraphQL?',
     publishTime: '19m',
   },
   {
     author: 'Harry Red',
     imgURL: 'https://randomuser.me/api/portraits/men/17.jpg',
-    message: 'Can\'t wait until our app goes live! Exciting times! Thanks team!',
+    message: "Can't wait until our app goes live! Exciting times! Thanks team!",
     publishTime: '44m',
   },
   {

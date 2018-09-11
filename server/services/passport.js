@@ -43,52 +43,59 @@ passport.use(
 );
 */
 
-
-passport.use('local-signup', new LocalStrategy(
-  {
-    usernameField: 'email',
-    passwordField: 'password',
-    passReqToCallback: true,
-  }, async (req, email, password, done) => {
-    const { userName, firstName, lastName } = req.body;
-    try {
-      const user = await User.findOne({ email });
-      if (user) return done(null, false, 'This emailId is already taken.');
-    } catch (e) {
-      return done(e);
-    }
-    try {
-      const newUser = await new User({
-        email,
-        password: bcrypt.hashSync(password, 10),
-        userName,
-        firstName,
-        lastName,
-      }).save();
-      return done(null, newUser);
-    } catch (e) {
-      return done(e);
-    }
-  },
-));
-
-passport.use('local-login', new LocalStrategy(
-  {
-    usernameField: 'email',
-    passwordField: 'password',
-    passReqToCallback: true,
-  }, async (req, email, password, done) => {
-    try {
-      const user = await User.findOne({ email });
-      if (!user) {
-        return done(null, false, 'Invalid Username');
+passport.use(
+  'local-signup',
+  new LocalStrategy(
+    {
+      usernameField: 'email',
+      passwordField: 'password',
+      passReqToCallback: true,
+    },
+    async (req, email, password, done) => {
+      const { userName, firstName, lastName } = req.body;
+      try {
+        const user = await User.findOne({ email });
+        if (user) return done(null, false, 'This emailId is already taken.');
+      } catch (e) {
+        return done(e);
       }
-      if (!bcrypt.compareSync(password, user.password)) {
-        return done(null, false, 'Wrong Password');
+      try {
+        const newUser = await new User({
+          email,
+          password: bcrypt.hashSync(password, 10),
+          userName,
+          firstName,
+          lastName,
+        }).save();
+        return done(null, newUser);
+      } catch (e) {
+        return done(e);
       }
-      return done(null, user);
-    } catch (e) {
-      return done(e);
     }
-  },
-));
+  )
+);
+
+passport.use(
+  'local-login',
+  new LocalStrategy(
+    {
+      usernameField: 'email',
+      passwordField: 'password',
+      passReqToCallback: true,
+    },
+    async (req, email, password, done) => {
+      try {
+        const user = await User.findOne({ email });
+        if (!user) {
+          return done(null, false, 'Invalid Username');
+        }
+        if (!bcrypt.compareSync(password, user.password)) {
+          return done(null, false, 'Wrong Password');
+        }
+        return done(null, user);
+      } catch (e) {
+        return done(e);
+      }
+    }
+  )
+);

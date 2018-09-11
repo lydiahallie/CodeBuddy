@@ -7,28 +7,24 @@ import InfoBox from '../styled_components/InfoBox';
 const StatsInfo = ({ val, name, line }) => (
   <React.Fragment>
     <div className="dash-user-col">
-      <span className="proj-num">{val}</span>
-      {' '}
-      {name}
+      <span className="proj-num">{val}</span> {name}
     </div>
-    { line && <div id="horiz-line" /> }
+    {line && <div id="horiz-line" />}
   </React.Fragment>
 );
 
 const DashUserProfile = ({ currentUser }) => {
   const { profile, firstName, lastName } = currentUser;
   return (
-    currentUser && profile !== undefined
-      && (
+    currentUser &&
+    profile !== undefined && (
       <InfoBox none odd margin size={400} height={700}>
         <div className="dash-profile">
           <div className="dash-user-info">
             <img src={profile.img} alt="" />
             <div>
               <h3>
-                {firstName}
-                {' '}
-                {lastName}
+                {firstName} {lastName}
               </h3>
               <h5>{profile.title}</h5>
               <button id="edit-profile">Edit Profile</button>
@@ -43,7 +39,7 @@ const DashUserProfile = ({ currentUser }) => {
           {/* <Bar data={CHART_DATA} width='250' height='300'/> */}
         </div>
       </InfoBox>
-      )
+    )
   );
 };
 
