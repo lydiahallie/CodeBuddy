@@ -7,7 +7,7 @@ class TextInput extends Component {
 
   toggleMessage = () => {
     this.setState(({ expanded }) => ({ expanded: !expanded }));
-  }
+  };
 
   render() {
     const { expanded } = this.state;
@@ -18,8 +18,7 @@ class TextInput extends Component {
           <div>
             <CrossIcon />
           </div>
-          {expanded
-            && (
+          {expanded && (
             <React.Fragment>
               <input
                 style={{ color: 'black' }}
@@ -30,8 +29,7 @@ class TextInput extends Component {
               />
               <button onClick={this.addPost}>Add</button>
             </React.Fragment>
-            )
-          }
+          )}
         </div>
       </div>
     );

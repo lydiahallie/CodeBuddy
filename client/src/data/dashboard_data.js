@@ -49,7 +49,6 @@ export const BAR_CHART_DATA = {
   ],
 };
 
-
 export const MESSAGES_DATA = [
   {
     author: 'Sarah Green',
@@ -66,7 +65,7 @@ export const MESSAGES_DATA = [
   {
     author: 'Harry Red',
     imgURL: 'https://randomuser.me/api/portraits/men/17.jpg',
-    message: 'Can\'t wait until our app goes live! Exciting times! Thanks team!',
+    message: "Can't wait until our app goes live! Exciting times! Thanks team!",
     publishTime: '11m',
   },
   {
@@ -90,7 +89,7 @@ export const MESSAGES_DATA = [
   {
     author: 'Harry Red',
     imgURL: 'https://randomuser.me/api/portraits/men/17.jpg',
-    message: 'Can\'t wait until our app goes live! Exciting times! Thanks team!',
+    message: "Can't wait until our app goes live! Exciting times! Thanks team!",
     publishTime: '44m',
   },
   {

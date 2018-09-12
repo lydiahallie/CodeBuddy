@@ -13,16 +13,11 @@ const Menu = () => (
         activeClassName="active"
         key={shortid.generate()}
       >
-        <div className="icon">
-          {btn.icon}
-        </div>
+        <div className="icon">{btn.icon}</div>
         {btn.name}
       </NavLink>
     ))}
-    <a
-      href="/api/logout"
-      className="btn-menu"
-    >
+    <a href="/api/logout" className="btn-menu">
       <div className="icon">
         <LogOutIcon />
       </div>

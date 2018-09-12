@@ -15,9 +15,10 @@ class InputFields extends Component {
   render() {
     const { handleSubmit, activeBtn } = this.props;
     const { animate } = this.state;
-    const fieldInfo = activeBtn === 'login'
-      ? { type: LOGIN_FIELDS, class: 'lg' }
-      : { type: SIGNUP_FIELDS, class: 'su' };
+    const fieldInfo =
+      activeBtn === 'login'
+        ? { type: LOGIN_FIELDS, class: 'lg' }
+        : { type: SIGNUP_FIELDS, class: 'su' };
 
     return (
       <form onSubmit={handleSubmit}>

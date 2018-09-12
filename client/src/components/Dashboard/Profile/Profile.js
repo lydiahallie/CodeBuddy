@@ -21,24 +21,26 @@ class UserProfile extends React.Component {
       success: res.status === 200,
       loaded: true,
     });
-  }
+  };
 
   render() {
     const reqData = { ...this.state };
     const { currentUser } = this.props;
-    return currentUser && (
-      <div className="overview">
-        <div className="profile-card">
-          <ProfileInfo
-            info={currentUser[0]}
-            onSubmit={this.handleSubmit}
-            handleImage={this.handleImage}
-            updateProfile={this.updateProfile}
-            reqData={reqData}
-            onSkillsChange={this.onSkillsChange}
-          />
+    return (
+      currentUser && (
+        <div className="overview">
+          <div className="profile-card">
+            <ProfileInfo
+              info={currentUser[0]}
+              onSubmit={this.handleSubmit}
+              handleImage={this.handleImage}
+              updateProfile={this.updateProfile}
+              reqData={reqData}
+              onSkillsChange={this.onSkillsChange}
+            />
+          </div>
         </div>
-      </div>
+      )
     );
   }
 }

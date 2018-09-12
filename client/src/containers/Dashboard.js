@@ -12,4 +12,7 @@ const mapDispatchToProps = dispatch => ({
   fetchMessages: () => dispatch(fetchMessages),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dashboard);
