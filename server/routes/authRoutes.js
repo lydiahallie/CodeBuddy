@@ -27,16 +27,22 @@ module.exports = app => {
         if (!user) {
           return res.status(400).send({ error: info });
         }
-        const {
-          profile, firstName, lastName, _id, email, __v,
-        } = user;
-        return res.send({
-          profile,
-          firstName,
-          lastName,
-          _id,
-          email,
-          __v,
+        
+        return req.logIn(user, error => {
+          if(error) {
+            return res.send(500).send({error});
+          }
+          const {
+            profile, firstName, lastName, _id, email, __v,
+          } = user;
+          return res.send({
+            profile,
+            firstName,
+            lastName,
+            _id,
+            email,
+            __v,
+          });
         });
       })(req, res, next);
     }
@@ -52,16 +58,21 @@ module.exports = app => {
         if (!user) {
           return res.status(400).send({ error: info });
         }
-        const {
-          profile, firstName, lastName, _id, email, __v,
-        } = user;
-        return res.send({
-          profile,
-          firstName,
-          lastName,
-          _id,
-          email,
-          __v,
+        return req.logIn(user, error => {
+          if(error) {
+            return res.send(500).send({error});
+          }
+          const {
+            profile, firstName, lastName, _id, email, __v,
+          } = user;
+          return res.send({
+            profile,
+            firstName,
+            lastName,
+            _id,
+            email,
+            __v,
+          });
         });
       })(req, res, next);
     }
