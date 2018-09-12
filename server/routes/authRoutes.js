@@ -17,26 +17,42 @@ module.exports = app => {
     res.redirect('/');
   });
 
-  app.post('/api/login', (req, res, next) => {
-    passport.authenticate('local-login', (err, user, info) => {
-      if (err) {
-        return res.status(500).send({ error: 'Internal Server Error' });
-      }
-      if (!user) {
-        return res.status(400).send({ error: info });
-      }
-      return res.send('Done');
-    })(req, res, next);
-  });
-  app.post('/api/signup', (req, res, next) => {
-    passport.authenticate('local-signup', (err, user, info) => {
-      if (err) {
-        return res.status(500).send({ error: 'Internal Server Error' });
-      }
-      if (!user) {
-        return res.status(400).send({ error: info });
-      }
-      return res.send('Done');
-    })(req, res, next);
-  });
+  app.post(
+    '/api/login',
+    (req, res, next) => {
+      passport.authenticate('local-login', (err, user, info) => {
+        if (err) {
+          return res.status(500).send({ error: 'Internal Server Error' });
+        }
+        if (!user) {
+          return res.status(400).send({ error: info });
+        }
+        return req.logIn(user, error => {
+          if (err) {
+            return res.status(500).send({ error });
+          }
+          return res.send('Done');
+        });
+      })(req, res, next);
+    }
+  );
+  app.post(
+    '/api/signup',
+    (req, res, next) => {
+      passport.authenticate('local-signup', (err, user, info) => {
+        if (err) {
+          return res.status(500).send({ error: 'Internal Server Error' });
+        }
+        if (!user) {
+          return res.status(400).send({ error: info });
+        }
+        return req.logIn(user, error => {
+          if (err) {
+            return res.status(500).send({ error });
+          }
+          return res.send('Done');
+        });
+      })(req, res, next);
+    }
+  );
 };
