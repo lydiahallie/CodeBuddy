@@ -60,11 +60,15 @@ class Find extends Component {
   }
 
   getUsers = async () => {
-    setTimeout(() => this.setState({
-      loaded: true,
-      activeUsers: ALL_USERS,
-    }), 2000);
-  }
+    setTimeout(
+      () =>
+        this.setState({
+          loaded: true,
+          activeUsers: ALL_USERS,
+        }),
+      2000
+    );
+  };
 
   updateResults = name => {
     const { filterOptions, activeUsers } = this.state;
@@ -74,11 +78,13 @@ class Find extends Component {
       const deleteIndex = filterOptions.indexOf(name);
       filterOptions.splice(deleteIndex, 1);
     }
-    const updatedUsers = activeUsers.filter(
-      user => filterOptions.every(opt => user.skills.includes(opt)),
+    const updatedUsers = activeUsers.filter(user =>
+      filterOptions.every(opt => user.skills.includes(opt))
     );
-    this.setState({ activeUsers: filterOptions.length ? updatedUsers : activeUsers });
-  }
+    this.setState({
+      activeUsers: filterOptions.length ? updatedUsers : activeUsers,
+    });
+  };
 
   render() {
     const { activeUsers, loaded } = this.state;
@@ -87,12 +93,14 @@ class Find extends Component {
       <div className="overview">
         {/* <SearchBar updateResults={ this.updateResults } /> */}
         <div className="find-cards">
-          {!loaded ? <Spinner />
-            : Object.values(activeUsers).map(
+          {!loaded ? (
+            <Spinner />
+          ) : (
+            Object.values(activeUsers).map(
               // eslint-disable-next-line comma-dangle
               (user, i) => <Card user={user} i={i} currentUser={currentUser} />
             )
-          }
+          )}
         </div>
       </div>
     );

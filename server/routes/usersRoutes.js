@@ -24,8 +24,8 @@ module.exports = app => {
   app.post('/api/update_user', requireLogin, (req, res) => {
     const { currentUser, values } = req.body;
     const { profile } = currentUser;
-    User.findOne({ _id: currentUser._id })
-      .then(user => user.update({
+    User.findOne({ _id: currentUser._id }).then(user =>
+      user.update({
         profile: {
           userName: values.userName || profile.userName,
           img: values.img || profile.img,
@@ -51,7 +51,8 @@ module.exports = app => {
         lastName: values.lastName || currentUser.lastName,
         email: values.email || currentUser.email,
         gender: values.gender || currentUser.gender,
-      }));
+      })
+    );
     res.send(res.json());
   });
 };

@@ -22,10 +22,14 @@ class Skill extends Component {
     return (
       <div className="user-profile-skill">
         <Field component="select" name={`lang${i}`}>
-          <option value="" disabled>{skill.lang}</option>
-          { USED_LANGUAGES.map(lang => (
-            <option key={shortid.generate()} value={lang}>{lang}</option>))
-          }
+          <option value="" disabled>
+            {skill.lang}
+          </option>
+          {USED_LANGUAGES.map(lang => (
+            <option key={shortid.generate()} value={lang}>
+              {lang}
+            </option>
+          ))}
         </Field>
         <ProgressBar width={width} />
         <Field
@@ -45,10 +49,7 @@ const Skills = ({ skills }) => (
   <div className="user-profile-skills">
     <span id="profile-span-text">Skills</span>
     {skills.map((skill, i) => (
-      <Skill
-        skill={skill}
-        i={i}
-      />
+      <Skill skill={skill} i={i} />
     ))}
   </div>
 );

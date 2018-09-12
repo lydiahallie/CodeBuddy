@@ -10,4 +10,7 @@ const mapDispatchToProps = dispatch => ({
   fetchMessages: () => dispatch(fetchMessages),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Find);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Find);

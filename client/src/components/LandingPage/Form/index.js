@@ -10,8 +10,12 @@ import { authenticateUser } from '../../../actions';
 const ButtonSwipe = ({ activeBtn, changeActiveBtn }) => (
   <div className="wrap-swipe">
     <div className={`background active-${activeBtn}`} />
-    <a className="btn-swipe log" onClick={() => changeActiveBtn('login')}>Log In</a>
-    <a className="btn-swipe sign" onClick={() => changeActiveBtn('signup')}>Sign Up</a>
+    <a className="btn-swipe log" onClick={() => changeActiveBtn('login')}>
+      Log In
+    </a>
+    <a className="btn-swipe sign" onClick={() => changeActiveBtn('signup')}>
+      Sign Up
+    </a>
   </div>
 );
 
@@ -24,6 +28,7 @@ class AuthForm extends Component {
     const { activeBtn } = this.state;
     const { authenticateUser } = this.props;
     const userauth = activeBtn === 'login' ? 'login' : 'signup';
+
     authenticateUser(userauth, values)
       .then(() => {
         this.props.history.push('/dashboard/dashboard'); //eslint-disable-line
@@ -38,10 +43,7 @@ class AuthForm extends Component {
         <div className="form-wrapper">
           <ButtonSwipe activeBtn={activeBtn} changeActiveBtn={this.changeActiveBtn} />
           <div className={`form-content-wrapper expanded-${activeBtn}`}>
-            <InputFields
-              activeBtn={activeBtn}
-              onSubmit={this.handleSubmit}
-            />
+            <InputFields activeBtn={activeBtn} onSubmit={this.handleSubmit} />
           </div>
         </div>
       </div>
