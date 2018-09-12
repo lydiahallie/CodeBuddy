@@ -29,7 +29,12 @@ module.exports = app => {
         if (!user) {
           return res.status(400).send({ error: info });
         }
-        return res.send('Done');
+        return req.logIn(user, error => {
+          if (err) {
+            return res.status(500).send({ error });
+          }
+          return res.send('Done');
+        });
       })(req, res, next);
     }
   );
@@ -43,7 +48,12 @@ module.exports = app => {
         if (!user) {
           return res.status(400).send({ error: info });
         }
-        return res.send('Done');
+        return req.logIn(user, error => {
+          if (err) {
+            return res.status(500).send({ error });
+          }
+          return res.send('Done');
+        });
       })(req, res, next);
     }
   );
