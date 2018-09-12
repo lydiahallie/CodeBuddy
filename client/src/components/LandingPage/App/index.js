@@ -24,4 +24,7 @@ App.propTypes = {
   history: PropTypes.object.isRequired, //eslint-disable-line
 };
 
-export default connect(null, actions)(App);
+export default connect(
+  null,
+  actions
+)(App);

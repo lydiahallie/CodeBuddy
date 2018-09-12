@@ -14,7 +14,7 @@ export const messagesReducer = (state = [], action) => {
     case DELETE_MESSAGE:
     case FETCH_MESSAGES:
       console.log('yepppp definitely messages!!!', action.payload);
-      return state.messages = action.payload || false;
+      return (state.messages = action.payload || false);
     default:
       return state;
   }

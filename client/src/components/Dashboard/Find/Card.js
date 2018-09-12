@@ -6,10 +6,7 @@ import { ProgressBar } from '../DashboardView/InfoBoxes';
 import CardContact from './CardContact';
 
 const CardButton = ({ btn, changeView }) => (
-  <div
-    className="find-btn-swipe"
-    onClick={() => changeView(btn.toLowerCase())}
-  >
+  <div className="find-btn-swipe" onClick={() => changeView(btn.toLowerCase())}>
     {btn}
   </div>
 );
@@ -20,24 +17,19 @@ const CardAbout = ({ text }) => (
   </div>
 );
 
-const CardSkills = ({ skills }) => (
-  skills
-  && (
-  <div className="card-col-info">
-    <div className="card-col-skills">
-      {skills.slice(0, 3).map(skill => (
-        <div className="skill" id={skill.lang.toLowerCase()}>
-          <span id="skill-name">
-            {skill.lang}
-:
-          </span>
-          <ProgressBar width={skill.value} />
-        </div>
-      ))}
+const CardSkills = ({ skills }) =>
+  skills && (
+    <div className="card-col-info">
+      <div className="card-col-skills">
+        {skills.slice(0, 3).map(skill => (
+          <div className="skill" id={skill.lang.toLowerCase()}>
+            <span id="skill-name">{skill.lang}:</span>
+            <ProgressBar width={skill.value} />
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-  )
-);
+  );
 
 class Card extends Component {
   constructor() {
@@ -50,17 +42,17 @@ class Card extends Component {
   showIcons = () => {
     const { expanded } = this.state;
     this.setState({ expanded: !expanded });
-  }
+  };
 
   changeView = view => {
     this.setState({ active: view });
-  }
+  };
 
   onSubmit = values => {
     const { user, currentUser, fetchMessages } = this.props;
     axios.post('/api/add_message', { values, user, currentUser });
     fetchMessages();
-  }
+  };
 
   render() {
     const { user, i } = this.props;
@@ -71,9 +63,7 @@ class Card extends Component {
           <img src={user.profile.img} alt={user.firstName} />
           <div className="card-info">
             <h3>
-              {user.firstName}
-              {' '}
-              {user.lastName}
+              {user.firstName} {user.lastName}
             </h3>
             <h4>{user.profile.title || 'Developer'}</h4>
           </div>
@@ -83,15 +73,14 @@ class Card extends Component {
           <CardButton btn="Contact" active={active} changeView={this.changeView} />
         </div>
         <div className={`indicator active-${active}`} />
-        { active === 'about'
-          ? (
-            <div className="card-user-info-col">
-              <CardSkills skills={user.profile.skills} />
-              <CardAbout text={user.profile.description} />
-            </div>
-          )
-          : <CardContact user={user} onSubmit={this.onSubmit} />
-        }
+        {active === 'about' ? (
+          <div className="card-user-info-col">
+            <CardSkills skills={user.profile.skills} />
+            <CardAbout text={user.profile.description} />
+          </div>
+        ) : (
+          <CardContact user={user} onSubmit={this.onSubmit} />
+        )}
       </InfoBox>
     );
   }

@@ -10,5 +10,6 @@ exports.DEFAULT_USER_MODEL = {
     { lang: 'Language3', value: 30 },
   ],
   level: 'Beginner',
-  description: 'This is the default description for new users. Please update this to your own original bio!',
+  description:
+    'This is the default description for new users. Please update this to your own original bio!',
 };

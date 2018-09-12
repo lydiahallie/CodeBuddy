@@ -22,7 +22,7 @@ app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
     keys: [keys.cookieKey],
-  }),
+  })
 );
 
 app.use(passport.initialize());
@@ -35,4 +35,5 @@ require('./routes/usersRoutes.js')(app);
 require('./routes/postsRoutes.js')(app);
 require('./routes/messageRoutes.js')(app);
 
+// eslint-disable-next-line no-console
 app.listen(PORT, console.log(`Listening on ${PORT}!`));

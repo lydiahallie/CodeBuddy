@@ -11,9 +11,7 @@ import Messages from '../../containers/Messages';
 
 const View = ({ children }) => (
   // console.log('children', children);
-  <div className="dashboard-content">
-    {children}
-  </div>
+  <div className="dashboard-content">{children}</div>
 );
 
 class Dashboard extends Component {
@@ -25,9 +23,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    const {
-      fetchUser, fetchPosts, fetchMessages, currentUser,
-    } = this.props;
+    const { fetchUser, fetchPosts, fetchMessages, currentUser } = this.props;
     // console.log('=====>', currentUser);
     fetchUser();
     fetchPosts();
@@ -46,13 +42,13 @@ class Dashboard extends Component {
       case 'messages':
         return <Messages />;
 
-        // no default
+      // no default
     }
-  }
+  };
 
   changeView = view => {
     this.setState({ currentView: view });
-  }
+  };
 
   render() {
     // eslint-disable-next-line react/destructuring-assignment
