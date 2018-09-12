@@ -5,6 +5,7 @@ export const REDIRECT = 'REDIRECT';
 
 export const APP_LOAD = 'APP_LOAD';
 export const DASHBOARD_LOADED = 'DASHBOARD_LOADED';
+export const AUTH_USER = 'AUTH_USER';
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_MESSAGES = 'FETCH_MESSAGES';
 export const FETCH_POSTS = 'FETCH_POSTS';

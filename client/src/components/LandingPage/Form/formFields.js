@@ -5,8 +5,8 @@ export const LOGIN_FIELDS = [
 ];
 
 export const SIGNUP_FIELDS = [
-  { type: 'text', placeholder: 'Firstname' },
-  { type: 'text', placeholder: 'Lastname' },
+  { type: 'text', placeholder: 'First Name' },
+  { type: 'text', placeholder: 'Last Name' },
   { type: 'text', placeholder: 'Email' },
   { type: 'password', placeholder: 'Password' },
 ];

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import shortid from 'short-id';
 import PropTypes from 'prop-types';
+import camelCase from 'lodash/camelCase';
 import { reduxForm, Field } from 'redux-form';
 import { LOGIN_FIELDS, SIGNUP_FIELDS } from './formFields';
 
@@ -25,7 +26,7 @@ class InputFields extends Component {
         {fieldInfo.type.map((field, index) => (
           <Field
             key={shortid.generate()}
-            name={field.placeholder.toLowerCase()}
+            name={camelCase(field.placeholder)}
             type={field.type}
             component="input"
             placeholder={field.placeholder}
