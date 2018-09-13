@@ -2,10 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+const graphqlHTTP = require('express-graphql');
 
 const app = express();
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
+const schema = require('./schema/schema');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,13 +29,11 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true,
+}))
 
 const PORT = process.env.PORT || 5000;
 
-require('./routes/authRoutes.js')(app);
-require('./routes/usersRoutes.js')(app);
-require('./routes/postsRoutes.js')(app);
-require('./routes/messageRoutes.js')(app);
-
-// eslint-disable-next-line no-console
 app.listen(PORT, console.log(`Listening on ${PORT}!`));

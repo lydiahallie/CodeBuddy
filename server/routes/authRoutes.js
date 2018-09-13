@@ -1,5 +1,6 @@
 const passport = require('passport');
 
+/*
 module.exports = app => {
   app.get(
     '/auth/google',
@@ -16,43 +17,39 @@ module.exports = app => {
     req.logOut();
     res.redirect('/');
   });
+*/
 
-  app.post(
-    '/api/login',
-    (req, res, next) => {
-      passport.authenticate('local-login', (err, user, info) => {
+const login = ({email, password, req}) => (
+  new Promise((resolve, reject) => {
+    passport.authenticate('local-login', (err, user, info) => {
+      if (!user) {
+        reject(info);
+      }
+      return req.logIn(user, error => {
         if (err) {
-          return res.status(500).send({ error: 'Internal Server Error' });
+          return reject(error);
         }
-        if (!user) {
-          return res.status(400).send({ error: info });
-        }
-        return req.logIn(user, error => {
-          if (err) {
-            return res.status(500).send({ error });
-          }
-          return res.send('Done');
-        });
-      })(req, res, next);
-    }
-  );
-  app.post(
-    '/api/signup',
-    (req, res, next) => {
-      passport.authenticate('local-signup', (err, user, info) => {
+        return resolve(user);
+      });
+    })({body: {email, password}});
+  })
+);
+
+
+const signup = ({firstName, lastName, email, password, req}) => (
+  new Promise((resolve, reject) => {
+    passport.authenticate('local-signup', (err, user, info) => {
+      if (!user) {
+        reject(info);
+      }
+      return req.logIn(user, error => {
         if (err) {
-          return res.status(500).send({ error: 'Internal Server Error' });
+          return reject(error);
         }
-        if (!user) {
-          return res.status(400).send({ error: info });
-        }
-        return req.logIn(user, error => {
-          if (err) {
-            return res.status(500).send({ error });
-          }
-          return res.send('Done');
-        });
-      })(req, res, next);
-    }
-  );
-};
+        return resolve(user);
+      });
+    })({body: {firstName, lastName, email, password}});
+  })
+);
+
+module.exports = {login, signup};
