@@ -21,4 +21,4 @@ const PostType = new GraphQLObjectType({
   },
 });
 
-module.exports = PostType;
+module.exports = {PostType, PostValueType};

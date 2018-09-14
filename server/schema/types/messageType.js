@@ -6,8 +6,8 @@ const AuthorType = new GraphQLObjectType({
   name: 'AuthorType',
   fields: {
     firstName: {type: GraphQLString},
-      lastName: {type: GraphQLString},
-      img: {type: GraphQLString},
+    lastName: {type: GraphQLString},
+    img: {type: GraphQLString},
   },
 })
 
@@ -20,4 +20,4 @@ const MessageType = new GraphQLObjectType({
   },
 });
 
-module.exports = MessageType;
+module.exports = {MessageType, AuthorType};
