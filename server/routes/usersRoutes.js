@@ -12,13 +12,7 @@ const readAllUsers = () => (
   new Promise(async(resolve, reject) => {
     try {
       const users = await User.find({});
-      const userMap = {};
-
-      users.map(user => {
-        userMap[user._id] = user;
-        return userMap;
-      });
-      resolve(userMap);
+      resolve(users);
     } catch(e) {
       reject(e);
     }  

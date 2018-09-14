@@ -2,6 +2,14 @@ const graphql = require('graphql');
 
 const { GraphQLObjectType, GraphQLString } = graphql;
 
+const PostValueType = new GraphQLObjectType({
+  name: 'PostValueType',
+  fields: {
+    title: {  type: GraphQLString },
+    body: { type: GraphQLString },
+  },
+})
+
 const PostType = new GraphQLObjectType({
   name: 'PostType',
   fields: {
@@ -9,10 +17,7 @@ const PostType = new GraphQLObjectType({
     firstName: { type: GraphQLString },
     lastName: { type: GraphQLString },
     img: { type: GraphQLString },
-    post: { 
-      title: {  type: GraphQLString },
-      body: { type: GraphQLString },
-    },
+    post: { type: PostValueType },
   },
 });
 

@@ -3,13 +3,15 @@ const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString } = graphql;
 
 const UserType = require('./types/userType');
+
+const AuthService = require('../routes/authRoutes');
+/*
 const MessageType = require('./types/messageType');
 const PostType = require('./types/postType');
-const AuthService = require('../routes/authRoutes');
 const MessageService = require('../routes/messageRoutes');
 const PostService = require('../routes/postsRoutes');
 const UserService = require('../routes/usersRoutes');
-
+*/
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
@@ -42,7 +44,7 @@ const mutation = new GraphQLObjectType({
         return AuthService.signup({ firstName, lastName, email, password, req });
       },
     },
-
+/*
     updateUser: {
       type: UserType,
       args: {
@@ -81,6 +83,7 @@ const mutation = new GraphQLObjectType({
         return MessageService.createMessage({ id, message, req });
       },
     },
+    */
   },
 });
 

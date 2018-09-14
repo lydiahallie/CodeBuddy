@@ -7,14 +7,7 @@ const readAllPosts = () => (
   new Promise((resolve, reject) => {
     try {
       const posts = Post.find({});
-      const postMap = {};
-
-      posts.map(post => {
-        postMap[post._id] = post;
-        return postMap;
-      });
-
-      resolve(postMap);
+      resolve(posts);
     } catch (e) {
       reject(e);
     }

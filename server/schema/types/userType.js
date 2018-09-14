@@ -1,7 +1,7 @@
 const graphql = require('graphql');
 
 const { GraphQLObjectType, GraphQLString, GraphQLBoolean } = graphql;
-/*
+
 const UserProfileSkillsType = new GraphQLObjectType({
   name: 'UserProfileSkillsType',
   fields: {
@@ -22,7 +22,6 @@ const UserProfileType = new GraphQLObjectType({
     complete: { type: GraphQLBoolean},
   },
 });
-*/
 
 
 const UserType = new GraphQLObjectType({
@@ -32,6 +31,7 @@ const UserType = new GraphQLObjectType({
     firstName: { type: GraphQLString },
     lastName: { type: GraphQLString },
     gender: { type: GraphQLString },
+    profile: {type: UserProfileType},
   },
 });
 

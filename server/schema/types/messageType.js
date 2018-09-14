@@ -20,4 +20,4 @@ const MessageType = new GraphQLObjectType({
   },
 });
 
-module.exports = {MessageType, AuthorType};
+module.exports = MessageType;

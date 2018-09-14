@@ -7,13 +7,8 @@ const readMessages = ({req}) => (
   new Promise(async(resolve, reject) => {
     try {
       const messages = await Message.find({ recipientUserId: req.user._id });
-      const messageMap = {};
-
-      messages.map(message => {
-        messageMap[message._id] = message;
-          return messageMap;
-      });
-      resolve(messageMap);
+      
+      resolve(messages);
     } catch(e) {
       reject(e);
     }  
