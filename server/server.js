@@ -2,21 +2,21 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
-const graphqlHTTP = require('express-graphql');
+const expressGraphQL = require('express-graphql');
 
 const app = express();
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
-const schema = require('./schema/schema');
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 require('./models/User');
 require('./models/Posts');
 require('./models/Message');
-
 require('./services/passport');
+
+const schema = require('./schema/schema');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 mongoose.connect(keys.mongoURI);
 
@@ -29,10 +29,10 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/graphql', graphqlHTTP({
+app.use('/graphql', expressGraphQL({
   schema,
   graphiql: true,
-}))
+}));
 
 const PORT = process.env.PORT || 5000;
 

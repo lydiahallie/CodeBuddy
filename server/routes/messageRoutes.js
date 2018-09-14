@@ -1,28 +1,30 @@
 const mongoose = require('mongoose');
-const requireLogin = require('../middlewares/requireLogin');
 
 const Message = mongoose.model('messages');
 const User = mongoose.model('users');
 
-module.exports = app => {
-  app.get('/api/messages', requireLogin, async (req, res) => {
-    Message.find({ recipientUserId: req.user._id }, (err, messages) => {
+const readMessages = ({req}) => (
+  new Promise(async(resolve, reject) => {
+    try {
+      const messages = await Message.find({ recipientUserId: req.user._id });
       const messageMap = {};
 
       messages.map(message => {
         messageMap[message._id] = message;
-        return messageMap;
+          return messageMap;
       });
+      resolve(messageMap);
+    } catch(e) {
+      reject(e);
+    }  
+  })
+)
 
-      res.send(messageMap);
-    });
-  });
-
-  app.post('/api/add_message', async (req, res) => {
-    const { values, user, currentUser } = req.body;
+const createMessage = ({id, message, req}) => (
+  new Promise(async(resolve, reject) => {
     try {
-      const author = await User.findOne({ _id: currentUser._id });
-      const recipient = await User.findOne({ _id: user._id });
+      const author = await User.findOne({ _id: req.user._id });
+      const recipient = await User.findOne({ _id: id });
       Message.create({
         author: {
           _id: author._id,
@@ -31,13 +33,14 @@ module.exports = app => {
           img: author.profile.img,
         },
         recipient: recipient._id,
-        body: values.message,
+        body: message,
       });
 
-      res.send();
+      resolve();
     } catch (e) {
-      /* eslint-disable no-console */
-      console.log('Error: ', e);
+      reject(e);
     }
-  });
-};
+  })
+)
+
+module.exports = {readMessages, createMessage};

@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const requireLogin = require('../middlewares/requireLogin');
 
 const Post = mongoose.model('posts');
 const User = mongoose.model('users');
 
-module.exports = app => {
-  app.get('/api/all_posts', requireLogin, (req, res) => {
-    Post.find({}, (err, posts) => {
+const readAllPosts = () => (
+  new Promise((resolve, reject) => {
+    try {
+      const posts = Post.find({});
       const postMap = {};
 
       posts.map(post => {
@@ -14,24 +14,38 @@ module.exports = app => {
         return postMap;
       });
 
-      res.send(postMap);
-    });
-  });
+      resolve(postMap);
+    } catch (e) {
+      reject(e);
+    }
+  })
+)
 
-  app.post('/api/all_posts', requireLogin, async (req, res) => {
-    const user = await User.findOne({ _id: req.body.data.user._id });
-    Post.create({
-      userId: req.body.data.user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      img: user.profile.img,
-      post: {
-        title: req.body.formData.title,
-        body: req.body.formData.body,
-      },
-    }).then(() => {
-      // console.log('done');
-      res.send();
-    });
-  });
-};
+const createPost = ({userId, post}) => (
+  new Promise(async(resolve, reject) => {
+    let user = {};
+    try {
+    user = await User.findOne({ _id: userId });
+    } catch(e) {
+      reject(e);
+    }
+    try {
+      Post.create({
+        userId: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        img: user.profile.img,
+        post: {
+          title: post.title,
+          body: post.body,
+        },
+      });
+      resolve();        
+    } catch(e) {
+      reject(e);
+    }
+  })
+)
+
+module.exports = {createPost, readAllPosts};
+
