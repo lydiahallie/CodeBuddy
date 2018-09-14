@@ -1,18 +1,19 @@
 const graphql = require('graphql');
 
-const { GraphQLObjectType, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLID } = graphql;
 
 const PostValueType = new GraphQLObjectType({
   name: 'PostValueType',
   fields: {
-    title: {  type: GraphQLString },
+    title: { type: GraphQLString },
     body: { type: GraphQLString },
   },
-})
+});
 
 const PostType = new GraphQLObjectType({
   name: 'PostType',
   fields: {
+    id: { type: GraphQLID },
     userId: { type: GraphQLString },
     firstName: { type: GraphQLString },
     lastName: { type: GraphQLString },
@@ -21,4 +22,4 @@ const PostType = new GraphQLObjectType({
   },
 });
 
-module.exports = {PostType, PostValueType};
+module.exports = { PostType, PostValueType };

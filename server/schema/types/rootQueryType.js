@@ -1,14 +1,14 @@
 const graphql = require('graphql');
 
 const { GraphQLObjectType, GraphQLList } = graphql;
-const {UserType} = require('./userType');
+const { UserType } = require('./userType');
 
 const UserService = require('../../routes/usersRoutes');
 
-const {PostType} = require('./postType');
+const { PostType } = require('./postType');
 
 const PostService = require('../../routes/postsRoutes');
-const {MessageType} = require('./messageType');
+const { MessageType } = require('./messageType');
 const MessageService = require('../../routes/messageRoutes');
 
 const RootQueryType = new GraphQLObjectType({
