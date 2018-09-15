@@ -2,7 +2,6 @@ const graphql = require('graphql');
 
 const { GraphQLObjectType, GraphQLList } = graphql;
 const { UserType } = require('./userType');
-
 const UserService = require('../../routes/usersRoutes');
 
 const { PostType } = require('./postType');
@@ -27,12 +26,14 @@ const RootQueryType = new GraphQLObjectType({
         return UserService.readAllUsers();
       },
     },
+
     posts: {
       type: new GraphQLList(PostType),
       resolve() {
         return PostService.readAllPosts();
       },
     },
+    
     messages: {
       type: new GraphQLList(MessageType),
       resolve(parentValue, args, req) {
