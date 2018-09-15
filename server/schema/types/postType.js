@@ -1,6 +1,6 @@
 const graphql = require('graphql');
 
-const { GraphQLObjectType, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLInputObjectType } = graphql;
 
 const PostValueType = new GraphQLObjectType({
   name: 'PostValueType',
@@ -21,4 +21,12 @@ const PostType = new GraphQLObjectType({
   },
 });
 
-module.exports = {PostType, PostValueType};
+const PostValueInputType = new GraphQLInputObjectType({
+  name: 'PostValueInputType',
+  fields: {
+    title: {  type: GraphQLString },
+    body: { type: GraphQLString },
+  },
+})
+
+module.exports = {PostType, PostValueType, PostValueInputType};

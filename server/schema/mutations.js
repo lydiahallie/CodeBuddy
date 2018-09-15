@@ -1,16 +1,17 @@
 const graphql = require('graphql');
 
-const { GraphQLObjectType, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLInputObjectType } = graphql;
 
 const {UserType} = require('./types/userType');
 
 const AuthService = require('../routes/authRoutes');
 
 const {MessageType} = require('./types/messageType');
-const {PostType, PostValueType} = require('./types/postType');
+const {PostType, PostValueInputType} = require('./types/postType');
 const MessageService = require('../routes/messageRoutes');
 const PostService = require('../routes/postsRoutes');
 const UserService = require('../routes/usersRoutes');
+
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -60,6 +61,16 @@ const mutation = new GraphQLObjectType({
 
     createPost: {
       type: PostType,
+      args: {
+        userId: {type: GraphQLString},
+        post: {
+          type: PostValueInputType,
+          fields: {
+            title: {type: GraphQLString},
+            body: {type: GraphQLString},
+          },
+        },
+      },
       resolve(parentValue, { userId, post }) {
         return PostService.createPost({ userId, post });
       },

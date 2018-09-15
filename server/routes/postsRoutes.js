@@ -23,7 +23,7 @@ const createPost = ({userId, post}) => (
       reject(e);
     }
     try {
-      Post.create({
+      const p = Post.create({
         userId: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
@@ -33,7 +33,7 @@ const createPost = ({userId, post}) => (
           body: post.body,
         },
       });
-      resolve();        
+      resolve(p);        
     } catch(e) {
       reject(e);
     }
