@@ -16,7 +16,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^3.5.1"
+    "concurrently": "^3.5.1",
+    "graphql": "^14.0.2",
+    "graphql-tag": "^2.9.2",
+    "react-apollo": "^2.1.11"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
