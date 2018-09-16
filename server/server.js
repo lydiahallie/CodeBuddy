@@ -6,6 +6,7 @@ const expressGraphQL = require('express-graphql');
 
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const keys = require('./config/keys');
 
 require('./models/User');
@@ -29,6 +30,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors());
 app.use('/graphql', expressGraphQL({
   schema,
   graphiql: true,
