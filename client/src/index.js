@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -19,8 +21,15 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
 export default store;
 
-const client = new ApolloClient({
+const httpLink = new HttpLink({
   uri: 'http://localhost:5000/graphql',
+})
+
+const cache = new InMemoryCache();
+
+const client = new ApolloClient({
+  link: httpLink,
+  cache,
 });
 
 ReactDOM.render(
