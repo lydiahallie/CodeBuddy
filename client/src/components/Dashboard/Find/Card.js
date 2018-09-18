@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import InfoBox from '../styled_components/InfoBox';
 import { ProgressBar } from '../DashboardView/InfoBoxes';
@@ -47,16 +46,9 @@ class Card extends Component {
     this.setState({ active: view });
   };
 
-  onSubmit = values => {
-    const { user, currentUser, fetchMessages } = this.props;
-    axios.post('/api/add_message', { values, user, currentUser });
-    fetchMessages();
-  };
-
   render() {
     const { user, i } = this.props;
     const { active } = this.state;
-    console.log('uuzehhh', user)
     return (
       <InfoBox margin nojustify size={300} height={500} data-style={i} className="user-find-card">
         <div className="card-user-info">
@@ -139,11 +131,6 @@ Card.propTypes = {
     lastName: PropTypes.string,
     __v: PropTypes.number,
   }).isRequired,
-  fetchMessages: PropTypes.func,
-};
-
-Card.defaultProps = {
-  fetchMessages: undefined,
 };
 
 export default Card;

@@ -2,8 +2,10 @@ import gql from 'graphql-tag';
 
 export default gql`
   {
-    users {
+    user {
       id
+      firstName 
+      lastName
     }
   }
 `;

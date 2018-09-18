@@ -14,7 +14,7 @@ export const profileQuery = gql`
   }
 `;
 
-export const messagesQuery = gql`
+export const getMessages = gql`
   {
     messages  {
       id 

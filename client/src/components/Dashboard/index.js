@@ -2,12 +2,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SidePane from './SidePane';
-import DashHeader from '../../containers/DashHeader';
-import Find from '../../containers/Find';
-import Profile from '../../containers/Profile';
+import DashHeader from './SidePane/Header';
+import Find from './Find/Find';
+import Profile from './Profile/Profile';
 import DashboardView from './DashboardView/Dashboard';
-import Messages from '../../containers/Messages';
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Messages from './Messages/Messages';
 
 const View = ({ children }) => (
   // console.log('children', children);
@@ -20,14 +19,6 @@ class Dashboard extends Component {
     this.state = {
       currentView: null,
     };
-  }
-
-  componentDidMount() {
-    const { fetchUser, fetchPosts, fetchMessages, currentUser } = this.props;
-    // console.log('=====>', currentUser);
-    fetchUser();
-    fetchPosts();
-    fetchMessages(currentUser);
   }
 
   // eslint-disable-next-line consistent-return
@@ -51,6 +42,8 @@ class Dashboard extends Component {
   };
 
   render() {
+
+
     // eslint-disable-next-line react/destructuring-assignment
     const { name } = this.props.match.params;
     return (
@@ -59,18 +52,14 @@ class Dashboard extends Component {
         <div className="dash-app-content">
           <SidePane />
           <View>{this.blockComponent(name)}</View>
-        </div>
-      </div>
+        </div> 
+      </div>       
     );
   }
 }
 
 Dashboard.propTypes = {
   match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  fetchUser: PropTypes.func.isRequired,
-  fetchPosts: PropTypes.func.isRequired,
-  fetchMessages: PropTypes.func.isRequired,
-  currentUser: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 View.propTypes = {

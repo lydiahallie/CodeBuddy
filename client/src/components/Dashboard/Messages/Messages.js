@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { Query } from 'react-apollo';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import getMessages from './query';
 import MessageReply from './MessageReply';
 
 const MessageContext = React.createContext('no default');
@@ -19,9 +20,6 @@ export const MessageConsumer = props => (
   </MessageContext.Consumer>
 );
 
-// TODO: Seems like this is part of a bigger issue not yet resolved:
-// https://github.com/eslint/eslint/issues/9259
-// eslint-disable-next-line
 const Message = ({ msg, toggle, i, activeMessage }) => (
   <div onClick={() => toggle(i)} className={`message active-${i === activeMessage}`}>
     <div className="message-info">
@@ -66,41 +64,29 @@ class AllMessages extends Component {
     this.setState({ activeMessage: val });
   };
 
-  onSubmit = values => {
-    const { messages, currentUser } = this.props;
-    const { activeMessage } = this.state;
-    const user = Object.values(messages)[activeMessage].author;
-    axios.post('/api/add_message', { values, user, currentUser });
-  };
-
   render() {
-    const { messages } = this.props;
     const { activeMessage } = this.state;
     return (
-      <div className="messages-wrapper">
-        <MessageContext.Provider
-          value={{ activeMessage, messages, toggle: this.changeActiveMessage }}
-        >
-          <MessagesOverview />
-          {messages.length && <MessageReply onSubmit={this.onSubmit} />}
-        </MessageContext.Provider>
-      </div>
+      <Query query={getMessages}>
+        {({data}) => {
+          const { messages } = data;
+           return messages ? (
+            <div className="messages-wrapper">
+              <MessageContext.Provider
+                value={{ activeMessage, messages, toggle: this.changeActiveMessage }}
+              >
+                <MessagesOverview />
+                {messages.length && <MessageReply messages={messages} />}
+              </MessageContext.Provider>
+            </div>
+          ) : null
+        }}
+      </Query>
     );
   }
 }
 
 AllMessages.propTypes = {
-  messages: PropTypes.arrayOf(
-    PropTypes.shape({
-      author: PropTypes.shape({
-        firstName: PropTypes.string.isRequired,
-        lastName: PropTypes.string.isRequired,
-        img: PropTypes.string.isRequired,
-      }).isRequired,
-      body: PropTypes.string.isRequired,
-      // eslint-disable-next-line comma-dangle
-    })
-  ).isRequired,
   currentUser: PropTypes.shape({
     profile: PropTypes.shape({
       userName: PropTypes.string.isRequired,

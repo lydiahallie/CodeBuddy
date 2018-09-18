@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import InfoBox from '../styled_components/InfoBox';
-import { profileQuery } from './queries';
+import { profileQuery } from './query';
 // import { Bar } from 'react-chartjs';
 // import { CardSkills } from '../Find/Find';
 

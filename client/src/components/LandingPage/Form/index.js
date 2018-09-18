@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import ParticleWrapper from '../Particles';
 import Title from '../App/title';
 import InputFields from './inputField';
@@ -23,14 +22,6 @@ class AuthForm extends Component {
 
   changeActiveBtn = value => this.setState({ activeBtn: value });
 
-  handleSubmit = values => {
-    const { activeBtn } = this.state;
-    const userauth = activeBtn === 'login' ? 'login' : 'signup';
-    axios
-      .post(`/api/${userauth}`, values)
-      .then(() => this.props.history.push('/dashboard/dashboard')); //eslint-disable-line
-  };
-
   render() {
     const { activeBtn } = this.state;
     return (
@@ -38,7 +29,7 @@ class AuthForm extends Component {
         <div className="form-wrapper">
           <ButtonSwipe activeBtn={activeBtn} changeActiveBtn={this.changeActiveBtn} />
           <div className={`form-content-wrapper expanded-${activeBtn}`}>
-            <InputFields activeBtn={activeBtn} onSubmit={this.handleSubmit} />
+            <InputFields activeBtn={activeBtn} />
           </div>
         </div>
       </div>

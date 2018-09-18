@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 import moment from 'moment';
 import shortid from 'short-id';
 import PropTypes from 'prop-types';
-import { postsQuery } from './queries';
+import { postsQuery } from './query';
 import InfoBox from '../styled_components/InfoBox';
 import TextInput from './TextInput';
 
