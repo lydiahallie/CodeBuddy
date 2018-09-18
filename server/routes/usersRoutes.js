@@ -17,7 +17,7 @@ const readAllUsers = () => (
       reject(e);
     }  
   })
-)
+);
 
 const updateUser = ({values, req}) => (
   new Promise(async(resolve, reject) => {

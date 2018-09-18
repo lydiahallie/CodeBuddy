@@ -20,6 +20,7 @@ const createMessage = ({id, message, req}) => (
     try {
       const author = await User.findOne({ _id: req.user._id });
       const recipient = await User.findOne({ _id: id });
+
       Message.create({
         author: {
           _id: author._id,
