@@ -14,20 +14,16 @@ const readAllPosts = () => (
   })
 )
 
-const createPost = ({userId, post}) => (
+const createPost = ({user, post}) => (
   new Promise(async(resolve, reject) => {
-    let user = {};
     try {
-    user = await User.findOne({ _id: userId });
+      await User.findOne({ _id: user._id });
     } catch(e) {
       reject(e);
     }
     try {
       Post.create({
-        userId: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        img: user.profile.img,
+        user,
         post: {
           title: post.title,
           body: post.body,

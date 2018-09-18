@@ -33,7 +33,7 @@ const RootQueryType = new GraphQLObjectType({
         return PostService.readAllPosts();
       },
     },
-    
+
     messages: {
       type: new GraphQLList(MessageType),
       resolve(parentValue, args, req) {
