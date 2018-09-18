@@ -36,6 +36,6 @@ const createMessage = ({id, message, req}) => (
       reject(e);
     }
   })
-)
+);
 
 module.exports = {readMessages, createMessage};

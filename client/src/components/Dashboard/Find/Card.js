@@ -17,19 +17,18 @@ const CardAbout = ({ text }) => (
   </div>
 );
 
-const CardSkills = ({ skills }) =>
-  skills && (
-    <div className="card-col-info">
-      <div className="card-col-skills">
-        {skills.slice(0, 3).map(skill => (
-          <div className="skill" id={skill.lang.toLowerCase()}>
-            <span id="skill-name">{skill.lang}:</span>
-            <ProgressBar width={skill.value} />
-          </div>
-        ))}
-      </div>
+const CardSkills = ({ skills }) => (
+  <div className="card-col-info">
+    <div className="card-col-skills">
+      {skills.slice(0, 3).map(skill => (
+        <div className="skill" id={skill.lang.toLowerCase()}>
+          <span id="skill-name">{skill.lang}:</span>
+          <ProgressBar width={skill.value} />
+        </div>
+      ))}
     </div>
-  );
+  </div>
+);
 
 class Card extends Component {
   constructor() {
@@ -57,6 +56,7 @@ class Card extends Component {
   render() {
     const { user, i } = this.props;
     const { active } = this.state;
+    console.log('uuzehhh', user)
     return (
       <InfoBox margin nojustify size={300} height={500} data-style={i} className="user-find-card">
         <div className="card-user-info">
@@ -79,7 +79,7 @@ class Card extends Component {
             <CardAbout text={user.profile.description} />
           </div>
         ) : (
-          <CardContact user={user} onSubmit={this.onSubmit} />
+          <CardContact user={user} />
         )}
       </InfoBox>
     );
@@ -93,6 +93,10 @@ CardButton.propTypes = {
 
 CardAbout.propTypes = {
   text: PropTypes.string.isRequired,
+};
+
+CardSkills.propTypes = {
+  skills: PropTypes.shape.isRequired,
 };
 
 Card.propTypes = {
