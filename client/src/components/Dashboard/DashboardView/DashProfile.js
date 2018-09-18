@@ -19,7 +19,7 @@ const DashUserProfile = () => (
   <Query query={profileQuery}> 
     {({data}) => {  
       const { user } = data;
-      return  user ? (
+      return user ? (
         <InfoBox none odd margin size={400} height={700}>
           <div className="dash-profile">
             <div className="dash-user-info">
