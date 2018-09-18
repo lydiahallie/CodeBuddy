@@ -1,8 +1,10 @@
 import React from 'react';
 import shortid from 'short-id';
+import { Mutation } from 'react-apollo';
 import { NavLink } from 'react-router-dom';
 import MENU_CONTENTS from './menuBtns';
 import { LogOutIcon } from '../../../../assets/icons';
+import logoutUser from './mutation';
 
 const Menu = () => (
   <div className="menu">
@@ -17,12 +19,25 @@ const Menu = () => (
         {btn.name}
       </NavLink>
     ))}
-    <a href="/api/logout" className="btn-menu">
-      <div className="icon">
-        <LogOutIcon />
+    <Mutation mutation={logoutUser}>
+    {logout => (
+      <div 
+        onClick={e => {
+          e.preventDefault();
+          logout()
+            // TODO: Use react router instead.
+            .then(() => {
+              window.location.href = 'http://localhost:3000'
+            })
+        }} 
+        className="btn-menu">
+        <div className="icon">
+          <LogOutIcon />
+        </div>
+        Log Out
       </div>
-      Log Out
-    </a>
+    )}       
+    </Mutation>
   </div>
 );
 
