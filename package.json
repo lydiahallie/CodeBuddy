@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "client/index.js",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "start": "node index.js",
     "server": "nodemon server/server.js",
@@ -16,6 +17,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-cache-inmemory": "^1.2.10",
+    "apollo-link-http": "^1.5.5",
     "concurrently": "^3.5.1",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
