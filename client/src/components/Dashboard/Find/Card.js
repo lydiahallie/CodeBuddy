@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import InfoBox from '../styled_components/InfoBox';
 import { ProgressBar } from '../DashboardView/InfoBoxes';
@@ -17,19 +16,18 @@ const CardAbout = ({ text }) => (
   </div>
 );
 
-const CardSkills = ({ skills }) =>
-  skills && (
-    <div className="card-col-info">
-      <div className="card-col-skills">
-        {skills.slice(0, 3).map(skill => (
-          <div className="skill" id={skill.lang.toLowerCase()}>
-            <span id="skill-name">{skill.lang}:</span>
-            <ProgressBar width={skill.value} />
-          </div>
-        ))}
-      </div>
+const CardSkills = ({ skills }) => (
+  <div className="card-col-info">
+    <div className="card-col-skills">
+      {skills.slice(0, 3).map(skill => (
+        <div className="skill" id={skill.lang.toLowerCase()}>
+          <span id="skill-name">{skill.lang}:</span>
+          <ProgressBar width={skill.value} />
+        </div>
+      ))}
     </div>
-  );
+  </div>
+);
 
 class Card extends Component {
   constructor() {
@@ -46,12 +44,6 @@ class Card extends Component {
 
   changeView = view => {
     this.setState({ active: view });
-  };
-
-  onSubmit = values => {
-    const { user, currentUser, fetchMessages } = this.props;
-    axios.post('/api/add_message', { values, user, currentUser });
-    fetchMessages();
   };
 
   render() {
@@ -79,7 +71,7 @@ class Card extends Component {
             <CardAbout text={user.profile.description} />
           </div>
         ) : (
-          <CardContact user={user} onSubmit={this.onSubmit} />
+          <CardContact user={user} />
         )}
       </InfoBox>
     );
@@ -93,6 +85,10 @@ CardButton.propTypes = {
 
 CardAbout.propTypes = {
   text: PropTypes.string.isRequired,
+};
+
+CardSkills.propTypes = {
+  skills: PropTypes.shape.isRequired,
 };
 
 Card.propTypes = {
@@ -135,11 +131,6 @@ Card.propTypes = {
     lastName: PropTypes.string,
     __v: PropTypes.number,
   }).isRequired,
-  fetchMessages: PropTypes.func,
-};
-
-Card.defaultProps = {
-  fetchMessages: undefined,
 };
 
 export default Card;

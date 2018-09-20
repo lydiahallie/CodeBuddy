@@ -1,37 +1,36 @@
 const mongoose = require('mongoose');
-const requireLogin = require('../middlewares/requireLogin');
 
 const Post = mongoose.model('posts');
 const User = mongoose.model('users');
 
-module.exports = app => {
-  app.get('/api/all_posts', requireLogin, (req, res) => {
-    Post.find({}, (err, posts) => {
-      const postMap = {};
+const readAllPosts = () => (
+  new Promise((resolve, reject) => {
+    try {
+      const posts = Post.find({});
+      resolve(posts);
+    } catch (e) {
+      reject(e);
+    }
+  })
+)
 
-      posts.map(post => {
-        postMap[post._id] = post;
-        return postMap;
+const createPost = ({author, date, post}) => (
+  new Promise(async(resolve, reject) => {
+    try {
+      Post.create({
+        author,
+        date,
+        post: {
+          title: post.title,
+          body: post.body,
+        },
       });
+      resolve();        
+    } catch(e) {
+      reject(e);
+    }
+  })
+)
 
-      res.send(postMap);
-    });
-  });
+module.exports = {createPost, readAllPosts};
 
-  app.post('/api/all_posts', requireLogin, async (req, res) => {
-    const user = await User.findOne({ _id: req.body.data.user._id });
-    Post.create({
-      userId: req.body.data.user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      img: user.profile.img,
-      post: {
-        title: req.body.formData.title,
-        body: req.body.formData.body,
-      },
-    }).then(() => {
-      // console.log('done');
-      res.send();
-    });
-  });
-};

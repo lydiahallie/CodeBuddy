@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import getAllUsers from './query';
 import { Spinner } from '../../../assets/spinners';
 import { ALL_USERS } from '../../../fake_backend/users';
 import Card from './Card';
@@ -87,22 +89,28 @@ class Find extends Component {
   };
 
   render() {
-    const { activeUsers, loaded } = this.state;
+    
+
+    const {  loaded } = this.state;
     const { currentUser } = this.props;
     return (
-      <div className="overview">
-        {/* <SearchBar updateResults={ this.updateResults } /> */}
-        <div className="find-cards">
-          {!loaded ? (
-            <Spinner />
-          ) : (
-            Object.values(activeUsers).map(
-              // eslint-disable-next-line comma-dangle
-              (user, i) => <Card user={user} i={i} currentUser={currentUser} />
-            )
-          )}
-        </div>
-      </div>
+      <Query query={getAllUsers}>
+      {({data}) => (
+          <div className="overview">
+          {/* <SearchBar updateResults={ this.updateResults } /> */}
+          <div className="find-cards">
+            {!loaded ? (
+              <Spinner />
+            ) : (
+              data.users.map(
+                // eslint-disable-next-line comma-dangle
+                (user, i) => <Card user={user} i={i} currentUser={currentUser} />
+              )
+            )}
+          </div>
+          </div>
+      )}
+      </Query>
     );
   }
 }

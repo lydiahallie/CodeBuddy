@@ -1,10 +1,11 @@
 /* eslint-disable no-nested-ternary */
-import React from 'react';
-import { reduxForm, Field } from 'redux-form';
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
 import shortid from 'short-id';
 import PropTypes from 'prop-types';
 import Skills from './Skills';
 import { Spinner, Success } from '../../../assets/spinners';
+import UpdateUser from './mutation';
 
 const selectOpts = ['Male', 'Female', 'Other'];
 const lower = x => x.toLowerCase();
@@ -44,9 +45,9 @@ const ProfileInputField = ({ field, currentUser }) => (
     <span id="profile-span-text">{field}</span>
     <div>
       {field === 'description' ? (
-        <Field component="textarea" name={field} max="120" placeholder={currentUser[field]} />
+        <input type="textarea" value={field} max="120" placeholder={currentUser[field]} />
       ) : field === 'gender' ? (
-        <Field component="select" name={field}>
+        <select value={field}>
           {selectOpts.map(
             // eslint-disable-next-line comma-dangle
             opt => (
@@ -55,9 +56,9 @@ const ProfileInputField = ({ field, currentUser }) => (
               </option>
             )
           )}
-        </Field>
+        </select>
       ) : (
-        <Field type="text" name={field} placeholder={currentUser[field]} component="input" />
+        <input type="text" name={field} placeholder={currentUser[field]} component="input" />
       )}
     </div>
   </div>
@@ -73,31 +74,70 @@ const ProfileInputFields = ({ currentUser, profile = false }) => {
   );
 };
 
-const ProfileInfoForm = ({ info, handleSubmit, reqData }) =>
-  // console.log('profile info form props', props);
-  info && (
-    <form onSubmit={handleSubmit} className="profile-user-info-wrapper">
-      <div className="profile-user-info-input">
-        <div className="profile-user-img">
-          <img src={info.profile.img} alt={info.firstName} />
-          <span>image URL</span>
-          <Field type="text" name="img" component="input" />
-        </div>
-        <div className="profile-user-info">
-          <div className="profile-fields">
-            <ProfileInputFields currentUser={info} />
-            <ProfileInputFields currentUser={info} profile />
-          </div>
-        </div>
-      </div>
-      <Skills skills={info.profile.skills} info={info} />
-      <div className="save-btn">
-        <button type="submit">
-          <RequestMessage req={reqData.request} loaded={reqData.loaded} success={reqData.success} />
-        </button>
-      </div>
-    </form>
-  );
+export default class ProfileInfo extends Component {
+  state = {
+    // eslint-disable-next-line react/no-unused-state
+    email: '',
+    // eslint-disable-next-line react/no-unused-state
+    password: '',
+    // eslint-disable-next-line react/no-unused-state
+    firstName: '',
+    // eslint-disable-next-line react/no-unused-state
+    lastName: '',
+    // eslint-disable-next-line react/no-unused-state
+    gender: null,
+  }
+
+  handleInput = (key, e) => this.setState({ [key]: e.target.value });
+  
+  render() {
+    const { reqData, user } = this.props;
+    // eslint-disable-next-line no-unused-vars
+    const { email, password, firstName, lastName, gender } = this.state;
+    return user ? (
+      <Mutation mutation={UpdateUser}>
+        {updateUser => (
+          <form 
+            onSubmit={e => {
+              e.preventDefault();
+              updateUser({ variables: this.state });
+            }}
+            className="profile-user-info-wrapper"
+          >
+            <div className="profile-user-info-input">
+              <div className="profile-user-img">
+                <img src={user.profile.img} alt={user.firstName} />
+                <span>image URL</span>
+                <input type="text" />
+              </div>
+              <div className="profile-user-info">
+                <div className="profile-fields">
+                  <ProfileInputFields currentUser={user} />
+                  <ProfileInputFields currentUser={user} profile />
+                </div>
+              </div>
+            </div>
+            <Skills skills={user.profile.skills} info={user} />
+            <div className="save-btn">
+              <button type="submit">
+                <RequestMessage 
+                  req={reqData.request} 
+                  loaded={reqData.loaded} 
+                  success={reqData.success} 
+                />
+              </button>
+            </div>
+          </form>
+        )}
+      </Mutation>
+    ) : null;
+  }
+}
+
+ProfileInfo.propTypes = {
+  reqData: PropTypes.bool.isRequired,
+  user: PropTypes.shape.isRequired,
+}
 
 RequestMessage.propTypes = {
   req: PropTypes.bool.isRequired,
@@ -109,7 +149,3 @@ ProfileInputField.propTypes = {
   field: PropTypes.string.isRequired,
   currentUser: PropTypes.string.isRequired,
 };
-
-export default reduxForm({
-  form: 'userUpdate',
-})(ProfileInfoForm);

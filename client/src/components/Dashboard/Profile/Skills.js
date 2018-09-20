@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Field } from 'redux-form';
 import shortid from 'short-id';
 import PropTypes from 'prop-types';
 
@@ -21,7 +20,7 @@ class Skill extends Component {
     const { width } = this.state;
     return (
       <div className="user-profile-skill">
-        <Field component="select" name={`lang${i}`}>
+        <select name={`lang${i}`}>
           <option value="" disabled>
             {skill.lang}
           </option>
@@ -30,10 +29,9 @@ class Skill extends Component {
               {lang}
             </option>
           ))}
-        </Field>
+        </select>
         <ProgressBar width={width} />
-        <Field
-          component="input"
+        <input
           onChange={e => this.updateWidth(e)}
           placeholder={skill.value}
           type="number"

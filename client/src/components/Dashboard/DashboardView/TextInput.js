@@ -27,7 +27,7 @@ class TextInput extends Component {
                 onChange={e => onPostChange('body', e)}
                 value={body}
               />
-              <button onClick={this.addPost}>Add</button>
+              <button>Add</button>
             </React.Fragment>
           )}
         </div>

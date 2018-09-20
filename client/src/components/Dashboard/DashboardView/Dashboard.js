@@ -1,8 +1,8 @@
 import React from 'react';
 import ActivityGraph from './ActivityGraph';
-import MessagesTable from '../../../containers/MessageTable';
-import InfoBoxes from '../../../containers/InfoBoxes';
-import DashProfile from '../../../containers/DashProfile';
+import MessagesTable from './MessageTable';
+import InfoBoxes from './InfoBoxes';
+import DashProfile from './DashProfile';
 
 const StatsBoxes = () => (
   <div className="stats-boxes">

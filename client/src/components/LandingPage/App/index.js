@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import Header from '../Header';
 import Content from '../Form';
-import * as actions from '../../../actions';
 import Info from '../Info';
 import Preview from '../Preview';
 import CubicParticleWrapper from '../Particles/cubics';
@@ -24,7 +22,4 @@ App.propTypes = {
   history: PropTypes.object.isRequired, //eslint-disable-line
 };
 
-export default connect(
-  null,
-  actions
-)(App);
+export default App;
