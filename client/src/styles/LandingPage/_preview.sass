@@ -1,15 +1,26 @@
-.preview-images 
+.preview-images
   +flex-justify(space-around)
 
+@media only screen and (max-width: 900px)
+  .preview-images
+    width: 100%;
+    flex-direction: column;
+
+  .image-wrapper
+    width: 100%;
+
+    img
+      max-width: 400px;
+
 .image-wrapper 
-  padding: 30px 
+  padding: 30px
+  flex-grow: 1;
   +flex-align(center)
   flex-direction: column
   transition: .3s ease-in-out
-  width: 25%
 
   img 
-    width: 280px 
+    width: 100%
     height: auto
     box-shadow: #211d1d 0px 0px 30px
 
