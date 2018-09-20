@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/anchor-is-valid, no-shadow */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ParticleWrapper from '../Particles';
@@ -37,11 +37,14 @@ class AuthForm extends Component {
   }
 }
 
-const Content = ({ history }) => (
+const Content = ({ history, authenticateUser }) => (
   <div className="content">
     <div>
       <Title />
-      <AuthForm history={history} />
+      <AuthForm
+        history={history}
+        authenticateUser={authenticateUser}
+      />
     </div>
     <ParticleWrapper />
   </div>
@@ -58,6 +61,7 @@ AuthForm.propTypes = {
 
 Content.propTypes = {
   history: PropTypes.object.isRequired, //eslint-disable-line
+  authenticateUser: PropTypes.func.isRequired,
 };
 
 export default Content;
