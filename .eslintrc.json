@@ -1,7 +1,7 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
-  "plugins": ["react", "jsx-a11y", "import"],
+  "plugins": ["react", "jsx-a11y", "import", "cypress"],
   "rules": {
     "allowArrowFunctions": true,
     "array-bracket-spacing": "off",
@@ -16,13 +16,16 @@
     "arrow-spacing": "off",
     "block-spacing": "off",
     "brace-style": "off",
-    "comma-dangle": ["error", {
-      "arrays": "always-multiline",
-      "objects": "always-multiline",
-      "imports": "always-multiline",
-      "exports": "always-multiline",
-      "functions": "ignore"
-    }],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "ignore"
+      }
+    ],
     "comma-spacing": "off",
     "comma-style": "off",
     "computed-property-spacing": "off",
@@ -40,14 +43,17 @@
     "jsx-quotes": "off",
     "key-spacing": "off",
     "keyword-spacing": "off",
-    "max-len": ["error", {
-      "code": 100,
-      "ignoreUrls": true,
-      "ignoreStrings": true
-    }],
+    "max-len": [
+      "error",
+      {
+        "code": 100,
+        "ignoreUrls": true,
+        "ignoreStrings": true
+      }
+    ],
     "new-parens": "off",
     "newline-per-chained-call": "off",
-    "no-confusing-arrow": ["error", {"allowParens": true}],
+    "no-confusing-arrow": ["error", { "allowParens": true }],
     "no-extra-semi": "off",
     "no-floating-decimal": "off",
     "no-mixed-spaces-and-tabs": "off",
@@ -99,6 +105,7 @@
   },
   "env": {
     "browser": true,
-    "jest": true
+    "jest": true,
+    "cypress/globals": true
   }
 }
