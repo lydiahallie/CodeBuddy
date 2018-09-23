@@ -1,14 +1,14 @@
 export const LOGIN_FIELDS = [
   // { type: 'text', placeholder: 'Name' },
-  { type: 'text', placeholder: 'Email' },
-  { type: 'password', placeholder: 'Password' },
+  { name: 'email', type: 'text', placeholder: 'Email' },
+  { name: 'password', type: 'password', placeholder: 'Password' },
 ];
 
 export const SIGNUP_FIELDS = [
-  { type: 'text', placeholder: 'First Name' },
-  { type: 'text', placeholder: 'Last Name' },
-  { type: 'text', placeholder: 'Email' },
-  { type: 'password', placeholder: 'Password' },
+  { name: 'firstName', type: 'text', placeholder: 'First Name' },
+  { name: 'lastName', type: 'text', placeholder: 'Last Name' },
+  { name: 'email', type: 'text', placeholder: 'Email' },
+  { name: 'password', type: 'password', placeholder: 'Password' },
 ];
 
 export const WORDS = [
