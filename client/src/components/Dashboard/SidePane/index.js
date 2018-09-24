@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import { Menu } from './Menu';
+import React from 'react';
+import Menu from './Menu';
 
-export const SidePane = () =>  (
-  <div className='sidepane'>
+const SidePane = () => (
+  <div className="sidepane">
     <Menu />
   </div>
 );
+
+export default SidePane;

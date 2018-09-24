@@ -1,79 +1,73 @@
+/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { SidePane } from './SidePane';
-import { fetchUser, fetchPosts, fetchMessages } from '../../actions';
-import { DashHeader } from './SidePane/Header';
+import PropTypes from 'prop-types';
+import SidePane from './SidePane';
+import DashHeader from './SidePane/Header';
 import Find from './Find/Find';
 import Profile from './Profile/Profile';
+import DashboardView from './DashboardView/Dashboard';
 import Messages from './Messages/Messages';
-import { DashboardView } from './DashboardView/Dashboard';
 
-const View = props => (
-  <div className='dashboard-content'>
-    { props.children }
-  </div>
+const View = ({ children }) => (
+  // console.log('children', children);
+  <div className="dashboard-content">{children}</div>
 );
 
 class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
-      currentView: 'Find',
-    }
+      currentView: null,
+    };
   }
 
+  // eslint-disable-next-line consistent-return
   blockComponent = block => {
     switch (block) {
       case 'find':
-       return <Find />
+        return <Find />;
       case 'profile':
-        return <Profile />
+        return <Profile />;
       case 'dashboard':
-        return <DashboardView />
+        return <DashboardView />;
       case 'messages':
-        return <Messages />
-      default:
-        return
+        return <Messages />;
+
+      // no default
     }
-  }
+  };
 
   changeView = view => {
-    this.setState({ currentView: view })
-  }
-
-  componentDidMount() {
-    const { fetchUser, fetchPosts, fetchMessages, currentUser } = this.props;
-    fetchUser();
-    fetchPosts();
-    fetchMessages(currentUser);
-  }
+    this.setState({ currentView: view });
+  };
 
   render() {
+
+
+    // eslint-disable-next-line react/destructuring-assignment
     const { name } = this.props.match.params;
     return (
-      <div className='app dashboard'>
+      <div className="app dashboard">
         <DashHeader />
-        <div className='dash-app-content'>
-          <SidePane changeView={ this.changeView } />
-          <View>{ this.blockComponent(name) }</View>
-        </div>
-      </div>
+        <div className="dash-app-content">
+          <SidePane />
+          <View>{this.blockComponent(name)}</View>
+        </div> 
+      </div>       
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    currentUser: state.user
-  }
-}
+Dashboard.propTypes = {
+  match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchUser: () => dispatch(fetchUser),
-    fetchPosts: () => dispatch(fetchPosts),
-    fetchMessages: () => dispatch(fetchMessages),
-  }
-}
+View.propTypes = {
+  children: PropTypes.node,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+View.defaultProps = {
+  children: undefined,
+};
+
+export default Dashboard;

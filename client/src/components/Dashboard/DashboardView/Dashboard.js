@@ -1,22 +1,24 @@
 import React from 'react';
-import { ActivityGraph } from './ActivityGraph';
+import ActivityGraph from './ActivityGraph';
 import MessagesTable from './MessageTable';
 import InfoBoxes from './InfoBoxes';
-import { DashProfile } from './DashProfile';
+import DashProfile from './DashProfile';
 
 const StatsBoxes = () => (
-  <div className='stats-boxes'>
+  <div className="stats-boxes">
     <ActivityGraph />
     <div>
-       <MessagesTable />
-       <DashProfile />
+      <MessagesTable />
+      <DashProfile />
     </div>
   </div>
 );
 
-export const DashboardView = () => (
-  <div className='dashboard-view'>
+const DashboardView = () => (
+  <div className="dashboard-view">
     <InfoBoxes />
     <StatsBoxes />
   </div>
 );
+
+export default DashboardView;

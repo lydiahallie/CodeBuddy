@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { ProfileInfo } from './ProfileInfo';
-import { fetchUser } from '../../../actions';
+import { Query } from 'react-apollo';
+import PropTypes from 'prop-types';
+import ProfileInfo from './ProfileInfo';
+import getUserProfile from './query';
 
 class UserProfile extends React.Component {
   constructor() {
@@ -11,46 +11,61 @@ class UserProfile extends React.Component {
       success: false,
       request: false,
       loaded: false,
-    }
+    };
   }
 
-  handleSubmit = async values => {
-    this.setState({request: true});
-    const { currentUser } = this.props;
-    const res = await axios.post('/api/update_user', { currentUser, values});
-    this.setState({
-      success: res.status === 200 ? true : false,
-      loaded: true
-    })
-  }
+  // handleSubmit = async values => {
+  //   this.setState({ request: true });
+  //   const { currentUser } = this.props;
+  //   const res = await axios.post('/api/update_user', { currentUser, values });
+  //   this.setState({
+  //     success: res.status === 200,
+  //     loaded: true,
+  //   });
+  // };
 
   render() {
+    const reqData = { ...this.state };
+    // const { currentUser } = this.props;
     return (
-      <div className='overview'>
-        <div className='profile-card'>
-          <ProfileInfo
-            info={ this.props.currentUser[0] }
-            onSubmit={ this.handleSubmit } 
-            handleImage={ this.handleImage }
-            updateProfile={ this.updateProfile } 
-            reqData={ this.state }
-            onSkillsChange={ this.onSkillsChange } /> 
-        </div>
-      </div> 
-    )
+      <Query query={getUserProfile}>
+      {({data}) => (
+        data.user ? (
+          <div className="overview">
+            <div className="profile-card">
+              <ProfileInfo
+                reqData={reqData}
+                user={data.user} 
+              />
+            </div>
+          </div>
+        ) : <div className="overview" />
+      )}
+      </Query>
+    );
   }
+}
+
+export default UserProfile;
+
+UserProfile.propTypes = {
+  currentUser: PropTypes.shape({
+    profile: PropTypes.shape({
+      userName: PropTypes.string.isRequired,
+      img: PropTypes.string.isRequired,
+      title: PropTypes.bool.isRequired,
+      skills: PropTypes.arrayOf(
+        PropTypes.shape({
+          lang: PropTypes.string.isRequired,
+          value: PropTypes.number.isRequired,
+          // eslint-disable-next-line comma-dangle
+        })
+      ).isRequired,
+      level: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }),
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    __v: PropTypes.number,
+  }).isRequired,
 };
-
-const mapStateToProps = state => {
-  return {
-    currentUser: state.user,
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchUser: () => dispatch(fetchUser)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

@@ -1,17 +1,16 @@
 import React from 'react';
-import { Header } from '../Header';
-import { Content } from '../Form';
-import { connect } from 'react-redux';
-import * as actions from '../../../actions';
-import { Info } from '../Info';
-import { Preview } from '../Preview';
-import { CubicParticleWrapper } from '../Particles/cubics';
-import { FooterWrapper as Footer } from '../Footer';
+import PropTypes from 'prop-types';
+import Header from '../Header';
+import Content from '../Form';
+import Info from '../Info';
+import Preview from '../Preview';
+import CubicParticleWrapper from '../Particles/cubics';
+import Footer from '../Footer';
 
-const App = ({history}) => (
-  <div className='app'>
+const App = ({ history }) => (
+  <div className="app">
     <Header />
-    <Content history={ history } />
+    <Content history={history} />
     <Info />
     <Preview />
     <CubicParticleWrapper />
@@ -19,4 +18,8 @@ const App = ({history}) => (
   </div>
 );
 
-export default connect(null, actions)(App);
+App.propTypes = {
+  history: PropTypes.object.isRequired, //eslint-disable-line
+};
+
+export default App;

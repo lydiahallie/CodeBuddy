@@ -1,80 +1,59 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
+import { Query } from 'react-apollo';
 import moment from 'moment';
 import shortid from 'short-id';
-import { InfoBox } from './InfoBoxes';
-import { CrossIcon } from '../../../assets/icons';
+import PropTypes from 'prop-types';
+import { postsQuery } from './query';
+import InfoBox from '../styled_components/InfoBox';
+import TextInput from './TextInput';
 
-const Message = ({msg}) => (
-  msg.post !== undefined &&
-  <div className='dash-message'>
-    <div className='dash-message-info'>
-      <img src={msg.img} alt='' />
-      <h3>{msg.firstName} {msg.lastName}</h3>
-      <span><span id='msg-date'>{moment(msg.post.date).fromNow()}</span></span>
-      <button id='unfollow'>Unfollow</button>
+const Message = ({ msg }) =>
+  msg.post && (
+    <div className="dash-message">
+      <div className="dash-message-info">
+        <img src={msg.img} alt="" />
+        <h3>
+          {msg.firstName} {msg.lastName}
+        </h3>
+        <span>
+          <span id="msg-date">{moment(msg.post.date).fromNow()}</span>
+        </span>
+        <button id="unfollow">Unfollow</button>
+      </div>
+      <p className="dash-message-msg">{msg.post.body}</p>
     </div>
-    <p className='dash-message-msg'>{msg.post.body}</p>
-  </div>
-);
+  );
 
-class TextInput extends Component {
-  state = { expanded: false };
 
-  toggleMessage = () => {
-    this.setState(({expanded}) => ({ expanded: !expanded }))
-  }
-
-  render() {
-    const { expanded } = this.state;
-    return (
-      <div className='dash-msg-input'>
-        <div onClick={ this.toggleMessage } className={`dash-msg-button expanded-${expanded}`} >
-          <div>
-            <CrossIcon />
-          </div>
-           { expanded && 
-            <React.Fragment>
-              <input style={{color: 'black'}} type='textarea' placeholder='Message' onChange={ e => this.onPostChange('body', e) } value={ this.state.body} />
-              <button onClick={ this.addPost }>Add</button> 
-            </React.Fragment>
-          }
-        </div> 
-      </div> 
-    );
-  }
-};
-
-export class MessagesTable extends React.Component {
+class MessagesTable extends Component {
   state = { body: '' };
-  
-	onPostChange = (key, e) => this.setState({ [key]: e.target.value })
-  
-  addPost = () => {
-    const formData = this.state;
-    const data = this.props;
-    axios.post('/api/all_posts', {data, formData});
-  }
+
+  onPostChange = (key, e) => this.setState({ [key]: e.target.value });
 
   render() {
-    const posts = Object.values(this.props.posts);
+    // eslint-disable-next-line react/destructuring-assignment
+    const { body } = this.state;
     return (
-      <InfoBox size={400} height={300}>
-        <TextInput />
-        <div className='dash-messages'>
-          { posts.reverse().map(msg => <Message msg={ msg } key={ shortid.generate() }/>) }
-        </div>
-      </InfoBox>
+      <Query query={postsQuery}>
+      {({data}) => (
+        data ? (
+          <InfoBox size={400} height={300}>
+            <TextInput onPostChange={this.onPostChange} body={body} />
+            <div className="dash-messages">
+              {data.posts && data.posts.reverse().map(msg => (
+                <Message msg={msg} key={shortid.generate()} />
+              ))}
+            </div>
+          </InfoBox>
+        ) : <InfoBox size={400} height={300} />
+      )}
+      </Query>
     );
-  }
-};
-
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-    posts: state.posts,
   }
 }
 
-export default connect(mapStateToProps)(MessagesTable)
+MessagesTable.propTypes = {
+  posts: PropTypes.object.isRequired, //eslint-disable-line
+};
+
+export default MessagesTable;

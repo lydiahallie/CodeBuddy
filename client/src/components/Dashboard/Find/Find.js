@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
+import { Query } from 'react-apollo';
+import PropTypes from 'prop-types';
+import getAllUsers from './query';
 import { Spinner } from '../../../assets/spinners';
-import { InfoBox } from '../DashboardView/InfoBoxes';
-import { ProgressBar } from '../DashboardView/InfoBoxes';
-import { fetchMessages } from '../../../actions';
-import { CardContact } from './CardContact';
-import { ALL_USERS } from '../../../fake_backend/users'; 
+import { ALL_USERS } from '../../../fake_backend/users';
+import Card from './Card';
 
 // import { FILTER_OPTS } from '../../../data/options.js';
 
@@ -27,8 +25,8 @@ import { ALL_USERS } from '../../../fake_backend/users';
 //   render() {
 //     const { name } = this.props;
 //     return (
-//       <div 
-//         className={`filter-box checked-${this.state.checked}`} 
+//       <div
+//         className={`filter-box checked-${this.state.checked}`}
 //         onClick={ name => this.updateFilter(this.props.name) }>
 //         {name}
 //       </div>
@@ -38,94 +36,17 @@ import { ALL_USERS } from '../../../fake_backend/users';
 
 // const SearchBar = ({updateResults}) => (
 //   <div className='searchbar'>
-//     <div className='input-col'> 
+//     <div className='input-col'>
 //       { FILTER_OPTS.map(opt => (
 //         <div className='filter-col'>
-//           { opt.lang.slice(0, 3).map(x => <FilterBox name={x} updateResults={ updateResults } />)}
+//           {
+//             opt.lang.slice(0, 3).map(x => <FilterBox name={x} updateResults={ updateResults } />)
+//           }
 //         </div>
 //       ))}
 //     </div>
 //   </div>
 // );
-
-const CardButton = ({btn, changeView}) => (
-  <div 
-    className='find-btn-swipe' 
-    onClick={ () => changeView(btn.toLowerCase()) }>
-    {btn}
-  </div>
-);
-
-const CardAbout = ({text}) => (
-  <div className='card-col-info-about'>
-    <p>{text}</p>
-  </div>
-);
-
-export const CardSkills = ({skills}) => (
-  skills !== undefined && 
-  <div className='card-col-info'>
-    <div className='card-col-skills'>
-      {skills.slice(0, 3).map(skill => 
-        <div className='skill' id={skill.lang.toLowerCase()} >
-          <span id='skill-name'>{skill.lang}:</span> 
-          <ProgressBar width={skill.value} />
-        </div> 
-      )}
-    </div> 
-  </div>
-);
-
-class Card extends Component {
-  constructor() {
-    super();
-    this.state = { 
-      active: 'about',
-    }
-  }
-
-  showIcons = () => {
-    this.setState({ expanded: !this.state.expanded })
-  }
-
-  changeView = view => {
-    this.setState({ active: view })
-  }
-
-  onSubmit = values => {
-    const { user, currentUser  } = this.props;
-    axios.post('/api/add_message', { values, user, currentUser })
-    this.props.fetchMessages();
-  }
-  
-  render() {
-    const { user, i } = this.props;
-    const { active } = this.state;
-    return (
-      <InfoBox margin nojustify size={300} height={500} data-style={i} className='user-find-card'>
-        <div className='card-user-info'>
-          <img src={user.profile.img} alt={user.firstName} />
-          <div className='card-info'>
-            <h3>{user.firstName} {user.lastName}</h3>
-            <h4>{user.profile.title || 'Developer'}</h4>
-          </div>
-        </div>
-        <div className='find-btns-swipe'>
-          <CardButton btn='About' active={ active } changeView={ this.changeView } />
-          <CardButton btn='Contact' active={ active } changeView={ this.changeView } />
-        </div>
-        <div className={`indicator active-${active}`} />
-        { active === 'about' ?
-          <div className='card-user-info-col'>
-            <CardSkills skills={user.profile.skills} />
-            <CardAbout text={user.profile.description} />
-          </div> :
-          <CardContact user={ user } onSubmit={ this.onSubmit }/>
-        }
-      </InfoBox>
-    );
-  }
-};
 
 class Find extends Component {
   constructor() {
@@ -133,61 +54,87 @@ class Find extends Component {
     this.state = {
       filterOptions: [],
       loaded: false,
-    }
-  }
-
-  getUsers = async () => {
-    setTimeout(() => 
-      this.setState({ 
-        loaded: true,
-        activeUsers: ALL_USERS
-      }), 2000);
-  }
-  
-  updateResults = name => {
-    const { filterOptions, activeUsers } = this.state;
-    if (!filterOptions.includes(name)) {
-      filterOptions.push(name)
-    } else {
-      let deleteIndex = filterOptions.indexOf(name);
-      filterOptions.splice(deleteIndex, 1)
-    }
-    let updatedUsers = activeUsers.filter(user => 
-      filterOptions.every(opt => user.skills.includes(opt))
-    );
-    this.setState({ activeUsers: filterOptions.length ? updatedUsers : activeUsers })
+    };
   }
 
   componentDidMount() {
-   this.getUsers();
+    this.getUsers();
   }
 
+  getUsers = async () => {
+    setTimeout(
+      () =>
+        this.setState({
+          loaded: true,
+          activeUsers: ALL_USERS,
+        }),
+      2000
+    );
+  };
+
+  updateResults = name => {
+    const { filterOptions, activeUsers } = this.state;
+    if (!filterOptions.includes(name)) {
+      filterOptions.push(name);
+    } else {
+      const deleteIndex = filterOptions.indexOf(name);
+      filterOptions.splice(deleteIndex, 1);
+    }
+    const updatedUsers = activeUsers.filter(user =>
+      filterOptions.every(opt => user.skills.includes(opt))
+    );
+    this.setState({
+      activeUsers: filterOptions.length ? updatedUsers : activeUsers,
+    });
+  };
+
   render() {
-    const { activeUsers, loaded } = this.state;
+    
+
+    const {  loaded } = this.state;
     const { currentUser } = this.props;
     return (
-      <div className='overview'>
-        {/* <SearchBar updateResults={ this.updateResults } /> */}
-        <div className='find-cards'>
-          { !loaded ? <Spinner /> : 
-            Object.values(activeUsers).map((user, i) => <Card user={user} i={i} currentUser={ currentUser } />) 
-          }
-        </div>
-      </div> 
+      <Query query={getAllUsers}>
+      {({data}) => (
+          <div className="overview">
+          {/* <SearchBar updateResults={ this.updateResults } /> */}
+          <div className="find-cards">
+            {!loaded ? (
+              <Spinner />
+            ) : (
+              data.users.map(
+                // eslint-disable-next-line comma-dangle
+                (user, i) => <Card user={user} i={i} currentUser={currentUser} />
+              )
+            )}
+          </div>
+          </div>
+      )}
+      </Query>
     );
   }
 }
 
-const mapStateToProps = state =>  {
-  return {
-    currentUser: state.user
-  }
-}
+Find.propTypes = {
+  currentUser: PropTypes.shape({
+    profile: PropTypes.shape({
+      userName: PropTypes.string.isRequired,
+      img: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      skills: PropTypes.arrayOf(
+        PropTypes.shape({
+          lang: PropTypes.string.isRequired,
+          value: PropTypes.number.isRequired,
+          // eslint-disable-next-line comma-dangle
+        })
+      ).isRequired,
+      level: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }),
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    __v: PropTypes.number,
+  }).isRequired,
+};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchMessages: () => dispatch(fetchMessages)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Find)
+export default Find;

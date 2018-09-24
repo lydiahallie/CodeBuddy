@@ -1,5 +1,11 @@
+// variables
+$breakpoint-small: 768px;
+$breakpoint-medium: 1000px;
+$breakpoint-large: 1200px;
+
+
 @mixin flex($justify, $align)
-  display: flex
+  display: flex 
   justify-content: $justify
   align-items: $align
 
@@ -10,3 +16,16 @@
 @mixin flex-align($align) 
   display: flex
   align-items: $align
+
+@mixin sm 
+   @media (min-width: #{$breakpoint-small}) 
+       @content;
+
+@mixin md 
+   @media (min-width: #{$breakpoint-medium}) 
+       @content;
+
+@mixin lg 
+   @media (min-width: #{$breakpoint-large}) 
+       @content;
+   

@@ -1,46 +1,59 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { InfoBox } from './InfoBoxes';
+import PropTypes from 'prop-types';
+import { Query } from 'react-apollo';
+import InfoBox from '../styled_components/InfoBox';
+import { profileQuery } from './query';
 // import { Bar } from 'react-chartjs';
 // import { CardSkills } from '../Find/Find';
 
-const StatsInfo = ({val, name, line}) => (
+const StatsInfo = ({ val, name, line }) => (
   <React.Fragment>
-    <div className='dash-user-col'>
-      <span className='proj-num'>{val}</span> {name}
+    <div className="dash-user-col">
+      <span className="proj-num">{val}</span> {name}
     </div>
-    { line && <div id='horiz-line' /> }
+    {line && <div id="horiz-line" />}
   </React.Fragment>
 );
 
-export const DashUserProfile = ({currentUser, messages}) => (
-  currentUser!== undefined &&
-    <InfoBox none margin odd size={400} height={700}>
-      <div className='dash-profile'>
-        <div className='dash-user-info'>
-          <img src={currentUser.profile.img} alt='' />
-          <div>
-            <h3>{currentUser.firstName} {currentUser.lastName}</h3>
-            <h5>{currentUser.profile.title}</h5>
-            <button id='edit-profile'>Edit Profile</button>
+const DashUserProfile = () => (
+  <Query query={profileQuery}> 
+    {({data}) => {  
+      const { user } = data;
+      return user ? (
+        <InfoBox none odd margin size={400} height={700}>
+          <div className="dash-profile">
+            <div className="dash-user-info">
+              <img src={user.profile.img} alt="" />
+              <div>
+                <h3>
+                  {user.firstName} {user.lastName}
+                </h3>
+                <h5>{user.profile.title}</h5>
+                <button id="edit-profile">Edit Profile</button>
+              </div>
+            </div>
+            <div className="dash-user-row">
+              <StatsInfo line val={3} name="projects" />
+              <StatsInfo line val={67} name="connections" />
+              <StatsInfo val={7} name="posts" />
+            </div>
+            {/* <CardSkills user={currentUser} /> */}
+            {/* <Bar data={CHART_DATA} width='250' height='300'/> */}
           </div>
-        </div>
-        <div className='dash-user-row'>
-          <StatsInfo line val={3} name='projects' />
-          <StatsInfo line val={67} name='connections' />
-          <StatsInfo val={7} name='posts' />
-        </div>
-        {/* <CardSkills user={currentUser} /> */}
-        {/* <Bar data={CHART_DATA} width='250' height='300'/> */}
-      </div>
-    </InfoBox>
+        </InfoBox>
+      ) : <InfoBox none odd margin size={400} height={700} />
+    }}
+  </Query>
 );
 
-const mapStateToProps = state => {
-  return {
-    currentUser: state.user[0],
-    messages: state.messages,
-  }
-}
+StatsInfo.propTypes = {
+  val: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  line: PropTypes.bool,
+};
 
-export const DashProfile = connect(mapStateToProps)(DashUserProfile)
+StatsInfo.defaultProps = {
+  line: false,
+};
+
+export default DashUserProfile;

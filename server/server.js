@@ -1,37 +1,41 @@
-const express  = require('express');
+const express = require('express');
 const mongoose = require('mongoose');
-const keys = require('./config/keys');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+const expressGraphQL = require('express-graphql');
+
 const app = express();
 const bodyParser = require('body-parser');
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+const cors = require('cors');
+const keys = require('./config/keys');
 
 require('./models/User');
 require('./models/Posts');
 require('./models/Message');
-
 require('./services/passport');
 
-mongoose.connect(keys.mongoURI)
+const schema = require('./schema/schema');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+mongoose.connect(keys.mongoURI);
 
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey]
+    keys: [keys.cookieKey],
   })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors());
+app.use('/graphql', expressGraphQL({
+  schema,
+  graphiql: true,
+}));
 
 const PORT = process.env.PORT || 5000;
 
-require('./routes/authRoutes.js')(app);
-require('./routes/usersRoutes.js')(app);
-require('./routes/postsRoutes.js')(app);
-require('./routes/messageRoutes.js')(app);
-
-app.listen(PORT, console.log(`Listening on ${PORT}!`))
+app.listen(PORT, console.log(`Listening on ${PORT}!`));
