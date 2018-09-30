@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 // import shortid from 'short-id';
 import { Mutation } from 'react-apollo';
 import PropTypes from 'prop-types';
-// import { reduxForm, Field } from 'redux-form';
+import styled from 'styled-components'
 import { LOGIN_FIELDS, SIGNUP_FIELDS } from './formFields';
 import { loginMutation, signupMutation } from './mutation';
 
 const LoginFields = ({ animate, handleChange, ...props }) => {
-  const { password, email } = props;
+  const { password, email, history } = props;
 
   return (
     <Mutation mutation={loginMutation}>
@@ -15,9 +15,7 @@ const LoginFields = ({ animate, handleChange, ...props }) => {
         <form onSubmit={e => {
           e.preventDefault();
           login({ variables: { email, password } })
-            .then(() => {
-              window.location.href = 'http://localhost:3000/dashboard/dashboard'
-            }); 
+            .then(() => history.push('/dashboard/dashboard'))
         }}>
           {LOGIN_FIELDS.map((field, index) => (
             <input
@@ -33,7 +31,7 @@ const LoginFields = ({ animate, handleChange, ...props }) => {
             />
           ))}
           <button type="submit">Submit</button>
-          {error && <span>{error}</span>}
+          {error && <WarningMessage>{error.message}</WarningMessage>}
         </form> 
       )}
     </Mutation> 
@@ -41,14 +39,14 @@ const LoginFields = ({ animate, handleChange, ...props }) => {
 };
 
 const SignupFields = ({ animate, handleChange, ...props }) => {
-  const { password, email, firstName, lastName } = props;
+  const { password, email, firstName, lastName, history } = props;
   return (
     <Mutation mutation={signupMutation}>
       {(signup, { error })=> (
         <form onSubmit={e => {
           e.preventDefault();
           signup({ variables: { email, password, firstName, lastName } })
-            .then(() => this.props.history.push('/dashboard/dashboard'))
+            .then(() => history.push('/dashboard/dashboard'))
         }}>
           {SIGNUP_FIELDS.map((field, index) => (
             <input
@@ -64,7 +62,7 @@ const SignupFields = ({ animate, handleChange, ...props }) => {
             />
           ))}
           <button type="submit">Submit</button>
-          {error && <span>{error}</span>}
+          {error && <WarningMessage>{error.message}</WarningMessage>}
         </form> 
       )}
     </Mutation> 
@@ -92,7 +90,8 @@ class InputFields extends Component {
   }
 
   render() {
-    const { activeBtn } = this.props;
+    const { activeBtn, history } = this.props;
+    console.log('IS HISTORY SOMETHING', history)
     // eslint-disable-next-line no-unused-vars
     const { animate, email, password, firstName, lastName } = this.state;
     const ActiveField = activeBtn === 'login' ? LoginFields : SignupFields;
@@ -103,6 +102,7 @@ class InputFields extends Component {
         password={password}
         firstName={firstName}
         lastName={lastName}
+        history={history}
         handleChange={this.handleChange}
       />
     );
@@ -112,6 +112,7 @@ class InputFields extends Component {
 LoginFields.propTypes = {
   animate: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
+  history: PropTypes.shape.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
 }
@@ -120,6 +121,7 @@ SignupFields.propTypes = {
   animate: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
+  history: PropTypes.shape.isRequired,
   password: PropTypes.string.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
@@ -129,6 +131,15 @@ SignupFields.propTypes = {
 InputFields.propTypes = {
   // handleSubmit: PropTypes.func.isRequired,
   activeBtn: PropTypes.string.isRequired,
+  history: PropTypes.shape.isRequired,
 };
 
 export default InputFields;
+
+
+const WarningMessage = styled.span`
+  color: #e05151;
+  text-shadow: #ff0000 0px 0px 10px;
+  font-size: 14px;
+  margin-top: 30px;
+`;

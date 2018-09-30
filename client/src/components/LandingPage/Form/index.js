@@ -24,18 +24,20 @@ class AuthForm extends Component {
 
   render() {
     const { activeBtn } = this.state;
+    const { history } = this.props;
     return (
       <div className="col">
         <div className="form-wrapper">
           <ButtonSwipe activeBtn={activeBtn} changeActiveBtn={this.changeActiveBtn} />
           <div className={`form-content-wrapper expanded-${activeBtn}`}>
-            <InputFields activeBtn={activeBtn} />
+            <InputFields activeBtn={activeBtn} history={history} />
           </div>
         </div>
       </div>
     );
   }
 }
+
 
 const Content = ({ history, authenticateUser }) => (
   <div className="content">

@@ -7,7 +7,7 @@ const {UserType} = require('./types/userType');
 const AuthService = require('../routes/authRoutes');
 
 const {MessageType} = require('./types/messageType');
-const {PostType, PostValueType} = require('./types/postType');
+const {PostType} = require('./types/postType');
 const MessageService = require('../routes/messageRoutes');
 const PostService = require('../routes/postsRoutes');
 const UserService = require('../routes/usersRoutes');
@@ -15,7 +15,6 @@ const UserService = require('../routes/usersRoutes');
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
-    
     login: {
       type: UserType,
       args: {
@@ -23,13 +22,13 @@ const mutation = new GraphQLObjectType({
         password: { type: GraphQLString },
       },
       resolve(parentValue, { email, password }, req) {
-          return AuthService.login({ email, password, req});
+          return AuthService.login({ email, password, req })
       },
     },
     logout: {
       type: UserType,
       resolve(parentValue, args, req) {
-        return AuthService.logout({req});
+        return AuthService.logout({ req });
       },
     },
     signup: {
@@ -57,14 +56,12 @@ const mutation = new GraphQLObjectType({
         return UserService.updateUser({ email, gender, firstName, lastName, profile, req });
       },
     },
-
     createPost: {
       type: PostType,
       resolve(parentValue, { userId, post }) {
         return PostService.createPost({ userId, post });
       },
     },
-
     createMessage: {
       type: MessageType,
       args: {
