@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 // import shortid from 'short-id';
 import { Mutation } from 'react-apollo';
 import PropTypes from 'prop-types';
+import camelCase from 'camelcase'
+import { withRouter } from 'react-router-dom';
 // import { reduxForm, Field } from 'redux-form';
 import { LOGIN_FIELDS, SIGNUP_FIELDS } from './formFields';
 import { loginMutation, signupMutation } from './mutation';
@@ -41,22 +43,22 @@ const LoginFields = ({ animate, handleChange, ...props }) => {
 };
 
 const SignupFields = ({ animate, handleChange, ...props }) => {
-  const { password, email, firstName, lastName } = props;
+  const { password, email, firstName, lastName, history } = props;
   return (
     <Mutation mutation={signupMutation}>
       {(signup, { error })=> (
         <form onSubmit={e => {
           e.preventDefault();
           signup({ variables: { email, password, firstName, lastName } })
-            .then(() => this.props.history.push('/dashboard/dashboard'))
+            .then(() => history.push('/dashboard/dashboard'))
         }}>
           {SIGNUP_FIELDS.map((field, index) => (
             <input
-              onChange={e => handleChange(field.placeholder.toLowerCase(), e)}
+              onChange={e => handleChange(camelCase(field.placeholder), e)}
               // eslint-disable-next-line react/no-array-index-key
               key={`${field.type}-${index}`}
               // eslint-disable-next-line react/destructuring-assignment
-              value={props[field.placeholder.toLowerCase()]}
+              value={props[camelCase(field.placeholder)]}
               type={field.type}
               component="input"
               placeholder={field.placeholder}
@@ -70,6 +72,8 @@ const SignupFields = ({ animate, handleChange, ...props }) => {
     </Mutation> 
   );
 };
+
+const SignupFieldsWrapper = withRouter(SignupFields)
 
 class InputFields extends Component {
   state = { 
@@ -95,7 +99,7 @@ class InputFields extends Component {
     const { activeBtn } = this.props;
     // eslint-disable-next-line no-unused-vars
     const { animate, email, password, firstName, lastName } = this.state;
-    const ActiveField = activeBtn === 'login' ? LoginFields : SignupFields;
+    const ActiveField = activeBtn === 'login' ? LoginFields : SignupFieldsWrapper;
     return (
       <ActiveField
         animate={animate}
@@ -123,6 +127,7 @@ SignupFields.propTypes = {
   password: PropTypes.string.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
+  history: PropTypes.shape.isRequired,
 }
 
 
