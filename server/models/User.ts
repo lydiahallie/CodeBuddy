@@ -1,10 +1,7 @@
-const mongoose = require('mongoose');
+import * as mongoose from 'mongoose'
+import { DEFAULT_USER_MODEL } from './defaultModel';
 
-const { Schema } = mongoose;
-
-const { DEFAULT_USER_MODEL } = require('./defaultModel.js');
-
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   googleId: String,
   email: String,
   password: String,
@@ -22,6 +19,4 @@ const userSchema = new Schema({
   },
 });
 
-mongoose.model('users', userSchema);
-
-module.exports = userSchema;
+export default mongoose.model('users', userSchema);

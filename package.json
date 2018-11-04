@@ -5,8 +5,8 @@
   "main": "client/index.js",
   "proxy": "http://localhost:5000",
   "scripts": {
-    "start": "node index.js",
-    "server": "nodemon server/server.js",
+    "start": "node index.ts",
+    "server": "ts-node -O '{'module': 'commonjs'}' server/start",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "precommit": "pretty-quick --staged && lint-staged"
@@ -20,12 +20,17 @@
     "@types/react-router": "^4.4.0",
     "apollo-cache-inmemory": "^1.2.10",
     "apollo-link-http": "^1.5.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-register": "^6.26.0",
     "concurrently": "^3.5.1",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
-    "react-apollo": "^2.1.11"
+    "graphql-yoga": "^1.16.7",
+    "react-apollo": "^2.1.11",
+    "typescript": "^3.1.6"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.1.0",
     "@types/graphql": "0.12.3",
     "@types/jest": "21.1.8",
     "@types/js-cookie": "2.1.0",
@@ -34,6 +39,7 @@
     "@types/react-dom": "16.0.4",
     "@types/react-router-dom": "^4.3.1",
     "babel-eslint": "^9.0.0",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^5.8.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-plugin-import": "^2.14.0",

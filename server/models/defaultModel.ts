@@ -1,4 +1,20 @@
-exports.DEFAULT_USER_MODEL = {
+interface Skill {
+  lang: string
+  value: number
+}
+
+interface UserModel {
+  firstName: string
+  lastName: string
+  userName: string
+  img: string
+  title: string
+  skills: Skill[]
+  level: string
+  description: string
+}
+
+export const DEFAULT_USER_MODEL = {
   firstName: 'Default',
   lastName: 'Name',
   userName: 'username',
@@ -12,4 +28,4 @@ exports.DEFAULT_USER_MODEL = {
   level: 'Beginner',
   description:
     'This is the default description for new users. Please update this to your own original bio!',
-};
+} as UserModel;

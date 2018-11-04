@@ -1,8 +1,6 @@
-const mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 
-const { Schema } = mongoose;
-
-const messageSchema = new Schema({
+const messageSchema = new mongoose.Schema({
   author: {
     firstName: String,
     lastName: String,
@@ -13,4 +11,4 @@ const messageSchema = new Schema({
   body: String,
 });
 
-mongoose.model('messages', messageSchema);
+export default mongoose.model('messages', messageSchema);

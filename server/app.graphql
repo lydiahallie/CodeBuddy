@@ -1,0 +1,60 @@
+type Skill {
+  lang: String!
+  value: String!
+}
+
+type Profile {
+  userName: String!
+  img: String!
+  title: String!
+  skills: [Skill!]!
+  level: String!
+  description: String!
+  complete: Boolean!
+}
+
+type User {
+  id: ID!
+  email: String!
+  firstName: String!
+  lastName: String!
+  gender: String!
+  profile: Profile
+}
+
+type Message {
+  id: ID!
+  author: User
+  recipientUserId: String!
+  body: String!
+}
+
+type PostContent {
+  title: String!
+  body: String!
+  date: String!
+}
+
+type Post {
+  userId: String! 
+  firstName: String!
+  lastName: String!
+  img: String!
+  post: PostContent
+}
+
+type Query {
+  user: User
+  users: [User!]!
+  posts: [Post!]!
+  messages(id: ID!): [Message!]!
+}
+
+type Mutation {
+  createMessage(id: ID! message: String!): Message!
+  createPost(author: String! date: String! post: String!): Post!
+  login(email: String! password: String!): User!
+  logout: User
+  signup(firstName: String! lastName: String! email: String! password: String!): User!
+  updateUser(email: String! gender: String! firstName: String! lastName: String! profile: Profile): User!
+}
