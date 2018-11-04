@@ -2,10 +2,10 @@
   "name": "codebuddy",
   "version": "1.0.0",
   "description": "",
-  "main": "client/index.js",
+  "main": "client/index.tsx",
   "proxy": "http://localhost:5000",
   "scripts": {
-    "start": "node index.ts",
+    "start": "node index.tsx",
     "server": "ts-node -O '{'module': 'commonjs'}' server/start",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -20,6 +20,7 @@
     "@types/react-router": "^4.4.0",
     "apollo-cache-inmemory": "^1.2.10",
     "apollo-link-http": "^1.5.5",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-register": "^6.26.0",
     "concurrently": "^3.5.1",
@@ -27,6 +28,8 @@
     "graphql-tag": "^2.9.2",
     "graphql-yoga": "^1.16.7",
     "react-apollo": "^2.1.11",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^5.3.0",
     "typescript": "^3.1.6"
   },
   "devDependencies": {
@@ -49,6 +52,7 @@
     "lint-staged": "^7.2.2",
     "nodemon": "^1.18.3",
     "prettier": "1.14.2",
-    "pretty-quick": "^1.6.0"
+    "pretty-quick": "^1.6.0",
+    "webpack": "^4.24.0"
   }
 }

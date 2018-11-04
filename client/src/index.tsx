@@ -1,16 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-
 import registerServiceWorker from './registerServiceWorker';
 
-import App from './components/LandingPage/App/index.tsx';
-import Dashboard from './components/Dashboard/index.tsx';
+import App from './components/LandingPage/App/index';
+import Dashboard from './components/Dashboard/index';
 
 import './styles/main.sass';
 

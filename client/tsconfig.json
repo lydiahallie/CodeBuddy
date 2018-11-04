@@ -4,7 +4,7 @@
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
-    "lib": ["es7", "dom"],
+    "lib": ["esnext", "dom"],
     "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
