@@ -96,14 +96,15 @@ class AllMessages extends Component<{}, AllMessagesState> {
            return messages ? (
             <div className="messages-wrapper">
               <MessageContext.Provider
-                value={{ 
-                  activeMessage, 
-                  messages, 
-                  toggle: this.changeActiveMessage 
-                }} 
+                value='test'
               >
                 <MessagesOverview />
-                {messages.length && <MessageReply messages={messages} />}
+                {messages.length && 
+                  <MessageReply
+                    activeMessage={activeMessage} 
+                    messages={messages} 
+                  />
+                }
               </MessageContext.Provider>
             </div>
           ) : null

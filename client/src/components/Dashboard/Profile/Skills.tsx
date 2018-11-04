@@ -1,11 +1,16 @@
-import React, { Component } from 'react';
+import * as  React from 'react';
+import { Component } from 'react';
 import shortid from 'short-id';
-import PropTypes from 'prop-types';
 
 import USED_LANGUAGES from './formInfo';
 import { ProgressBar } from '../DashboardView/InfoBoxes';
 
-class Skill extends Component {
+interface Props {
+  skill: any
+  i: number
+}
+
+class Skill extends Component<Props, {}> {
   state = { width: 0 };
 
   componentDidMount() {
@@ -51,20 +56,5 @@ const Skills = ({ skills }) => (
     ))}
   </div>
 );
-
-Skill.propTypes = {
-  skill: PropTypes.string.isRequired,
-  i: PropTypes.number.isRequired,
-};
-
-Skills.propTypes = {
-  skills: PropTypes.arrayOf(
-    PropTypes.shape({
-      lang: PropTypes.string.isRequired,
-      value: PropTypes.number.isRequired,
-      // eslint-disable-next-line comma-dangle
-    })
-  ).isRequired,
-};
 
 export default Skills;

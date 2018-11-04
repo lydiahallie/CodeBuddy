@@ -3,7 +3,7 @@ import { Component } from 'react';
 import InfoBox from '../styled_components/InfoBox';
 import { ProgressBar } from '../DashboardView/InfoBoxes';
 import CardContact from './CardContact';
-import { User, Skill } from './types'
+import { Skill } from './types'
 
 interface CardButtonProps {
   btn: string 
@@ -47,8 +47,8 @@ const CardSkills = ({ skills }: CardSkillProps) => (
 
 interface CardProps {
   i: number
-  user: User
-  currentUser: User
+  user: any
+  currentUser: any
 }
 
 interface CardState {

@@ -8,7 +8,7 @@ import InfoBox from '../styled_components/InfoBox'
 interface StatsInfoProps {
   val: number 
   name: string 
-  line: boolean
+  line?: boolean
 }
 
 const StatsInfo = ({ val, name, line }: StatsInfoProps): JSX.Element => (

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Particles from 'react-particles-js';
 
 const CubicParticleWrapper = () => (
@@ -116,6 +116,7 @@ const CubicParticleWrapper = () => (
           },
         },
       },
+      // @ts-ignore
       retina_detect: true,
     }}
   />

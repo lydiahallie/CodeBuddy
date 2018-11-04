@@ -6,7 +6,7 @@ import shortid from 'short-id';
 import Skills from './Skills';
 import { Spinner, Success } from '../../../assets/spinners';
 import UpdateUser from './mutation';
-import { User } from '../Find/types';
+// import { User } from '../Find/types';
 
 const selectOpts: string[] = ['Male', 'Female', 'Other'];
 const lower = (x: string) => x.toLowerCase();
@@ -32,7 +32,7 @@ const RequestMessage = ({ request, loaded, success }: RequestMessageProps) => (
   <span id="save-btn-span">
     {!request ? (
       'Save Changes'
-    ) : req && !loaded ? (
+    ) : request && !loaded ? (
       <React.Fragment>
         <Spinner />
         Updating...
@@ -50,7 +50,7 @@ const RequestMessage = ({ request, loaded, success }: RequestMessageProps) => (
 
 interface ProfileInputFieldProps {
   field: string 
-  currentUser: User
+  currentUser: any
 }
 
 const ProfileInputField = ({ field, currentUser }: ProfileInputFieldProps) => (
@@ -78,7 +78,7 @@ const ProfileInputField = ({ field, currentUser }: ProfileInputFieldProps) => (
 );
 
 interface ProfileInputFieldsProps {
-  currentUser: User 
+  currentUser: any 
   profile: boolean
 }
 
@@ -93,7 +93,7 @@ const ProfileInputFields = ({ currentUser, profile = false }: ProfileInputFields
 
 interface Props {
   reqData: RequestMessageProps
-  user?: User
+  user?: any
 }
 
 interface State {
@@ -104,21 +104,19 @@ interface State {
   gender: string | null
 }
 
+type Key = 'email' | 'password' | 'firstName' | 'lastName' | 'gender'
+
 export default class ProfileInfo extends Component<Props, State> {
   state = {
-    // eslint-disable-next-line react/no-unused-state
     email: '',
-    // eslint-disable-next-line react/no-unused-state
     password: '',
-    // eslint-disable-next-line react/no-unused-state
     firstName: '',
-    // eslint-disable-next-line react/no-unused-state
     lastName: '',
-    // eslint-disable-next-line react/no-unused-state
     gender: null,
   }
 
-  handleInput = (key, e) => this.setState({ [key]: e.target.value });
+  // @ts-ignore
+  handleInput = (key: Key, e) => this.setState({ [key]: e.target.value });
   
   render() {
     const { reqData, user } = this.props;
@@ -142,11 +140,14 @@ export default class ProfileInfo extends Component<Props, State> {
               </div>
               <div className="profile-user-info">
                 <div className="profile-fields">
+                  // @ts-ignore
                   <ProfileInputFields currentUser={user} />
+                  // @ts-ignore
                   <ProfileInputFields currentUser={user} profile />
                 </div>
               </div>
             </div>
+            // @ts-ignore
             <Skills skills={user.profile.skills} info={user} />
             <div className="save-btn">
               <button type="submit">
@@ -163,19 +164,3 @@ export default class ProfileInfo extends Component<Props, State> {
     ) : null;
   }
 }
-
-ProfileInfo.propTypes = {
-  reqData: PropTypes.bool.isRequired,
-  user: PropTypes.shape.isRequired,
-}
-
-RequestMessage.propTypes = {
-  req: PropTypes.bool.isRequired,
-  loaded: PropTypes.bool.isRequired,
-  success: PropTypes.bool.isRequired,
-};
-
-ProfileInputField.propTypes = {
-  field: PropTypes.string.isRequired,
-  currentUser: PropTypes.string.isRequired,
-};

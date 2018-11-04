@@ -23,6 +23,7 @@ interface MobileListMenuProps {
 
 const MobileListMenu = ({ onClick, menuActive }: MobileListMenuProps) => (
   <ul className={`mobile-nav expanded-${menuActive}`}>
+  // @ts-ignore
     {!menuActive ? <MenuIcon onClick={onClick} /> : <ListMenu />}
   </ul>
 );
@@ -45,6 +46,7 @@ export default class Header extends Component<{}, State> {
 
   updateWindowDimensions = () => {
     const width =
+      // @ts-ignore
       window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
     this.setState({ width });

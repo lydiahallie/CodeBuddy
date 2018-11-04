@@ -4,6 +4,7 @@ export interface Skill {
 }
 
 interface UserProfile {
+  id: string
   userName: string
   img: string
   title: string

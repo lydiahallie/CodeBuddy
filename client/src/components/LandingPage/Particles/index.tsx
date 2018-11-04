@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Particles from 'react-particles-js';
 
 const ParticleWrapper = () => (
@@ -115,6 +116,7 @@ const ParticleWrapper = () => (
           },
         },
       },
+      // @ts-ignore
       retina_detect: true,
     }}
   />

@@ -11,7 +11,8 @@ interface Data {
   data: UserType 
 }
 
-export default (): JSX.Element => (
+export default () => (
+  // @ts-ignore
   <Query query={getUser}>
     {({data}: Data) => {
       const { user }: UserType = data

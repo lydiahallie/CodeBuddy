@@ -1,7 +1,7 @@
+import { CHART_DATA } from '../../../data/dashboard_data';
+import { Line } from 'react-chartjs';
 import * as React from 'react';
 import styled from 'styled-components';
-import { Line } from 'react-chartjs';
-import { CHART_DATA } from '../../../data/dashboard_data';
 
 export default () => (
   <InfoBox size={800}>

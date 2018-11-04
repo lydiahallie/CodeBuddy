@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 
-const Info = () => (
+export default () => (
   <div className="info">
     <span id="info-span">
       CodeBuddy is the best way to help you hone your coding skills and make new friends. CodeBuddy
@@ -10,5 +10,3 @@ const Info = () => (
     <button id="info-btn">Learn More</button>
   </div>
 );
-
-export default Info;

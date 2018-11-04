@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { Mutation } from 'react-apollo';
-import { MessageConsumer } from './Messages';
 import AddMessage from './mutation';
 import { Message } from './types';
 
@@ -65,10 +64,6 @@ class MessageReply extends Component<Props, State> {
   }
 };
 
-export default () => (
-  <MessageConsumer>
-    {({ activeMessage, messages }) => (
-      <MessageReply activeMessage={activeMessage} messages={messages} />
-    )}
-  </MessageConsumer>
+export default ({ activeMessage, messages }: Props) => (
+  <MessageReply activeMessage={activeMessage} messages={messages} />
 );

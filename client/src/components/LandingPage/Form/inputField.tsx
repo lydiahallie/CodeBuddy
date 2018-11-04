@@ -8,7 +8,6 @@ import { withRouter } from 'react-router-dom';
 // import { reduxForm, Field } from 'redux-form';
 import { LOGIN_FIELDS, SIGNUP_FIELDS } from './formFields';
 import { loginMutation, signupMutation } from './mutation';
-import { string } from 'prop-types';
 
 interface LoginFieldsProps {
   animate: boolean
@@ -83,6 +82,7 @@ const SignupFields = ({ animate, handleChange, ...props }) => {
   );
 };
 
+// @ts-ignore
 const SignupFieldsWrapper = withRouter(SignupFields)
 
 interface Props {
@@ -114,6 +114,7 @@ class InputFields extends Component<Props, State> {
   }
 
   handleChange = (key, e) => {
+    // @ts-ignore
     this.setState({ [key]: e.target.value });
   }
 

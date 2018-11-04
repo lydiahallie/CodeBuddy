@@ -3,16 +3,23 @@ import * as mongoose from 'mongoose';
 import * as passport from 'passport';
 import * as cors from 'cors';
 
-import resolvers from './resolvers'
 import User from './models/User';
 import Posts from './models/Posts';
 import Message from './models/Message';
+import resolvers from './resolvers'
 
 const keys = require('./config/keys');
-const db = mongoose.connect(keys.mongoURI)
-const models = { User, Posts, Message }
+
 require('./services/passport');
 
+mongoose.Promise = global.Promise;
+
+const db = mongoose.connect(keys.mongoURI)
+const models = { User, Posts, Message }
+
+mongoose.connection
+  .once('open', () => console.log('Mongodb running'))
+  .on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const server = new GraphQLServer({
   typeDefs: './app.graphql',
@@ -20,19 +27,13 @@ const server = new GraphQLServer({
   context: { db, models }
 })
 
-mongoose.Promise = global.Promise;
-
-mongoose.connection
-  .once('open', () => console.log('Mongodb running'))
-  .on('error', console.error.bind(console, 'MongoDB connection error:'));
-
 const app = server.express
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
 
-const { PORT = 5000 } = process.env;
+const PORT = process.env.PORT || 5000;
 
 server.start({
   port: PORT,

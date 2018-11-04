@@ -57,7 +57,7 @@ class MessagesTable extends Component<{}, {
           <InfoBox size={400} height={300}>
             <TextInput onPostChange={this.onPostChange} body={body} />
             <div className="dash-messages">
-              {data.posts && data.posts.reverse().map((msg: string) => (
+              {data.posts && data.posts.reverse().map((msg: Message) => (
                 <Message msg={msg} key={shortid.generate()} />
               ))}
             </div>

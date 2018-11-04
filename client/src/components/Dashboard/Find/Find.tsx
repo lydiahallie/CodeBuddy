@@ -14,7 +14,7 @@ interface Props {
 interface State {
   filterOptions: any[] | any
   loaded: boolean
-  activeUsers: User[] | []
+  activeUsers: any
 }
 
 class Find extends Component<Props, State> {
