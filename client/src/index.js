@@ -9,8 +9,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import registerServiceWorker from './registerServiceWorker';
 
-import App from './components/LandingPage/App';
-import Dashboard from './components/Dashboard';
+import App from './components/LandingPage/App/index.tsx';
+import Dashboard from './components/Dashboard/index.tsx';
 
 import './styles/main.sass';
 
