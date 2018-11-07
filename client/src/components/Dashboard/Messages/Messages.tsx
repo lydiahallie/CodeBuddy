@@ -93,11 +93,9 @@ class AllMessages extends Component<{}, AllMessagesState> {
       <Query query={getMessages}>
         {({data}) => {
           const { messages } = data;
-           return messages ? (
+          return messages ? (
             <div className="messages-wrapper">
-              <MessageContext.Provider
-                value='test'
-              >
+              <MessageContext.Provider value="test">
                 <MessagesOverview />
                 {messages.length && 
                   <MessageReply

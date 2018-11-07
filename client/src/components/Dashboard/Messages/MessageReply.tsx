@@ -36,15 +36,17 @@ class MessageReply extends Component<Props, State> {
       <Mutation mutation={AddMessage}>
       {createMessage => (
         <div className="message-reply">
-          <form onSubmit={e => {
-            e.preventDefault();
-            createMessage({ 
-              variables: { 
-                id: message.recipientUserId, 
-                message: messageInput 
-              }
-            })
-          }}>
+          <form 
+            onSubmit={e => {
+              e.preventDefault();
+              createMessage({ 
+                variables: { 
+                  id: message.recipientUserId, 
+                  message: messageInput 
+                }
+              })
+            }}
+          >
             <div className="message-reply-author">
               <div className="message-reply-name">
                 <span>

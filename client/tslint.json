@@ -26,7 +26,7 @@
     "no-arg": false,
     "no-bitwise": true,
     "no-console": [true, "error", "debug", "info", "time", "timeEnd", "trace"],
-    "no-consecutive-blank-lines": true,
+    "no-consecutive-blank-lines": false,
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-variable": true,

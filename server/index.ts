@@ -22,7 +22,7 @@ mongoose.connection
   .on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const server = new GraphQLServer({
-  typeDefs: './app.graphql',
+  typeDefs: './server/app.graphql',
   resolvers,
   context: { db, models }
 })

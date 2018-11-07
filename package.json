@@ -6,7 +6,7 @@
   "proxy": "http://localhost:5000",
   "scripts": {
     "start": "node index.tsx",
-    "server": "ts-node -O '{'module': 'commonjs'}' server/start",
+    "server": "ts-node -O '{\"module\":\"commonjs\"}' server",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "precommit": "pretty-quick --staged && lint-staged"

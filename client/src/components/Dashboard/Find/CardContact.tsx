@@ -5,7 +5,7 @@ import { ProfileIcon, MessagesIcon, LinkedinIcon, GithubIcon } from '../../../as
 import AddMessage from './mutation'
 import { User } from './types'
 
-const icons: JSX.Element[] = [<ProfileIcon />, <MessagesIcon />, <LinkedinIcon />, <GithubIcon />];
+const icons: JSX.Element[] = [<ProfileIcon key={1} />, <MessagesIcon key={2} />, <LinkedinIcon key={3} />, <GithubIcon key={4}/>];
 
 interface Props {
   user: User
@@ -31,16 +31,18 @@ export default class ContactForm extends Component<Props, State> {
       <Mutation mutation={AddMessage}>
       {createMessage => (
         <div className="card-col-info-contact">
-          <form onSubmit={e => {
-            e.preventDefault();
-            createMessage( { variables: { id: user.id, message } })
-          }}>
+          <form 
+            onSubmit={e => {
+              e.preventDefault();
+              createMessage( { variables: { id: user.id, message } })
+            }}
+          >
             <input type="text" value={message} onChange={e => this.handleInput(e)} />
             <button type="submit" />
           </form>
           <div className="contact-btns">
             {icons.map((icon, i) => (
-              <div className="contact-btn" data-style={i}>
+              <div className="contact-btn" data-style={i} key={i}>
                 {icon}
               </div>
             ))}

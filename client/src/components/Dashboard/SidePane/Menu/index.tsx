@@ -39,7 +39,8 @@ const Menu = ({history}: Props) => (
               history.push('http://localhost:3000')
             })
         }} 
-        className="btn-menu">
+        className="btn-menu"
+      >
         <div className="icon">
           <LogOutIcon />
         </div>

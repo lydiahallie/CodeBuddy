@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Component } from 'react';
 import { CrossIcon } from '../../../assets/icons';
 
-
 interface Props {
   body: string
   onPostChange: (x: string, y: any) => void

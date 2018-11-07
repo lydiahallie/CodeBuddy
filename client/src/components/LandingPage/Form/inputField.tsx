@@ -22,14 +22,16 @@ const LoginFields = ({ animate, handleChange, ...props }: LoginFieldsProps & Rou
   const { password, email } = props;
   return (
     <Mutation mutation={loginMutation}>
-      {(login, { error })=> (
-        <form onSubmit={e => {
-          e.preventDefault();
-          login({ variables: { email, password } })
-            .then(() => {
-              props.history.push('http://localhost:3000/dashboard/dashboard')
-            }); 
-        }}>
+      {(login, { error }) => (
+        <form 
+          onSubmit={e => {
+            e.preventDefault();
+            login({ variables: { email, password } })
+              .then(() => {
+                props.history.push('http://localhost:3000/dashboard/dashboard')
+              }); 
+          }}
+        >
           {LOGIN_FIELDS.map((field, index) => (
             <input
               onChange={e => handleChange(field.placeholder.toLowerCase(), e)}
@@ -56,12 +58,14 @@ const SignupFields = ({ animate, handleChange, ...props }) => {
   const { password, email, firstName, lastName, history } = props;
   return (
     <Mutation mutation={signupMutation}>
-      {(signup, { error })=> (
-        <form onSubmit={e => {
-          e.preventDefault();
-          signup({ variables: { email, password, firstName, lastName } })
-            .then(() => history.push('/dashboard/dashboard'))
-        }}>
+      {(signup, { error }) => (
+        <form 
+          onSubmit={e => {
+            e.preventDefault();
+            signup({ variables: { email, password, firstName, lastName } })
+              .then(() => history.push('/dashboard/dashboard'))
+          }}
+        >
           {SIGNUP_FIELDS.map((field, index) => (
             <input
               onChange={e => handleChange(camelCase(field.placeholder), e)}

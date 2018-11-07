@@ -72,7 +72,7 @@ class Find extends Component<Props, State> {
               ) : (
                 data.users.map(
                   // eslint-disable-next-line comma-dangle
-                  (user, i) => <Card user={user} i={i} currentUser={currentUser} />
+                  (user, i) => <Card user={user} i={i} key={`${currentUser}~${i}`} currentUser={currentUser} />
                 )
               )}
             </div>
