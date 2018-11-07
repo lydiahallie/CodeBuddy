@@ -9,7 +9,7 @@ export default () => (
     <div id="line" />
     <Line data={CHART_DATA} width="600" height="250" />
   </InfoBox>
-) as JSX.Element
+) as any
 
 const InfoBox = (styled.div as any)`
   display: ${props => (props.none ? 'block' : 'flex')};

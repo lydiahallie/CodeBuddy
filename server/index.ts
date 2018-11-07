@@ -38,4 +38,5 @@ const PORT = process.env.PORT || 5000;
 server.start({
   port: PORT,
   debug: true,
+  endpoint: '/graphql',
 }, () => console.log(`Listening on ${PORT}`))

@@ -4,7 +4,7 @@ import { ConnectRequestIcon, ProfileViewIcon, MessagesIcon } from '../assets/ico
 interface BoxInfo {
   value: number 
   name: string
-  icon: JSX.Element
+  icon: any
 }
 
 export const BOX_INFO: BoxInfo[] = [

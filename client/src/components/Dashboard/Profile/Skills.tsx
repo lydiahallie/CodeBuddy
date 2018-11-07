@@ -48,7 +48,7 @@ class Skill extends Component<Props, {}> {
   }
 }
 
-const Skills = ({ skills }) => (
+const Skills = ({ skills, info }) => (
   <div className="user-profile-skills">
     <span id="profile-span-text">Skills</span>
     {skills.map((skill, i) => (

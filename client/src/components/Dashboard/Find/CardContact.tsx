@@ -5,7 +5,7 @@ import { ProfileIcon, MessagesIcon, LinkedinIcon, GithubIcon } from '../../../as
 import AddMessage from './mutation'
 import { User } from './types'
 
-const icons: JSX.Element[] = [<ProfileIcon key={1} />, <MessagesIcon key={2} />, <LinkedinIcon key={3} />, <GithubIcon key={4}/>];
+const icons: any[] = [<ProfileIcon key={1} />, <MessagesIcon key={2} />, <LinkedinIcon key={3} />, <GithubIcon key={4}/>];
 
 interface Props {
   user: User

@@ -82,7 +82,7 @@ interface ProfileInputFieldsProps {
   profile: boolean
 }
 
-const ProfileInputFields = ({ currentUser, profile = false }: ProfileInputFieldsProps) => {
+const ProfileInputFields: any = ({ currentUser, profile = false}: ProfileInputFieldsProps) => {
   let fields = Object.keys(profile ? currentUser.profile : currentUser);
   const user = profile ? currentUser.profile : currentUser;
   fields = fields.filter(x => sortInputForms(x));
@@ -140,14 +140,11 @@ export default class ProfileInfo extends Component<Props, State> {
               </div>
               <div className="profile-user-info">
                 <div className="profile-fields">
-                  // @ts-ignore
                   <ProfileInputFields currentUser={user} />
-                  // @ts-ignore
                   <ProfileInputFields currentUser={user} profile />
                 </div>
               </div>
             </div>
-            // @ts-ignore
             <Skills skills={user.profile.skills} info={user} />
             <div className="save-btn">
               <button type="submit">

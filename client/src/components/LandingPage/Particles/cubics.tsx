@@ -101,6 +101,7 @@ const CubicParticleWrapper = () => (
             distance: 400,
             size: 40,
             duration: 2,
+            // @ts-ignore
             opacity: 8,
             speed: 3,
           },
@@ -116,8 +117,7 @@ const CubicParticleWrapper = () => (
           },
         },
       },
-      // @ts-ignore
-      retina_detect: true,
+      retina_detected: true
     }}
   />
 );

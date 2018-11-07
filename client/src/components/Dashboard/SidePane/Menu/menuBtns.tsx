@@ -7,7 +7,7 @@ import {
 
 interface Content {
   name: string
-  icon: JSX.Element
+  icon: any
 }
 
 const MENU_CONTENTS: Content[] = [

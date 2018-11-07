@@ -8,7 +8,7 @@ import logoutUser from './mutation';
 
 interface Button {
   name: string 
-  icon: JSX.Element
+  icon: any
 }
 
 interface Props {

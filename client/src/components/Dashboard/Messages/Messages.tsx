@@ -43,7 +43,7 @@ const Message = ({ msg, toggle, i, activeMessage }: MessageProps) => (
   </div>
 );
 
-const NoMessagesInfo: () => JSX.Element = () => (
+const NoMessagesInfo: () => any = () => (
   <div className="message active-true">
     <p id="msg">You have not yet received any messages. Once you do, they will appear here!</p>
   </div>
@@ -55,7 +55,7 @@ interface MessagesOverviewProps {
   messages: MessageType[]
 }
 
-const MessagesOverview: () => JSX.Element = () => (
+const MessagesOverview: () => any = () => (
   <MessageConsumer>
     {({ activeMessage, toggle, messages }: MessagesOverviewProps) => (
       <div className="overview messages">

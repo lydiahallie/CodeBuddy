@@ -14,7 +14,7 @@ const View = ({ children }: any) => (
 );
 
 interface State {
-  currentView: JSX.Element | null
+  currentView: any | null
 }
 
 interface Props {
@@ -30,7 +30,7 @@ class Dashboard extends Component<Props & RouteProps, State> {
   }
 
   // eslint-disable-next-line consistent-return
-  blockComponent = (block: string): JSX.Element | undefined => {
+  blockComponent = (block: string): any | undefined => {
     switch (block) {
       case 'find':
         return <Find />;

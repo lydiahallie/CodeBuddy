@@ -46,7 +46,7 @@ class AuthForm extends Component<{}, State> {
   }
 }
 
-export default () => (
+export default ({history}) => (
   <div className="content">
     <div>
       <Title />

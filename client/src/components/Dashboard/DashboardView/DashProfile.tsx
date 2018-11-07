@@ -11,7 +11,7 @@ interface StatsInfoProps {
   line?: boolean
 }
 
-const StatsInfo = ({ val, name, line }: StatsInfoProps): JSX.Element => (
+const StatsInfo = ({ val, name, line }: StatsInfoProps): any => (
   <React.Fragment>
     <div className="dash-user-col">
       <span className="proj-num">{val}</span> {name}
@@ -20,7 +20,7 @@ const StatsInfo = ({ val, name, line }: StatsInfoProps): JSX.Element => (
   </React.Fragment>
 );
 
-const DashUserProfile = (): JSX.Element => (
+const DashUserProfile = (): any => (
   <Query query={profileQuery}> 
     {({data}) => {  
       const { user } = data;

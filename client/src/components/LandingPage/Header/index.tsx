@@ -23,8 +23,7 @@ interface MobileListMenuProps {
 
 const MobileListMenu = ({ onClick, menuActive }: MobileListMenuProps) => (
   <ul className={`mobile-nav expanded-${menuActive}`}>
-  // @ts-ignore
-    {!menuActive ? <MenuIcon onClick={onClick} /> : <ListMenu />}
+    {!menuActive ? <MenuIcon /> : <ListMenu />}
   </ul>
 );
 

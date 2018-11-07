@@ -4,7 +4,7 @@ import MessagesTable from './MessageTable';
 import InfoBoxes from './InfoBoxes';
 import DashProfile from './DashProfile';
 
-const StatsBoxes = (): JSX.Element => (
+const StatsBoxes = (): any => (
   <div className="stats-boxes">
     <ActivityGraph />
     <div>
@@ -14,7 +14,7 @@ const StatsBoxes = (): JSX.Element => (
   </div>
 );
 
-export default (): JSX.Element => (
+export default (): any => (
   <div className="dashboard-view">
     <InfoBoxes />
     <StatsBoxes />
