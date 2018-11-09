@@ -17,7 +17,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/es6-shim": "^0.31.38",
     "@types/react-router": "^4.4.0",
     "apollo-cache-inmemory": "^1.2.10",
     "apollo-link-http": "^1.5.5",
