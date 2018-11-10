@@ -1,14 +1,25 @@
-## [NOT FINISHED] CodeBuddy
-
-CodeBuddy is a personal project, representing a website where people can get in contact with other programmers to work with them on their own side projects, and create a team. Some technologies used:
-  - React 
-  - Redux
-  - Node.js
-  - Express
-  - Passport
-  - JWT
-  - oAuth
-  - MongoDB
+### Installation
+ ```sh
+$ git clone git@github.com:lydiahallie/CodeBuddy.git
+$ cd CodeBuddy
+$ yarn
+```
+ Run client:
+```sh
+$ cd client 
+$ yarn
+$ cd ..
+$ yarn client
+```
+Run server:
+```sh
+$ cd server
+$ yarn
+$ cd ..
+$ ts-node -O '{"module":"commonjs"}' server
+```
+ ### Branches
+Whenever you open a PR, please use the `dev` branch as the base branch. 
   
  ### First draft version
 ![demo](preview1.gif)
