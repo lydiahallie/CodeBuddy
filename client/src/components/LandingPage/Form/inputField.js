@@ -11,14 +11,15 @@ const LoginFields = ({ animate, handleChange, ...props }) => {
 
   return (
     <Mutation mutation={loginMutation}>
-      {(login, { error })=> (
-        <form onSubmit={e => {
-          e.preventDefault();
-          login({ variables: { email, password } })
-            .then(() => {
-              window.location.href = 'http://localhost:3000/dashboard/dashboard'
-            }); 
-        }}>
+      {(login, { error }) => (
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            login({ variables: { email, password } }).then(() => {
+              window.location.href = 'http://localhost:3000/dashboard/dashboard';
+            });
+          }}
+        >
           {LOGIN_FIELDS.map((field, index) => (
             <input
               onChange={e => handleChange(field.placeholder.toLowerCase(), e)}
@@ -27,6 +28,7 @@ const LoginFields = ({ animate, handleChange, ...props }) => {
               // eslint-disable-next-line react/destructuring-assignment
               value={props[field.placeholder.toLowerCase()]}
               type={field.type}
+              name={field.name}
               component="input"
               placeholder={field.placeholder}
               className={`input-lg-${index + 1} animate-${animate}`}
@@ -34,9 +36,9 @@ const LoginFields = ({ animate, handleChange, ...props }) => {
           ))}
           <button type="submit">Submit</button>
           {error && <span>{error}</span>}
-        </form> 
+        </form>
       )}
-    </Mutation> 
+    </Mutation>
   );
 };
 
@@ -44,12 +46,15 @@ const SignupFields = ({ animate, handleChange, ...props }) => {
   const { password, email, firstName, lastName } = props;
   return (
     <Mutation mutation={signupMutation}>
-      {(signup, { error })=> (
-        <form onSubmit={e => {
-          e.preventDefault();
-          signup({ variables: { email, password, firstName, lastName } })
-            .then(() => this.props.history.push('/dashboard/dashboard'))
-        }}>
+      {(signup, { error }) => (
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            signup({ variables: { email, password, firstName, lastName } }).then(() =>
+              this.props.history.push('/dashboard/dashboard')
+            );
+          }}
+        >
           {SIGNUP_FIELDS.map((field, index) => (
             <input
               onChange={e => handleChange(field.placeholder.toLowerCase(), e)}
@@ -58,6 +63,7 @@ const SignupFields = ({ animate, handleChange, ...props }) => {
               // eslint-disable-next-line react/destructuring-assignment
               value={props[field.placeholder.toLowerCase()]}
               type={field.type}
+              name={field.name}
               component="input"
               placeholder={field.placeholder}
               className={`input-su-${index + 1} animate-${animate}`}
@@ -65,14 +71,14 @@ const SignupFields = ({ animate, handleChange, ...props }) => {
           ))}
           <button type="submit">Submit</button>
           {error && <span>{error}</span>}
-        </form> 
+        </form>
       )}
-    </Mutation> 
+    </Mutation>
   );
 };
 
 class InputFields extends Component {
-  state = { 
+  state = {
     // eslint-disable-next-line react/no-unused-state
     email: '',
     // eslint-disable-next-line react/no-unused-state
@@ -87,9 +93,9 @@ class InputFields extends Component {
     setTimeout(() => this.setState({ animate: false }), 2000);
   }
 
-  handleChange = ( key, e) => {
+  handleChange = (key, e) => {
     this.setState({ [key]: e.target.value });
-  }
+  };
 
   render() {
     const { activeBtn } = this.props;
@@ -114,7 +120,7 @@ LoginFields.propTypes = {
   handleChange: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
-}
+};
 
 SignupFields.propTypes = {
   animate: PropTypes.bool.isRequired,
@@ -123,8 +129,7 @@ SignupFields.propTypes = {
   password: PropTypes.string.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-}
-
+};
 
 InputFields.propTypes = {
   // handleSubmit: PropTypes.func.isRequired,
