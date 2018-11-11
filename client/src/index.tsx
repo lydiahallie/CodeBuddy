@@ -11,11 +11,11 @@ import registerServiceWorker from './registerServiceWorker';
 import App from './components/LandingPage/App/index';
 import Dashboard from './components/Dashboard/index';
 
-import './styles/main.sass';
+import './styles/main.css';
 
 const httpLink = new HttpLink({
   uri: 'http://localhost:5000/graphql',
-})
+});
 
 const cache = new InMemoryCache();
 
