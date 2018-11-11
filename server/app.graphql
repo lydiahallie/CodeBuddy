@@ -18,7 +18,7 @@ type User {
   email: String!
   firstName: String!
   lastName: String!
-  gender: String!
+  gender: String
   profile: Profile
 }
 
@@ -36,7 +36,7 @@ type PostContent {
 }
 
 type Post {
-  userId: String! 
+  userId: String!
   firstName: String!
   lastName: String!
   img: String!
@@ -44,7 +44,7 @@ type Post {
 }
 
 type Query {
-  user: User
+  user(id: ID!): User
   users: [User!]!
   posts: [Post!]!
   messages(id: ID!): [Message!]!
@@ -55,6 +55,6 @@ type Mutation {
   createPost(author: String! date: String! post: String!): Post!
   login(email: String! password: String!): User!
   logout: User
-  signup(firstName: String! lastName: String! email: String! password: String!): User!
-  updateUser(email: String! gender: String! firstName: String! lastName: String! profile: Profile): User!
+  signup(firstName: String! lastName: String! email: String! password: String!): User
+  updateUser(email: String! gender: String! firstName: String! lastName: String!): User!
 }

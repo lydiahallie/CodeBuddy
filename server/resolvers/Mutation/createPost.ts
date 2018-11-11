@@ -12,7 +12,7 @@ export const createPost = async (
   }, 
   req
 ) => {
-  new Promise(async(resolve, reject) => {
+  return new Promise(async(resolve, reject) => {
     try {
       Post.create({
         author,

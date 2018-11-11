@@ -11,11 +11,10 @@ export const updateUser = async (
     gender, 
     firstName, 
     lastName, 
-    profile 
   }, 
   req
 ) => {
-  new Promise(async(resolve, reject) => {
+  return new Promise(async(resolve, reject) => {
     try {
       const user = await User.findOne({ _id: req.user._id });
       const { profile } = user;

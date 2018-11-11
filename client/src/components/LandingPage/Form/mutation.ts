@@ -18,8 +18,8 @@ export const logoutMutation = gql`
 `;
 
 export const signupMutation = gql`
-  mutation Signup($email: String!, $password: String!, $firstName: String!, $lastName: String!) {
-    signup(email: $email, password: $password, firstName: $firstName, lastName: $lastName) {
+  mutation Signup($firstName: String! $lastName: String! $email: String! $password: String!) {
+    signup(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
       id
     }
   }

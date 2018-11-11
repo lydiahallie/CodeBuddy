@@ -1,58 +1,62 @@
-import passport from 'passport';
+import * as passport from 'passport';
 
-export const auth = {
-  async login(
-    parent, 
-    { 
-      email, 
-      password 
-    }, 
-    req
-  ) {
-    new Promise((resolve, reject) => {
-      passport.authenticate('local-login', (err, user, info) => {
-        if (!user) {
-          reject(info);
+export const login = async (
+  parent, 
+  { 
+    email, 
+    password 
+  }, 
+  req
+) => {
+  return new Promise((resolve, reject) => {
+    passport.authenticate('local-login', (err, user, info) => {
+      if (!user) {
+        reject(info);
+      }
+      return req.logIn(user, error => {
+        if (err) {
+          return reject(error);
         }
-        return req.logIn(user, error => {
-          if (err) {
-            return reject(error);
-          }
-          return resolve(user);
-        });
-      })({body: {email, password}});
-    }) as Promise<void>;
-  },
+        return resolve(user);
+      });
+    })({body: {email, password}});
+  }) as Promise<void>;
+}
 
-  async logout(parent, args, req) {
-    new Promise(resolve => {
-      req.logOut();
-      resolve();
-    }) as Promise<void>;
-  },
+export const logout = async(parent, args, req) => {
+  return new Promise(resolve => {
+    req.logOut();
+    resolve();
+  }) as Promise<void>;
+}
 
-  async signup(
-    parent, 
-    { 
-      firstName, 
-      lastName, 
-      email, 
-      password 
-    }, 
-    req
-  ) {
-    new Promise((resolve, reject) => {
-      passport.authenticate('local-signup', (err, user, info) => {
-        if (!user) {
-          reject(info);
-        }
-        return req.logIn(user, error => {
-          if (err) {
-            return reject(error);
-          }
-          return resolve(user);
-        });
-      })({body: {firstName, lastName, email, password}});
-    }) as Promise<void>;
-  }
+export const signup = async(
+  parent, 
+  { 
+    firstName, 
+    lastName, 
+    email, 
+    password 
+  },
+  req
+)  => {
+  return await passport.authenticate('local-signup', (err, user, info) => {
+    console.log("====")
+    console.log("====")
+    console.log("====")
+    console.log(user)
+    console.log("====")
+    console.log("====")
+    console.log("====")
+    console.log("====")
+    if (!user) {
+      console.error(info)
+    }
+    return req.logIn(user, error => {
+      if (err) {
+        console.error(err)
+      }
+      return user
+    }); 
+  })({body: {firstName, lastName, email, password}});
 }

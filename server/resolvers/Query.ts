@@ -10,7 +10,7 @@ import {
 
 export const Query = {
   messages: (parent, { id }, req) => {
-    new Promise(async(resolve, reject) => {
+    return new Promise(async(resolve, reject) => {
       try {
         const messages = await Message.find({ recipientUserId: id });
         
@@ -22,7 +22,7 @@ export const Query = {
   },
 
   posts: (parent, args, req) => {
-    new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       try {
         const posts = Post.find({});
         resolve(posts);
@@ -33,13 +33,13 @@ export const Query = {
   },
 
   user: (parent, args, req) => {
-    new Promise(resolve => {
+    return new Promise(resolve => {
       resolve(req.user);  
     })
   },
 
   users: (parent, args, req) => {
-    new Promise(async(resolve, reject) => {
+    return new Promise(async(resolve, reject) => {
       try {
         const users = await User.find({});
         resolve(users);
