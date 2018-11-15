@@ -3,6 +3,11 @@ type Skill {
   value: String!
 }
 
+type AuthPayload {
+  token: String
+  user: User
+}
+
 type Profile {
   userName: String!
   img: String!

@@ -2,11 +2,13 @@ import { GraphQLServer } from 'graphql-yoga';
 import * as mongoose from 'mongoose';
 import * as passport from 'passport';
 import * as cors from 'cors';
+import * as jwt from 'express-jwt';
+import * as jwksRsa from 'jwks-rsa';
 
 import User from './models/User';
 import Posts from './models/Posts';
 import Message from './models/Message';
-import resolvers from './resolvers'
+import resolvers from './resolvers';
 
 const keys = require('./config/keys');
 
@@ -21,10 +23,17 @@ mongoose.connection
   .once('open', () => console.log('Mongodb running'))
   .on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+const req = (req) => ({
+  req: req.request,
+})
+
 const server = new GraphQLServer({
   typeDefs: './server/app.graphql',
   resolvers,
-  context: { db, models }
+  context: (req) => {
+    const { user } = req.request;
+    return { user }
+  }
 })
 
 const app = server.express

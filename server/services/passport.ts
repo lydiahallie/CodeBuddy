@@ -1,9 +1,9 @@
-const passport = require('passport');
+import * as passport from 'passport'
 // const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const LocalStrategy = require('passport-local').Strategy;
-const mongoose = require('mongoose');
+import * as Strategy from 'passport-local'
+import * as mongoose from 'mongoose'
 // const passportJWT = require('passport-jwt');
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcrypt'
 // const keys = require('../config/keys');
 
 // const JWTStrategy = passportJWT.Strategy;
@@ -45,7 +45,7 @@ passport.use(
 
 passport.use(
   'local-signup',
-  new LocalStrategy(
+  new Strategy(
     {
       usernameField: 'email',
       passwordField: 'password',
@@ -77,7 +77,7 @@ passport.use(
 
 passport.use(
   'local-login',
-  new LocalStrategy(
+  new Strategy(
     {
       usernameField: 'email',
       passwordField: 'password',

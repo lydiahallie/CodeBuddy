@@ -1,4 +1,8 @@
 import * as passport from 'passport';
+import * as mongoose from 'mongoose'
+import * as bcrypt from 'bcrypt'
+
+const User = mongoose.model('users');
 
 export const login = async (
   parent, 
@@ -6,14 +10,15 @@ export const login = async (
     email, 
     password 
   }, 
-  req
+  ctx,
+  info
 ) => {
   return new Promise((resolve, reject) => {
     passport.authenticate('local-login', (err, user, info) => {
       if (!user) {
         reject(info);
       }
-      return req.logIn(user, error => {
+      return ctx.req.logIn(user, error => {
         if (err) {
           return reject(error);
         }
@@ -38,25 +43,34 @@ export const signup = async(
     email, 
     password 
   },
-  req
+  ctx,
+  info
 )  => {
-  return await passport.authenticate('local-signup', (err, user, info) => {
-    console.log("====")
-    console.log("====")
-    console.log("====")
-    console.log(user)
-    console.log("====")
-    console.log("====")
-    console.log("====")
-    console.log("====")
-    if (!user) {
-      console.error(info)
-    }
-    return req.logIn(user, error => {
-      if (err) {
-        console.error(err)
-      }
-      return user
-    }); 
-  })({body: {firstName, lastName, email, password}});
+  const existingUser = User.find({ email })
+  if (existingUser) {
+    throw new Error('This email already exists!')
+  }
+
+  const user = await User.create({
+    firstName,
+    lastName,
+    email,
+    password: bcrypt.hashSync(password, 10)
+  })
+
+  console.log('ISERRRURURUWEIHKEHJFSHJKDFJKHSDFJKHDSHJKDSFSD', user)
+
+  return user
+
+  // return await passport.authenticate('local-signup', (err, user, info) => {
+  //   if (!user) {
+  //     console.error(info)
+  //   }
+  //   return ctx.req.logIn(user, error => {
+  //     if (err) {
+  //       console.error(err)
+  //     }
+  //     return user
+  //   }); 
+  // })({body: {firstName, lastName, email, password}});
 }
