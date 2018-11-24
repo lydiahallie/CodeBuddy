@@ -4,7 +4,7 @@ $ git clone git@github.com:lydiahallie/CodeBuddy.git
 $ cd CodeBuddy
 $ yarn
 ```
- Run client:
+Run client:
 ```sh
 $ cd client 
 $ yarn
