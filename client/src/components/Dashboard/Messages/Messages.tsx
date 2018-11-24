@@ -58,20 +58,22 @@ interface MessagesOverviewProps {
 const MessagesOverview: () => any = () => (
   <MessageConsumer>
     {({ activeMessage, toggle, messages }: MessagesOverviewProps) => (
-      <div className="overview messages">
-        {!messages.length ? (
-          <NoMessagesInfo />
-        ) : (
-          messages.map((msg: MessageType, i: number) => (
-            <Message 
-              activeMessage={activeMessage} 
-              toggle={toggle} 
-              msg={msg} 
-              i={i} 
-            />
-          ))
-        )}
-      </div>
+      messages && (
+        <div className="overview messages">
+          {!messages.length ? (
+            <NoMessagesInfo />
+          ) : (
+            messages.map((msg: MessageType, i: number) => (
+              <Message 
+                activeMessage={activeMessage} 
+                toggle={toggle} 
+                msg={msg} 
+                i={i} 
+              />
+            ))
+          )}
+        </div>
+      )
     )}
   </MessageConsumer>
 );
@@ -90,7 +92,7 @@ class AllMessages extends Component<{}, AllMessagesState> {
   render() {
     const { activeMessage } = this.state;
     return (
-      <Query query={getMessages}>
+      <Query query={getMessages} variables={{ id: localStorage.getItem('current_user') }}>
         {({data}) => {
           const { messages } = data;
           return messages ? (

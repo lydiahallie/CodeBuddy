@@ -5,7 +5,6 @@ type Skill {
 
 type AuthPayload {
   token: String
-  user: User
 }
 
 type Profile {
@@ -19,8 +18,8 @@ type Profile {
 }
 
 type User {
-  id: ID!
-  email: String!
+  id: ID
+  email: String
   firstName: String!
   lastName: String!
   gender: String
@@ -41,14 +40,13 @@ type PostContent {
 }
 
 type Post {
-  userId: String!
-  firstName: String!
-  lastName: String!
-  img: String!
+  id: ID!
+  author: User!
   post: PostContent
 }
 
 type Query {
+  me: User
   user(id: ID!): User
   users: [User!]!
   posts: [Post!]!
@@ -57,7 +55,7 @@ type Query {
 
 type Mutation {
   createMessage(id: ID! message: String!): Message!
-  createPost(author: String! date: String! post: String!): Post!
+  createPost(id: ID! post: String!): Post!
   login(email: String! password: String!): User!
   logout: User
   signup(firstName: String! lastName: String! email: String! password: String!): User

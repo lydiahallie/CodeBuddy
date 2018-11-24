@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  {
-    messages {
+  query Messages($id: ID!) {
+    messages(id: $id) {
       author {
         id
         firstName

@@ -38,9 +38,9 @@ class UserProfile extends React.Component<Props, State> {
     const reqData = { ...this.state };
     // const { currentUser } = this.props;
     return (
-      <Query query={getUserProfile}>
+      <Query query={getUserProfile} variables={{ id: localStorage.getItem('current_user') }}>
       {({data}) => (
-        data.user ? (
+        data && data.user ? (
           <div className="overview">
             <div className="profile-card">
               <ProfileInfo

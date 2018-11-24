@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const profileQuery = gql`
-  {
-    user {
+  query User($id: ID!) {
+    user(id: $id) {
       id
       firstName 
       lastName 
@@ -15,8 +15,8 @@ export const profileQuery = gql`
 `;
 
 export const getMessages = gql`
-  {
-    messages  {
+  query Messages($id: ID!) {
+    messages(id: $id) {
       id 
     }
   }
@@ -29,9 +29,12 @@ export const postsQuery = gql`
       author {
         id
         firstName
+        lastName
+        profile {
+          img
+        }
       }
       post {
-        title 
         body
         date
       }

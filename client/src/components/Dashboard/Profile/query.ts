@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  {
-    user {
+  query UserProfile($id: ID!)  {
+    user(id: $id) {
       id
       email
       firstName

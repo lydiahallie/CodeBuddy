@@ -9,43 +9,44 @@ import {
 } from './types'
 
 export const Query = {
-  messages: (parent, { id }, req) => {
-    return new Promise(async(resolve, reject) => {
-      try {
-        const messages = await Message.find({ recipientUserId: id });
-        
-        resolve(messages);
-      } catch(e) {
-        reject(e);
-      }  
-    }) as Promise<MessageType>
+  me: async (parent, args, {user}) => {
+    if (!user) {
+      throw new Error('You are not authenticated!')
+    }
+
+    return await User.findById(user.id)
   },
 
-  posts: (parent, args, req) => {
-    return new Promise((resolve, reject) => {
-      try {
-        const posts = Post.find({});
-        resolve(posts);
-      } catch (e) {
-        reject(e);
-      }
-    })
+  messages: async (parent, { id }, req) => {
+    try {
+      return await Message.find({ recipientUserId: id });
+    } catch(e) {
+      throw new Error(e)
+    }
   },
 
-  user: (parent, args, req) => {
-    return new Promise(resolve => {
-      resolve(req.user);  
-    })
+  posts: async (parent, args, req) => {
+    try {
+      const post =  await Post.find({});
+      return post
+    } catch (e) {
+      throw new Error(e)
+    }
   },
 
-  users: (parent, args, req) => {
-    return new Promise(async(resolve, reject) => {
-      try {
-        const users = await User.find({});
-        resolve(users);
-      } catch(e) {
-        reject(e);
-      }  
-    })
+  user: async (parent, {id}, req) => {
+    try {
+      return await User.findOne({ email: id })
+    } catch (e) {
+      throw new Error
+    }
+  },
+
+  users: async (parent, args, req) => {
+    try {
+      return await User.find({});
+    } catch(e) {
+      throw new Error(e)
+    }  
   }
 }

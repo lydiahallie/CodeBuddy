@@ -19,17 +19,16 @@ interface LoginFieldsProps {
 }
 
 const LoginFields = ({ animate, handleChange, ...props }: LoginFieldsProps & RouteComponentProps) => {
-  const { password, email } = props;
+  const { password, email, history } = props;
   return (
     <Mutation mutation={loginMutation}>
       {(login, { error }) => (
         <form 
-          onSubmit={e => {
+          onSubmit={async e => {
             e.preventDefault();
-            login({ variables: { email, password } })
-              .then(() => {
-                props.history.push('http://localhost:3000/dashboard/dashboard')
-              }); 
+            const res: any = await login({ variables: { email, password } })
+            localStorage.setItem('current_user', res.data.login.email)
+            history.push('/dashboard/dashboard')
           }}
         >
           {LOGIN_FIELDS.map((field, index) => (
@@ -60,10 +59,11 @@ const SignupFields = ({ animate, handleChange, ...props }) => {
     <Mutation mutation={signupMutation}>
       {(signup, { error }) => (
         <form 
-          onSubmit={e => {
+          onSubmit={async e => {
             e.preventDefault();
-            signup({ variables: { email, password, firstName, lastName } })
-              .then(() => history.push('/dashboard/dashboard'))
+            const res: any = await signup({ variables: { email, password, firstName, lastName } })
+            localStorage.setItem('current_user', res.data.signup.email)
+            history.push('/dashboard/dashboard')
           }}
         >
           {SIGNUP_FIELDS.map((field, index) => (

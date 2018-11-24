@@ -19,9 +19,9 @@ export const ProgressBar = ({ width }: ProgessBarProps) => (
 );
 
 export default () => (
-  <Query query={getMessages}>
+  <Query query={getMessages} variables={{ id: localStorage.getItem('current_user') }}>
   {({data}) => (
-    data.messages ? (
+    data && data.messages ? (
       <div className="info-boxes">
         {BOX_INFO.map(box => (
           <InfoBox size={400} key={shortid.generate()}>

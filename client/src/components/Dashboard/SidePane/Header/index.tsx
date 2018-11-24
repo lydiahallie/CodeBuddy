@@ -13,9 +13,9 @@ interface Data {
 
 export default () => (
   // @ts-ignore
-  <Query query={getUser}>
+  <Query query={getUser} variables={{ id: localStorage.getItem('current_user')}}>
     {({data}: Data) => {
-      const { user }: UserType = data
+      const user = data && data.user
       return data ? (
         <div className="dash-header">
           <h1 id="dash-header-title">CodeBuddy</h1>

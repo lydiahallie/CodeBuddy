@@ -12,10 +12,15 @@ interface Post {
   body: string
 }
 
-interface Message {
-  img: string
+interface Author {
+  profile: {
+    img: string
+  }
   firstName: string
-  lastName: string 
+  lastName: string
+}
+interface Message {
+  author: Author
   post: Post 
 }
 
@@ -27,9 +32,9 @@ const Message = ({ msg }: MessageProps) =>
   msg.post && (
     <div className="dash-message">
       <div className="dash-message-info">
-        <img src={msg.img} alt="" />
+        <img src={msg.author.profile.img} alt="" />
         <h3>
-          {msg.firstName} {msg.lastName}
+          {msg.author.firstName} {msg.author.lastName}
         </h3>
         <span>
           <span id="msg-date">{moment(msg.post.date).fromNow()}</span>
@@ -52,8 +57,8 @@ class MessagesTable extends Component<{}, {
     const { body } = this.state;
     return (
       <Query query={postsQuery}>
-      {({data}) => (
-        data ? (
+      {({data}) => {
+        return data ? (
           <InfoBox size={400} height={300}>
             <TextInput onPostChange={this.onPostChange} body={body} />
             <div className="dash-messages">
@@ -63,7 +68,7 @@ class MessagesTable extends Component<{}, {
             </div>
           </InfoBox>
         ) : <InfoBox size={400} height={300} />
-      )}
+      }}
       </Query>
     );
   }

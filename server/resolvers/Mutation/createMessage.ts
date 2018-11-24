@@ -14,7 +14,7 @@ export const createMessage = async (
   req
 ) => {
   try {
-    const author: User = await User.findOne({ _id: req.user._id });
+    const author: User = await User.findOne({ email: req.user._id });
     const recipient: User = await User.findOne({ _id: id });
 
     const newMessage = await Message.create({

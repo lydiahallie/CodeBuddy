@@ -21,6 +21,7 @@ export const signupMutation = gql`
   mutation Signup($firstName: String! $lastName: String! $email: String! $password: String!) {
     signup(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
       id
+      email
     }
   }
 `;

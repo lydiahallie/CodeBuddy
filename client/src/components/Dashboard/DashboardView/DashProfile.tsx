@@ -20,10 +20,10 @@ const StatsInfo = ({ val, name, line }: StatsInfoProps): any => (
   </React.Fragment>
 );
 
-const DashUserProfile = (): any => (
-  <Query query={profileQuery}> 
+const DashUserProfile = () => (
+  <Query query={profileQuery} variables={{id: localStorage.getItem('current_user')}}> 
     {({data}) => {  
-      const { user } = data;
+      const user = data && data.user
       return user ? (
         <InfoBox none odd margin size={400} height={700}>
           <div className="dash-profile">

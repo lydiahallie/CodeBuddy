@@ -1,10 +1,21 @@
 import * as React from 'react';
 import { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
 import { CrossIcon } from '../../../assets/icons';
+
+
+const ADD_MESSAGE = gql`
+  mutation AddMessage($id: ID! $post: String!) {
+    createPost(id: $id post: $post) {
+      id
+    }
+  }
+`
 
 interface Props {
   body: string
-  onPostChange: (x: string, y: any) => void
+  onPostChange: (x: any) => void
 }
 
 interface State {
@@ -22,23 +33,35 @@ class TextInput extends Component<Props, State> {
     const { expanded } = this.state;
     const { body, onPostChange } = this.props;
     return (
-      <div className="dash-msg-input">
-        <div onClick={this.toggleMessage} className={`dash-msg-button expanded-${expanded}`}>
-          <CrossIcon />
-          {expanded && (
-            <React.Fragment>
-              <input
-                style={{ color: 'black' }}
-                type="textarea"
-                placeholder="Message"
-                onChange={e => onPostChange('body', e)}
-                value={body}
-              />
-              <button>Add</button>
-            </React.Fragment>
-          )}
+      <Mutation 
+        mutation={ADD_MESSAGE} 
+        variables={{ 
+          id: localStorage.getItem('current_user'), 
+          post: body
+        }}
+      >
+      {createMessage => (
+        <div className="dash-msg-input">
+          <div className={`dash-msg-button expanded-${expanded}`}>
+            <div onClick={this.toggleMessage}>
+              <CrossIcon />
+            </div>
+            {expanded && (
+              <React.Fragment>
+                <input
+                  style={{ color: 'black' }}
+                  type="textarea"
+                  placeholder="Message"
+                  onChange={e => onPostChange(e)}
+                  value={body}
+                />
+                <button onClick={() => createMessage()}>Add</button>
+              </React.Fragment>
+            )}
+          </div>
         </div>
-      </div>
+      )}
+      </Mutation>
     );
   }
 }

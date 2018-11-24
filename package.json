@@ -20,6 +20,7 @@
     "@types/react-router": "^4.4.0",
     "apollo-cache-inmemory": "^1.2.10",
     "apollo-link-http": "^1.5.5",
+    "apollo-server-express": "^2.2.2",
     "awesome-typescript-loader": "^5.2.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-register": "^6.26.0",
