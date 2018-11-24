@@ -1,4 +1,4 @@
 yarn-error.log
-yarn.lock
 
 /node_modules
+server/config/dev.ts
