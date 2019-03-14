@@ -24,7 +24,7 @@ export default class Title extends Component<{}, State> {
     const index: number = activeIndex % WORDS.length;
     return (
       <h1 id="title">
-        Find A Partner To
+        Find A Partner To&nbsp;
         <span id="word">{WORDS[index].word}</span>
       </h1>
     );
